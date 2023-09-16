@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-//import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -50,7 +49,6 @@ public class MembresiaControllerApi {
         }
         membresiaService.guardar(membresia);
         return new Mensaje("La membresia se guardó con exito!", "success");
-        
     }
 
     //BuscarPorId
@@ -63,8 +61,13 @@ public class MembresiaControllerApi {
     //Actualizar
     @PutMapping("/actualizar/{id}")
     @ResponseBody
-    public Membresia actualizarMembresia(@RequestBody Membresia membresia, @PathVariable("id") Long id){
-        return membresiaService.actualizarPorId(membresia, id);
+    public Mensaje actualizarMembresia(@Valid @RequestBody Membresia membresia, BindingResult result, @PathVariable("id") Long id){
+        if(result.hasErrors()){
+            Mensaje mensaje = new Mensaje(result.getFieldError().getDefaultMessage(), "warning");
+            return mensaje;
+        }
+        membresiaService.actualizarPorId(membresia, id);
+        return new Mensaje("La membresia se actualizó con exito!", "success");
     }
 
     //Eliminar

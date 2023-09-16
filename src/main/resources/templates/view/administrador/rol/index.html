@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{view/layout/layout_administrador}">
+
+<head th:replace="view/layout/layout_administrador :: head">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rol</title>
+    <th:block layout:fragment="page-style">
+        <link href="https://cdn.datatables.net/v/bs5/dt-1.13.6/datatables.min.css" rel="stylesheet">
+    </th:block>
+</head>
+
+<body>
+    <!-- *****************AQUI COMIENZA LA PARTE PROPIA***************** -->
+    <div class="page-heading" layout:fragment="page-heading">
+        <div class="page-title">
+            <div class="row">
+                <div class="col-12 col-md-6 order-md-1 order-last">
+                    <h3>Roles</h3>
+                    <p class="text-subtitle text-muted">
+                        Aqui se mostrara el listados de todos los roles.
+                    </p>
+                </div>
+                <div class="col-12 col-md-6 order-md-2 order-first">
+                    <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="#">Inicio</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">
+                                Roles
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <section>
+            <div class="card">
+                <div class="card-header pb-2">
+                    <h5>Lista de roles</h5>
+                </div>
+                <div class="card-body pt-0">
+                    <!-- ///******BOTON MODAL******/// -->
+                    <div class="pb-3">
+                        <button type="button" class="btn btn-primary" id="btn-abrirModalRol">
+                            <i class="fa fa-edit"></i> Agregar Nuevo Rol
+                        </button>
+                    </div>
+                    <!-- ///******FIN BOTON MODAL******/// -->
+
+
+                    <!-- ///******MODAL******/// -->
+                    <div class="modal fade text-left" id="modalRol" tabindex="-1" role="dialog"
+                        aria-labelledby="myModalLabel160" aria-hidden="true">
+                        <form id="formRol">
+                            <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                <div class="modal-content">
+                                    <div id="color-modal" class="modal-header bg-primary">
+                                        <h5 class="modal-title white" id="titulo-form">Agregar Rol</h5>
+                                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                            <i data-feather="x"></i>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="px-3">
+                                                    <label>Rol: </label>
+                                                    <div class="form-group">
+                                                        <input type="hidden" name="id_rol" />
+                                                        <input type="text" name="nom_rol"
+                                                            placeholder="Ingrese el nombre del Rol"
+                                                            class="form-control" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                            <i class="bx bx-x d-block d-sm-none"></i>
+                                            <span class="d-none d-sm-block">Cerrar</span>
+                                        </button>
+                                        <button type="button" id="btn-guardarRol" class="btn btn-primary ml-1">
+                                            <i class="bx bx-check d-block d-sm-none"></i>
+                                            <span class="d-none d-sm-block">Agregar</span>
+                                        </button>
+                                        <button type="button" id="btn-actualizarRol" class="btn btn-success ml-1">
+                                            <i class="bx bx-check d-block d-sm-none"></i>
+                                            <span class="d-none d-sm-block">Editar</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- ///******FIN MODAL******/// -->
+                    <table class="table table-striped" id="tablaRoles">
+                        <thead>
+                            <tr class="table">
+                                <th>ID</th>
+                                <th>Rol</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                    <!-- ///******FIN TABLA******/// -->
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- *****************AQUI TERMINA LA PARTE PROPIA***************** -->
+
+    <th:block layout:fragment="page-scripts">
+        <script th:src="@{/assets/js/administrador/rol.js}"></script>
+        <script src="https://cdn.datatables.net/v/bs5/dt-1.13.6/datatables.min.js"></script>
+    </th:block>
+</body>
+
+</html>
