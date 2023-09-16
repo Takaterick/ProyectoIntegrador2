@@ -44,6 +44,7 @@ const listarMembresias = () => {
 const guardarMembresia = () =>{
   //Abrir el modal
   $("#btnAgregarMembresia").on("click", function(){
+    limpiarFormulario();
     $("#titulo-form").html("Guardar Membresia");
     $("#btn-editar-form").hide();
     $("#btn-guardar").show();
@@ -113,10 +114,15 @@ const actualizarMembresia = () =>{
       data:JSON.stringify(datosMembresia),
       dataType: 'json',
       success: function(data){
-        console.log(data);
-        alertas("La membresia "+datosMembresia.nom_sus+" fue actualizada!","success");
-        limpiarFormulario();
-        tablaMembresias.DataTable().ajax.reload();
+        if(data.tipo === "success"){
+          alertas(data.mensaje,data.tipo);
+          limpiarFormulario();
+          tablaMembresias.DataTable().ajax.reload();
+          $("#modalGuardarMembresia").modal("hide");
+          return;
+        }else{
+          alertas(data.mensaje,data.tipo);
+        }
       }
     })
   })
