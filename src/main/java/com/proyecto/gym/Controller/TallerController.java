@@ -52,17 +52,17 @@ public class TallerController {
             return mensaje;
         }
         tallerService.guardarTaller(taller);
-        return new Mensaje("El taller se guardó con exito!", "success");
+        return new Mensaje("¡El taller se guardó con exito!", "success");
     }
 
     @PutMapping("/actualizar/{id}")
     @ResponseBody
     public Mensaje actualizarTaller(@Valid @RequestBody Taller taller, BindingResult result, @PathVariable("id") Long id){
         if(result.hasErrors()){
-            return new Mensaje(result.getFieldError().getField(), "warning");
+            return new Mensaje(result.getFieldError().getDefaultMessage(), "warning");
         }
         tallerService.actualizarTaller(taller, id);
-        return new Mensaje("El taller "+ taller.getNom_taller()+" se actualizó con exito!", "success");
+        return new Mensaje("¡El taller "+ taller.getNom_taller()+" se actualizó con exito!", "success");
     }
 
     @DeleteMapping("/eliminar/{id}")
