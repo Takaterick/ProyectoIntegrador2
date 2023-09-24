@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table( name="rol")
@@ -19,6 +21,8 @@ public class Rol implements Serializable{
     private Long id_rol;
     
     @Column(name="nom_rol")
+    @NotNull(message = "El nombre del rol no puede estar vacio")
+    @NotBlank(message = "El nombre del rol no puede estar en blanco")
     private String nom_rol;
 
     public Long getId_rol() {

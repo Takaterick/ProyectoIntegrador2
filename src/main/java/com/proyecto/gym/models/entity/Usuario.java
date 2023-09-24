@@ -85,6 +85,4 @@ public class Usuario implements Serializable{
     public void setDesc_bloq(String desc_bloq) {
         this.desc_bloq = desc_bloq;
     }
-
-    
 }
