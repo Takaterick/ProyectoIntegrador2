@@ -21,8 +21,8 @@ public class UsuarioServiceImpl implements IUsuarioService{
     }
 
     @Override
-    public void guardar(Usuario usuario) {
-        usuarioRepository.save(usuario);
+    public Usuario guardar(Usuario usuario) {
+        return usuarioRepository.save(usuario);
     }
 
     @Override
@@ -33,6 +33,18 @@ public class UsuarioServiceImpl implements IUsuarioService{
     @Override
     public void eliminar(Long Id) {
         usuarioRepository.deleteById(Id);
+    }
+
+    @Override
+    public Usuario actualizUsuario(Usuario usuario, Long Id) {
+        Usuario usuarioModificado = usuarioRepository.findById(Id).orElse(null);
+        usuarioModificado.setUsuario(usuario.getUsuario());
+        usuarioModificado.setContrasenia(usuario.getContrasenia());
+        usuarioModificado.setBloqueo(usuario.getBloqueo());
+        usuarioModificado.setEstado(usuario.getEstado());
+        usuarioModificado.setDesc_bloq(usuario.getDesc_bloq());
+        usuarioRepository.save(usuarioModificado);
+        return usuarioModificado;
     }
     
 }

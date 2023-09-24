@@ -39,7 +39,7 @@ public class TallerServiceImpl implements ITallerService {
         //buscar el taller con el id recibido
         Taller tallerModificado = tallerRepository.findById(id).orElse(null);
 
-        tallerModificado.setNombre_taller(taller.getNom_taller());
+        tallerModificado.setNomTaller(taller.getNomTaller());
 
         tallerRepository.save(tallerModificado);
 
@@ -54,6 +54,11 @@ public class TallerServiceImpl implements ITallerService {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    @Override
+    public Taller buscarPorNombre(String nom_taller) {
+        return tallerRepository.findByNomTaller(nom_taller);
     }
     
 }

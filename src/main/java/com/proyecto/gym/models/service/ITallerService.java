@@ -17,4 +17,6 @@ public interface ITallerService {
     public Taller actualizarTaller(Taller taller, Long id);
     //metodo que elimina
     public Boolean eliminarDos(Long id);
+    //metodo que verifica si existe
+    public Taller buscarPorNombre(String nom_taller);
 }

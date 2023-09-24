@@ -25,7 +25,10 @@ public class Taller implements Serializable{
     @NotNull(message = "El nombre del taller no puede estar vacio")
     @NotBlank(message = "El nombre del taller no puede estar en blanco")
     @Size(min = 3, max = 50, message = "El nombre del taller debe tener entre 3 y 50 caracteres")
-    private String nom_taller;
+    private String nomTaller;
+
+    @Column(name="desc_taller")
+    private String descTaller;
 
     public Long getId_taller() {
         return id_taller;
@@ -35,11 +38,11 @@ public class Taller implements Serializable{
         this.id_taller = id_taller;
     }
 
-    public String getNom_taller() {
-        return nom_taller;
+    public String getNomTaller() {
+        return nomTaller;
     }
 
-    public void setNombre_taller(String nom_taller) {
-        this.nom_taller = nom_taller;
+    public void setNomTaller(String nomTaller) {
+        this.nomTaller = nomTaller;
     }
 }

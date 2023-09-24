@@ -47,22 +47,29 @@ public class TallerController {
     @PostMapping("/guardar")
     @ResponseBody
     public Mensaje guardarTaller(@Valid @RequestBody Taller taller, BindingResult result){
+        if(tallerService.buscarPorNombre(taller.getNomTaller()) != null){
+            return new Mensaje("El taller "+taller.getNomTaller()+" ya existe!", "error");
+        }
         if(result.hasErrors()){
             Mensaje mensaje = new Mensaje(result.getFieldError().getDefaultMessage(), "warning");
             return mensaje;
         }
         tallerService.guardarTaller(taller);
-        return new Mensaje("El taller se guardó con exito!", "success");
+        return new Mensaje("El taller " + taller.getNomTaller() +" se guardó con exito!", "success");
     }
 
     @PutMapping("/actualizar/{id}")
     @ResponseBody
     public Mensaje actualizarTaller(@Valid @RequestBody Taller taller, BindingResult result, @PathVariable("id") Long id){
+        //Taller tallerEcontrado = tallerService.buscarPorNombre(taller.getNomTaller());
+        if(tallerService.buscarPorNombre(taller.getNomTaller()) != null && tallerService.buscarPorNombre(taller.getNomTaller()).getId_taller() != taller.getId_taller().longValue()){
+            return new Mensaje("El taller "+taller.getNomTaller()+" ya existe!", "error");
+        }
         if(result.hasErrors()){
-            return new Mensaje(result.getFieldError().getField(), "warning");
+            return new Mensaje(result.getFieldError().getDefaultMessage(), "warning");
         }
         tallerService.actualizarTaller(taller, id);
-        return new Mensaje("El taller "+ taller.getNom_taller()+" se actualizó con exito!", "success");
+        return new Mensaje("El taller "+ taller.getNomTaller()+" se actualizó con exito!", "success");
     }
 
     @DeleteMapping("/eliminar/{id}")

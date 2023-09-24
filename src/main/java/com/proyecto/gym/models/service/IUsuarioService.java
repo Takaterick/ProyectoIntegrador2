@@ -7,7 +7,8 @@ public interface IUsuarioService {
     
     //creamos las operciones crud a utilizar
     public List<Usuario> listarTodos();
-    public void guardar(Usuario usuario);
+    public Usuario guardar(Usuario usuario);
     public Usuario buscarPorId(Long Id);
+    public Usuario actualizUsuario(Usuario usuario, Long Id);
     public void eliminar(Long Id);
 }

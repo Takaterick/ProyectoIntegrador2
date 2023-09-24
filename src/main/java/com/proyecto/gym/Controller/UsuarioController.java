@@ -4,12 +4,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.proyecto.gym.models.entity.Usuario;
 import com.proyecto.gym.models.service.IUsuarioService;
@@ -17,7 +17,7 @@ import com.proyecto.gym.models.service.IUsuarioService;
 @Controller
 
 //Hacemos un mapeo general para llamar a todos los metodos involucrados en la clase
-@RequestMapping("/view/administrador")
+@RequestMapping("/api/v1/usuarios")
 public class UsuarioController {
     
     @Autowired
@@ -25,24 +25,17 @@ public class UsuarioController {
 
 
     //listar
-    @GetMapping("/")
-    public String listarUsuarios(Model model){
-        List<Usuario> listadoUsuarios = usuarioService.listarTodos(); 
-
-        Usuario user = new Usuario();
-        model.addAttribute("usuario", user);
-        model.addAttribute("usuarios", listadoUsuarios);
-        return "/view/administrador/inicio";
+    @GetMapping("/lista")
+    @ResponseBody
+    public List<Usuario> listarUsuarios(){
+        return usuarioService.listarTodos();
     }
 
     //Guardar
     @PostMapping("/guardar")
-    public String guardarUsuarios(@ModelAttribute Usuario usuario){
-        usuarioService.guardar(usuario);
-
-
-        System.out.println("El usuario se guardo con exito");
-        return "redirect:/view/administrador/";
+    @ResponseBody
+    public Usuario guardarUsuarios(@RequestBody Usuario usuario){
+        return usuarioService.guardar(usuario);
     }
 
     //editar
