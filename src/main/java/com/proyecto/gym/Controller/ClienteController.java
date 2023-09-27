@@ -20,7 +20,7 @@ import com.proyecto.gym.models.entity.Mensaje;
 import com.proyecto.gym.models.service.ClienteServiceImpl;
 
 @Controller
-@RequestMapping("/api/v1/clientes")
+@RequestMapping("/Clientes")
 public class ClienteController {
     
     @Autowired
@@ -34,7 +34,7 @@ public class ClienteController {
     @GetMapping("/lista")
     @ResponseBody //devolver la respuesta dentro del cuerpo de la página html
     public List<Cliente> listarClientes(){
-        return clienteService.listarClientes();
+        return clienteService.listarTodos();
     }
 
     //metodo para buscar

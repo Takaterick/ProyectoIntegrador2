@@ -7,11 +7,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
 @Entity//Indica que es una entidad
@@ -38,13 +43,17 @@ public class Cliente implements Serializable{
     @Column(name="dni_cli")
     @NotNull(message = "El dni del cliente no puede estar vacio")
     @NotBlank(message = "El dni del cliente no puede estar en blanco")
-    @Size(min = 8, max = 8, message = "El dni del cliente debe tener 8 caracteres")
+    @Positive(message = "El dni del cliente no puede ser negativo")
+    @Min(value = 00000000, message = "El dni del cliente no debe ser menor a 8 dígitos")
+    @Max(value = 99999999, message = "El dni del cliente no debe ser mayor a 8 dígitos")
     private String dni_cli;
 
     @Column(name="tel_cli")
     @NotNull(message = "El teléfono del cliente no puede estar vacio")
     @NotBlank(message = "El teléfono del cliente no puede estar en blanco")
-    @Size(min = 9, max = 9, message = "El teléfono del cliente debe tener 9 caracteres")
+    @Positive(message = "El teléfono del cliente no puede ser negativo")
+    @Min(value = 900000000, message = "El teléfono debe empezar con 9 y no debe ser menor a 9 dígitos")
+    @Max(value = 999999999, message = "El teléfono debe empezar con 9 y no debe ser mayor a 9 dígitos")
     private String tel_cli;
 
     @Column(name="correo_cli")
@@ -58,6 +67,10 @@ public class Cliente implements Serializable{
     @NotBlank(message = "La dirección del cliente no puede estar en blanco")
     @Size(min = 5, max = 100, message = "La dirección del cliente debe tener entre 5 y 100 caracteres")
     private String dir_cli;
+
+    @ManyToOne
+    @JoinColumn(name="id_usu")
+    private Usuario usuario;
 
     public Long getId_cli() {
         return id_cli;
@@ -115,4 +128,12 @@ public class Cliente implements Serializable{
         this.dir_cli = dir_cli;
     }
     
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
 }

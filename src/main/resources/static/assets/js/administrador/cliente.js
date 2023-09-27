@@ -1,5 +1,6 @@
 const backend = "http://localhost:8080/api/v1/clientes";
 const tablaClientes = $("#tablaClientes");
+const formCliente = $("#formCliente")[0];
 
 /*------------METODOS CRUD------------*/
 //METODO LISTAR CLIENTES
@@ -18,8 +19,13 @@ const listarClientes = () => {
     },
     columns: [
       { data: "id_cli" },
-      { data: "nom_cli" },
-      { data: "ape_cli" },
+      {
+        data: "nom_cli",
+        render: function (data, type, row, meta) {
+          return row.nom_cli + " " + row.ape_cli;
+        },
+      },
+      { data: "usuario.usuario" },
       { data: "dni_cli" },
       { data: "tel_cli" },
       { data: "correo_cli" },
@@ -56,6 +62,10 @@ const guardarCliente = () => {
       tel_cli: datosForm.get("tel_cli"),
       correo_cli: datosForm.get("correo_cli"),
       dir_cli: datosForm.get("dir_cli"),
+      usuario: {
+        usuario: datosForm.get("usuario"),
+        password: datosForm.get("contrasenia"),
+      }
     };
     $.ajax({
       type: "POST",
@@ -127,6 +137,8 @@ const rellenarCliente = () => {
         $("#id_cliente").val(response.id_cli);
         $("#nombre_cliente").val(response.nom_cli);
         $("#apellido_cliente").val(response.ape_cli);
+        $("#usuario_cliente").val(response.usuario);
+        $("#contraseña_cliente").val(response.contraseña);
         $("#dni_cliente").val(response.dni_cli);
         $("#telefono_cliente").val(response.tel_cli);
         $("#correo_cliente").val(response.correo_cli);

@@ -17,7 +17,7 @@
         <div class="col-12 col-md-6 order-md-1 order-last">
           <h3>Clientes</h3>
           <p class="text-subtitle text-muted">
-            Aqui se mostrará el listados de todos los clientes.
+            Aqui se mostrará el listado de todos los clientes.
           </p>
         </div>
         <div class="col-12 col-md-6 order-md-2 order-first">
@@ -55,55 +55,113 @@
             <form id="formCliente">
               <div class="modal-lg modal-dialog modal-dialog-scrollable" role="document">
                 <div class="modal-content">
-                  <div id="color-modal" class="modal-header">
+                  <div id="color-modal" class="modal-header bg-primary">
                     <h5 class="modal-title white" id="titulo-form"></h5>
                     <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                       <i data-feather="x"></i>
                     </button>
                   </div>
-                  <div class="modal-body">
+                  <div class="modal-body px-4">
                     <div class="row">
                       <div class="col-md-6">
-                        <label>Nombres: </label>
-                        <div class="form-group">
-                          <input type="hidden" name="id_cli" id="id_cliente" />
-                          <input type="text" name="nom_cli" placeholder="Ingrese los nombres" id="nombre_cliente"
-                            class="form-control" />
+                        <div class="form-group has-icon-left">
+                          <label for="nombre_cliente">Nombres: </label>
+                          <div class="position-relative">
+                            <input type="hidden" name="id_cli" id="id_cliente" />
+                            <input type="text" name="nom_cli" placeholder="Ingrese los nombres" id="nombre_cliente"
+                              class="form-control" >
+                            <div class="form-control-icon">
+                              <i class="bi bi-person"></i>
+                            </div>
+                          </div>
                         </div>
                       </div>
                       <div class="col-md-6">
-                        <label>Apellidos: </label>
-                        <div class="form-group">
-                          <input type="text" name="ape_cli" placeholder="Ingrese los apellidos" id="apellido_cliente"
-                            class="form-control" />
+                        <div class="form-group has-icon-left">
+                          <label for="apellido_cliente">Apellidos: </label>
+                          <div class="position-relative">
+                            <input type="text" name="ape_cli" placeholder="Ingrese los apellidos" id="apellido_cliente"
+                              class="form-control" >
+                            <div class="form-control-icon">
+                              <i class="bi bi-person"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-3">
+                        <div class="form-group has-icon-left">
+                          <label for="usuario_cliente">Usuario: </label>
+                          <div class="position-relative">
+                            <input type="text" name="usuario" placeholder="Ingrese usuario" id="usuario_cliente"
+                              class="form-control" >
+                            <div class="form-control-icon">
+                              <i class="bi bi-person-badge"></i>
+                            </div>
+                          </div>
                         </div>
                       </div>
                       <div class="col-md-3">
-                        <label>Dni: </label>
-                        <div class="form-group">
-                          <input type="text" name="dni_cli" placeholder="DNI" id="dni_cliente"
-                            class="form-control" />
+                        <div class="form-group has-icon-left">
+                          <label for="contraseña_cliente">Contraseña: </label>
+                          <div class="position-relative">
+                            <input type="password" name="contrasenia" placeholder="Ingrese contraseña" id="contraseña_cliente"
+                              class="form-control" >
+                            <div class="form-control-icon">
+                              <i class="fa-solid fa-key"></i>
+                            </div>
+                          </div>
                         </div>
                       </div>
                       <div class="col-md-3">
-                        <label>Teléfono: </label>
-                        <div class="form-group">
-                          <input type="text" name="tel_cli" placeholder="987-654-321" id="telefono_cliente"
-                            class="form-control" />
+                        <div class="form-group has-icon-left">
+                          <label for="dni_cliente">Dni: </label>
+                          <div class="position-relative">
+                            <input type="number" name="dni_cli" placeholder="DNI" id="dni_cliente"
+                              class="form-control" >
+                            <div class="form-control-icon">
+                              <i class="fa-regular fa-address-card"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="form-group has-icon-left">
+                          <label for="telefono_cliente">Teléfono: </label>
+                          <div class="position-relative">
+                            <input type="number" name="tel_cli" placeholder="987-654-321" id="telefono_cliente"
+                              class="form-control" >
+                            <div class="form-control-icon">
+                              <i class="bi bi-phone"></i>
+                            </div>
+                          </div>
+                        </div>                        
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group has-icon-left">
+                          <label for="correo_cliente">Correo: </label>
+                          <div class="position-relative">
+                            <input type="text" name="correo_cli" placeholder="Ingrese el correo @ejemplo.com" id="correo_cliente"
+                              class="form-control" >
+                            <div class="form-control-icon">
+                              <i class="bi bi-envelope"></i>
+                            </div>
+                          </div>
                         </div>
                       </div>
                       <div class="col-md-6">
-                        <label>Correo: </label>
-                        <div class="form-group">
-                          <input type="text" name="correo_cli" placeholder="Ingrese el correo @ejemplo.com" id="correo_cliente"
-                            class="form-control" />
-                        </div>
-                      </div>
-                      <div class="col-md-12">
-                        <label>Dirección: </label>
-                        <div class="form-group">
-                          <input type="text" name="dir_cli" placeholder="Ingrese el domicilio" id="direccion_cliente"
-                            class="form-control" />
+                        <div class="form-group has-icon-left">
+                          <label for="direccion_cliente">Dirección: </label>
+                          <div class="position-relative">
+                            <input type="text" name="dir_cli" placeholder="Ingrese el domicilio" id="direccion_cliente"
+                              class="form-control" >
+                            <div class="form-control-icon">
+                              <i class="bi bi-pin-map"></i>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -133,7 +191,7 @@
               <tr>
                 <th>ID</th>
                 <th>Nombres</th>
-                <th>Apellidos</th>
+                <th>Usuario</th>
                 <th>DNI</th>
                 <th>Teléfono</th>
                 <th>Correo</th>

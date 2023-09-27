@@ -5,9 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.proyecto.gym.models.repository.EmpleadoRepository;
-
 import com.proyecto.gym.models.entity.Empleado;
+import com.proyecto.gym.models.repository.EmpleadoRepository;
 
 @Service
 public class EmpleadoServiceImpl implements IEmpleadoService {
