@@ -6,7 +6,7 @@ import com.proyecto.gym.models.entity.Cliente;
 
 public interface IClienteService {
     //metodo que lista
-    public List<Cliente> listarClientes();
+    public List<Cliente> listarTodos();
     //metodo que guarda
     public Cliente guardarCliente(Cliente cliente);
     //metodo que busca por id

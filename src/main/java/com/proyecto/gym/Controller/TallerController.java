@@ -55,7 +55,7 @@ public class TallerController {
             return mensaje;
         }
         tallerService.guardarTaller(taller);
-        return new Mensaje("El taller " + taller.getNomTaller() +" se guardó con exito!", "success");
+        return new Mensaje("El taller se guardó con exito!", "success");
     }
 
     @PutMapping("/actualizar/{id}")

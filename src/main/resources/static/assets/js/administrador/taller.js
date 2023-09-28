@@ -110,7 +110,7 @@ const eliminarTaller = () => {
 
     Swal.fire({
       title: "¿Esta seguro de eliminar el taller  " + nombreTaller + "?",
-      text: "Una vez eliminado no se puede recuperar!",
+      text: "¡Una vez eliminado no se puede recuperar!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
@@ -124,7 +124,7 @@ const eliminarTaller = () => {
           success: function (response) {
             tablaTalleres.DataTable().ajax.reload();
             alertas(
-              "El taller " + nombreTaller + " se ha eliminado exitosamente!",
+              "¡El taller " + nombreTaller + " se ha eliminado exitosamente!",
               "success"
             );
           },

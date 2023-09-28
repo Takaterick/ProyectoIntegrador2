@@ -15,7 +15,7 @@ public class ClienteServiceImpl implements IClienteService{
     private ClienteRepository clienteRepository;
     
     @Override
-    public List<Cliente> listarClientes() {
+    public List<Cliente> listarTodos() {
         return (List<Cliente>) clienteRepository.findAll();
     }
 
@@ -45,6 +45,7 @@ public class ClienteServiceImpl implements IClienteService{
         clienteModificado.setTel_cli(cliente.getTel_cli());
         clienteModificado.setCorreo_cli(cliente.getCorreo_cli());
         clienteModificado.setDir_cli(cliente.getDir_cli());
+        clienteModificado.setUsuario(cliente.getUsuario());
 
         clienteRepository.save(clienteModificado);
 
