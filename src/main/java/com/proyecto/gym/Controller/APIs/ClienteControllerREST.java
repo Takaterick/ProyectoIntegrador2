@@ -1,4 +1,4 @@
-package com.proyecto.gym.Controller.REST;
+package com.proyecto.gym.Controller.APIs;
 
 import java.util.List;
 
