@@ -6,14 +6,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.proyecto.gym.models.repository.EmpleadoRepository;
-
+import com.proyecto.gym.models.repository.UsuarioRepository;
 import com.proyecto.gym.models.entity.Empleado;
+import com.proyecto.gym.models.entity.Usuario;
 
 @Service
 public class EmpleadoServiceImpl implements IEmpleadoService {
 
     @Autowired
     private EmpleadoRepository empleadoRepository;
+
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
     @Override
     public List<Empleado> listarTodos() {
         return (List<Empleado>) empleadoRepository.findAll();
@@ -37,13 +42,19 @@ public class EmpleadoServiceImpl implements IEmpleadoService {
     @Override
     public Empleado actualizarEmpleado(Empleado empleado, Long Id) {
         Empleado empleadoModificado = empleadoRepository.findById(Id).orElse(null);
+        /* QUE HA PASAO ? */
+        Usuario usuarioModificado = usuarioRepository.findById(empleadoModificado.getUsuario().getId()).orElse(null);
+        usuarioModificado.setUsuario(empleado.getUsuario().getUsuario());
+        usuarioModificado.setContrasenia(empleado.getUsuario().getContrasenia());
+        empleadoModificado.setUsuario(usuarioModificado);
+        /* QUE HA PASAO ? */
+        
         empleadoModificado.setNombreEmpl(empleado.getNombreEmpl());
         empleadoModificado.setApellidoEmpl(empleado.getApellidoEmpl());
         empleadoModificado.setDniEmpl(empleado.getDniEmpl());
         empleadoModificado.setTelefonoEmpl(empleado.getTelefonoEmpl());
         empleadoModificado.setCorreoEmpl(empleado.getCorreoEmpl());
         empleadoModificado.setDireccionEmpl(empleado.getDireccionEmpl());
-        empleadoModificado.setUsuario(empleado.getUsuario());
         empleadoModificado.setRol(empleado.getRol());
         empleadoRepository.save(empleadoModificado);
         return empleadoModificado;

@@ -1,10 +1,13 @@
-package com.proyecto.gym.Controller.REST;
+package com.proyecto.gym.Controller.APIs;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,14 +26,14 @@ public class EmpleadoControllerREST {
     @Autowired
     private IUsuarioService usuarioService;
 
-    @GetMapping("/")
-    public String index(){
-        return "view/administrador/empleado/index";
-    }
-
     @GetMapping("/lista")
     public List<Empleado> listarEmpleados(){
         return empleadoService.listarTodos();
+    }
+
+    @GetMapping("/buscar/{id}")
+    public Empleado buscarEmpleado(@PathVariable("id") Long id){
+        return empleadoService.buscarPorId(id);
     }
 
     @PostMapping("/guardar")
@@ -45,6 +48,20 @@ public class EmpleadoControllerREST {
         empleado.setUsuario(usuario);
         
         return empleadoService.guardarEmpleado(empleado);
+    }
+
+    @PutMapping("/actualizar/{id}")
+    public Empleado actualizarEmpleados(@RequestBody Empleado empleado, @PathVariable("id") Long idEmpleado){
+        return empleadoService.actualizarEmpleado(empleado, idEmpleado);
+    }
+
+    @DeleteMapping("/eliminar/{id}")
+    public void eliminarEmpleados(@PathVariable("id") Long idEmpleado){
+        Long id = empleadoService.buscarPorId(idEmpleado).getUsuario().getId();
+
+        empleadoService.eliminarEmpleado(idEmpleado);
+
+        usuarioService.eliminar(id);
     }
 }
 

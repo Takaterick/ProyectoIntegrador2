@@ -66,6 +66,7 @@
                                                 <div class="form-group has-icon-left">
                                                     <label for="first-name-icon">Nombres</label>
                                                     <div class="position-relative">
+                                                        <input type="hidden" name="idEmpl">
                                                         <input type="text" class="form-control" name="nombreEmpl"
                                                             placeholder="Ingrese el nombre" id="first-name-icon">
                                                         <div class="form-control-icon">
@@ -76,10 +77,10 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group has-icon-left">
-                                                    <label for="first-name-icon">Apellido</label>
+                                                    <label for="last-name-icon">Apellido</label>
                                                     <div class="position-relative">
                                                         <input type="text" class="form-control" name="apellidoEmpl"
-                                                            placeholder="Ingrese el apellido" id="first-name-icon">
+                                                            placeholder="Ingrese el apellido" id="last-name-icon">
                                                         <div class="form-control-icon">
                                                             <i class="bi bi-person"></i>
                                                         </div>
@@ -90,10 +91,11 @@
                                         <div class="row">
                                             <div class="col-md-3">
                                                 <div class="form-group has-icon-left">
-                                                    <label for="dni-id-icon">Usuario</label>
+                                                    <label for="usuario-icon">Usuario</label>
                                                     <div class="position-relative">
-                                                        <input type="text" class="form-control" name="dniEmpl"
-                                                            placeholder="Ingrese Usuario" id="dni-id-icon">
+                                                        <input type="hidden" name="idUsuario">
+                                                        <input type="text" class="form-control" name="usuario"
+                                                            placeholder="Ingrese Usuario" id="usuario-icon">
                                                         <div class="form-control-icon">
                                                             <i class="bi bi-person-badge"></i>
                                                         </div>
@@ -102,10 +104,10 @@
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group has-icon-left">
-                                                    <label for="dni-id-icon">Contraseña</label>
+                                                    <label for="contrasenia-icon">Contraseña</label>
                                                     <div class="position-relative">
-                                                        <input type="password" class="form-control" name="dniEmpl"
-                                                            placeholder="Ingrese contraseña" id="dni-id-icon">
+                                                        <input type="password" class="form-control" name="contrasenia"
+                                                            placeholder="Ingrese contraseña" id="contrasenia-icon">
                                                         <div class="form-control-icon">
                                                             <i class="fa-solid fa-key"></i>
                                                         </div>
@@ -166,7 +168,7 @@
                                                 <div class="form-group">
                                                     <label for="selectRoles">Rol</label>
                                                     <div class="position-relative">
-                                                        <select class="form-select" id="selectRoles">
+                                                        <select class="form-select" id="selectRoles" name="idRol">
                                                         </select>
                                                     </div>
                                                 </div>

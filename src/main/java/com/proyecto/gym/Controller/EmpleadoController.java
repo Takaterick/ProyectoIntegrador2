@@ -1,19 +1,14 @@
 package com.proyecto.gym.Controller;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/Empleados")
+@RequestMapping("/empleados")
 public class EmpleadoController {
 
-    @GetMapping("/")
+    @GetMapping({"/","","/index","/incio"})
     public String index(){
         return "view/administrador/empleado/index";
     }
