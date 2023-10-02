@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/empleados")
 public class EmpleadoController {
 
-    @GetMapping({"/","","/index","/incio"})
+    @GetMapping({"/","","/index","/inicio"})
     public String index(){
         return "view/administrador/empleado/index";
     }

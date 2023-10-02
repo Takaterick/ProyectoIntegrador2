@@ -6,13 +6,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.proyecto.gym.models.entity.Cliente;
+import com.proyecto.gym.models.entity.Usuario;
 import com.proyecto.gym.models.repository.ClienteRepository;
+import com.proyecto.gym.models.repository.UsuarioRepository;
 
 @Service
 public class ClienteServiceImpl implements IClienteService{
 
     @Autowired
     private ClienteRepository clienteRepository;
+
+    @Autowired
+    private UsuarioRepository usuarioRepository;
     
     @Override
     public List<Cliente> listarTodos() {
@@ -39,13 +44,17 @@ public class ClienteServiceImpl implements IClienteService{
         //buscar el cliente con el id recibido
         Cliente clienteModificado = clienteRepository.findById(id).orElse(null);
 
+        Usuario usuarioModificado = usuarioRepository.findById(clienteModificado.getUsuario().getId()).orElse(null);
+        usuarioModificado.setUsuario(cliente.getUsuario().getUsuario());
+        usuarioModificado.setContrasenia(cliente.getUsuario().getContrasenia());
+        clienteModificado.setUsuario(usuarioModificado);
+
         clienteModificado.setNom_cli(cliente.getNom_cli());
         clienteModificado.setApe_cli(cliente.getApe_cli());
         clienteModificado.setDni_cli(cliente.getDni_cli());
         clienteModificado.setTel_cli(cliente.getTel_cli());
         clienteModificado.setCorreo_cli(cliente.getCorreo_cli());
         clienteModificado.setDir_cli(cliente.getDir_cli());
-        clienteModificado.setUsuario(cliente.getUsuario());
 
         clienteRepository.save(clienteModificado);
 

@@ -55,7 +55,7 @@ const guardarCliente = () => {
   });
   $("#btn-guardarCliente").on("click", function () {
     let datosForm = new FormData(formCliente);
-    const datosCliente = {
+    let datosCliente = {
       nom_cli: datosForm.get("nom_cli"),
       ape_cli: datosForm.get("ape_cli"),
       dni_cli: datosForm.get("dni_cli"),
@@ -64,8 +64,8 @@ const guardarCliente = () => {
       dir_cli: datosForm.get("dir_cli"),
       usuario: {
         usuario: datosForm.get("usuario"),
-        password: datosForm.get("contrasenia"),
-      }
+        contrasenia: datosForm.get("contrasenia"),
+      },
     };
     $.ajax({
       type: "POST",
@@ -78,43 +78,11 @@ const guardarCliente = () => {
           alertas(response.mensaje, response.tipo);
           tablaClientes.DataTable().ajax.reload();
           $("#modalCliente").modal("hide");
-          limpiarFormulario();
+          formCliente.reset();
         } else {
           alertas(response.mensaje, response.tipo);
         }
       },
-    });
-  });
-};
-
-//ELIMINAR CLIENTE
-const eliminarCliente = () => {
-  $(document).on("click", "#btnEliminar", function () {
-    let idCliente = $(this).data("id");
-    let nombreCliente = $(this).data("nombre");
-    let apellidoCliente = $(this).data("apellido");
-
-    Swal.fire({
-      title: "¿Esta seguro de eliminar a " + nombreCliente + " " + apellidoCliente + "?",
-      text: "¡Una vez eliminado no se puede recuperar!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Si, eliminar!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        $.ajax({
-          type: "DELETE",
-          url: backend + "/eliminar/" + idCliente,
-          success: function (response) {
-            tablaClientes.DataTable().ajax.reload();
-            alertas("¡Se ha eliminado exitosamente a " + nombreCliente + " " + apellidoCliente + "!", "success");
-          },
-        });
-      } else {
-        alertas("No se ha eliminado a " + nombreCliente + " " + apellidoCliente, "error");
-      }
     });
   });
 };
@@ -134,15 +102,17 @@ const rellenarCliente = () => {
       url: backend + "/buscar/" + id,
       dataType: "json",
       success: function (response) {
-        $("#id_cliente").val(response.id_cli);
-        $("#nombre_cliente").val(response.nom_cli);
-        $("#apellido_cliente").val(response.ape_cli);
-        $("#usuario_cliente").val(response.usuario);
-        $("#contraseña_cliente").val(response.contraseña);
-        $("#dni_cliente").val(response.dni_cli);
-        $("#telefono_cliente").val(response.tel_cli);
-        $("#correo_cliente").val(response.correo_cli);
-        $("#direccion_cliente").val(response.dir_cli);
+        console.log(response);
+        formCliente.id_cli.value = response.id_cli;
+        formCliente.nom_cli.value = response.nom_cli;
+        formCliente.ape_cli.value = response.ape_cli;
+        formCliente.dni_cli.value = response.dni_cli;
+        formCliente.tel_cli.value = response.tel_cli;
+        formCliente.correo_cli.value = response.correo_cli;
+        formCliente.dir_cli.value = response.dir_cli;
+        formCliente.usuario.value = response.usuario.usuario;
+        formCliente.contrasenia.value = response.usuario.contrasenia;
+        formCliente.idUsuario.value = response.usuario.id;
       },
     });
   });
@@ -152,7 +122,7 @@ const rellenarCliente = () => {
 const actualizarCliente = () => {
   $("#btn-actualizarCliente").on("click", function () {
     let datosForm = new FormData(formCliente);
-    const datosCliente = {
+    let datosCliente = {
       id_cli: datosForm.get("id_cli"),
       nom_cli: datosForm.get("nom_cli"),
       ape_cli: datosForm.get("ape_cli"),
@@ -160,6 +130,11 @@ const actualizarCliente = () => {
       tel_cli: datosForm.get("tel_cli"),
       correo_cli: datosForm.get("correo_cli"),
       dir_cli: datosForm.get("dir_cli"),
+      usuario: {
+        id: datosForm.get("idUsuario"),
+        usuario: datosForm.get("usuario"),
+        contrasenia: datosForm.get("contrasenia"),
+      },
     };
     $.ajax({
       type: "PUT",
@@ -172,10 +147,44 @@ const actualizarCliente = () => {
           tablaClientes.DataTable().ajax.reload();
           alertas(response.mensaje, response.tipo);
           $("#modalCliente").modal("hide");
-          limpiarFormulario();
+          formCliente.reset();
         } else {
           alertas(response.mensaje, response.tipo);
         }
+      }
+    });
+  });
+};
+
+//ELIMINAR CLIENTE
+const eliminarCliente = () => {
+  $(document).on("click", "#btnEliminar", function () {
+    let idCliente = $(this).data("id");
+    let nombreCliente = $(this).data("nombre");
+    let apellidoCliente = $(this).data("apellido");
+
+    Swal.fire({
+      title: "¿Esta seguro de eliminar a " + nombreCliente + " " + apellidoCliente + "?",
+      text: "¡Una vez eliminado no se puede recuperar!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      cancelButtonText: "Cancelar",
+      confirmButtonText: "Si, eliminar!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $.ajax({
+          type: "DELETE",
+          url: backend + "/eliminar/" + idCliente,
+          dataType: "text",
+          success: function (response) {
+            tablaClientes.DataTable().ajax.reload();
+            alertas("¡Se ha eliminado exitosamente a " + nombreCliente + " " + apellidoCliente + "!", "success");
+          },
+        });
+      } else {
+        alertas("No se ha eliminado a " + nombreCliente + " " + apellidoCliente, "error");
       }
     });
   });
@@ -197,8 +206,8 @@ const alertas = (mensaje, icono) => {
   Swal.fire({
     title: mensaje,
     icon: icono,
-    customClass: { confirmButton: "btn btn-primary", popup: "animated xoomIn" },
-    buttonsStyling: false,
+    showConfirmButton: false,
+    timer: 2000,
   });
 };
 
