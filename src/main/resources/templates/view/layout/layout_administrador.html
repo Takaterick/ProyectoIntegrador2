@@ -7,7 +7,9 @@
   <head th:fragment="head">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard - Mazer Admin Dashboard</title>
+    <th:block layout:fragment="page-titulo">
+
+    </th:block>  
 
     <link rel="stylesheet" th:href="@{/assets/css/main/app.css}" />
     <link rel="stylesheet" th:href="@{/assets/css/main/app-dark.css}" />
@@ -533,6 +535,7 @@
         integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
         crossorigin="anonymous"
       ></script>
+      <script src="https://cdn.datatables.net/v/bs5/dt-1.13.6/datatables.min.js"></script>
 
     <!-- bloque para agregar mas archivos js, independiente de la plantilla -->
     <th:block layout:fragment="page-scripts">

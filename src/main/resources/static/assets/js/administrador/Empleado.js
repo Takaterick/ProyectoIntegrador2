@@ -1,5 +1,7 @@
 const backend = "http://localhost:8080/api/v1/";
 const tablaEmpleado = $("#tablaEmpleado");
+const tablaUsuario = $("#tablaUsuario");
+const tablaRolEmpleado = $("#tablaRolEmpleado");
 const formEmpleado = $("#formEmpleado")[0];
 const selectRoles = $("#selectRoles");
 
@@ -25,11 +27,10 @@ const listarEmpleados = () => {
           return row.nombreEmpl + " " + row.apellidoEmpl;
         },
       },
-      { data: "usuario.usuario" },
-      { data: "rol.nom_rol" },
       { data: "dniEmpl" },
       { data: "telefonoEmpl" },
       { data: "correoEmpl" },
+      { data: "direccionEmpl" },
       {
         render: function (data, type, row) {
           return `
@@ -39,7 +40,97 @@ const listarEmpleados = () => {
         },
       },
     ],
+    columnDefs: [
+      {
+        targets: [5],
+        width: "20%",
+      },
+    ],
   });
+};
+
+const listarUsuarios = () => {
+  $("#usuario-tab").on("click", function () {
+    tablaUsuario.DataTable().destroy();
+    tablaUsuario.DataTable({
+      language: {
+        url: "//cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json",
+      },
+      ajax: {
+        url: backend + "empleados/lista",
+        type: "GET",
+        dataType: "json",
+        dataSrc: function (response) {
+          return response;
+        },
+      },
+      columns: [
+        { data: "idEmpl" },
+        {
+          data: "nombreEmpl",
+          render: function (data, type, row, meta) {
+            return row.nombreEmpl + " " + row.apellidoEmpl;
+          },
+        },
+        { data: "usuario.usuario" },
+        {
+          //poner bloqueado y no bloquedao segun el estado
+          data: "usuario.bloqueo",
+          render: function (data, type, row, meta) {
+            if (row.usuario.bloqueo == 0) {
+              return `<span class="badge bg-success">Activo</span>`;
+            } else {
+              return `<span class="badge bg-danger">Bloqueado</span>`;
+            }
+          },
+        },
+        { data: "usuario.desc_bloq" },
+        {
+          render: function (data, type, row) {
+            return `
+                  <button type="button" data-id="${row.idEmpl}" data-nombre="${row.nombreEmpl}" id="btn-editar" class="btn btn-warning"><i class="fa fa-edit"></i></button>
+                  `;
+          },
+        },
+      ],
+    });
+  })
+};
+
+const listarRolEmpleado = () => {
+  $("#rol-tab").on("click", function () {
+    tablaRolEmpleado.DataTable().destroy();
+    tablaRolEmpleado.DataTable({
+      language: {
+        url: "//cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json",
+      },
+      ajax: {
+        url: backend + "empleados/lista",
+        type: "GET",
+        dataType: "json",
+        dataSrc: function (response) {
+          return response;
+        },
+      },
+      columns: [
+        { data: "idEmpl" },
+        {
+          data: "nombreEmpl",
+          render: function (data, type, row, meta) {
+            return row.nombreEmpl + " " + row.apellidoEmpl;
+          },
+        },
+        { data: "rol.nom_rol" },
+        {
+          render: function (data, type, row) {
+            return `
+                  <button type="button" data-id="${row.idEmpl}" data-nombre="${row.nombreEmpl}" id="btn-editar" class="btn btn-warning"><i class="fa fa-edit"></i></button>
+                  `;
+          },
+        },
+      ],
+    });
+  })
 };
 
 //LISTAR ROLES
@@ -200,8 +291,11 @@ const alertas = (mensaje, icono) => {
   });
 };
 
+
 $(document).ready(function () {
   listarEmpleados();
+  listarUsuarios();
+  listarRolEmpleado();
   listarRoles();
   guardarEmpleado();
   eliminarEmpleado();

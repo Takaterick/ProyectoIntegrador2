@@ -38,17 +38,6 @@ public class UsuarioController {
         return usuarioService.guardar(usuario);
     }
 
-    //editar
-    /* @PostMapping("/editar/")
-    public String editarUsuarios(@ModelAttribute Usuario usuario){
-        usuarioService.guardar(usuario);
-
-
-        System.out.println("El usuario se guardo con exito");
-        return "redirect:/view/administrador/";
-    } */
-
-
     //eliminar
     @GetMapping("/eliminar/{id}")
     public String eliminarUsuarios(@PathVariable("id") Long idUsuario){

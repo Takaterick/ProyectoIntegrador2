@@ -8,6 +8,17 @@ public class IndexController {
     
     @GetMapping("/")
     public String index(){
-        return "view/administrador/inicio";
+        return "view/index";
     }
+
+    @GetMapping("/registro")
+    public String registro(){
+        return "view/registro";
+    }
+
+    @GetMapping("/login")
+    public String login(){
+        return "view/login";
+    }
+    
 }

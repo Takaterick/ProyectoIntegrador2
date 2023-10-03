@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lucky Gym</title>
+
+    <!-- BOOTSTRAP STYLES -->
+    <link rel="stylesheet" th:href="@{/assets/css/main/app.css}" />
+    <link rel="shortcut icon" th:href="@{/assets/images/logo/favicon.svg}" type="image/x-icon" />
+    <link rel="shortcut icon" th:href="@{/assets/images/logo/favicon.png}" type="image/png" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" th:href="@{/assets/css/registro.css}" />
+</head>
+
+<body class="container">
+    <div class="register-container my-5">
+        <div class="card">
+            <div class="card-header pb-0">
+                <div class="text-end">
+                    <a href="Ingresar.jsp" class="text-end a-style fs-3">X</a>
+                </div>
+            </div>
+            <div class="card-body">
+                <form id="formRegistro">
+                    <div class="row gy-3">
+                        <div class="col-lg-12 text-center">
+                            <h3>Tipo de suscripcion</h3>
+                            <div class="btn-group my-3" role="group" aria-label="Basic radio toggle button group">
+                                <input type="radio" class="btn-check" name="suscripcion" id="btnradio1"
+                                    autocomplete="off" value="1" />
+                                <label class="btn btn-outline-primary" for="btnradio1">Platino</label>
+
+                                <input type="radio" class="btn-check" name="suscripcion" id="btnradio2"
+                                    autocomplete="off" checked value="2" />
+                                <label class="btn btn-outline-primary" for="btnradio2">Oro</label>
+
+                                <input type="radio" class="btn-check" name="suscripcion" id="btnradio3"
+                                    autocomplete="off" value="3" />
+                                <label class="btn btn-outline-primary" for="btnradio3">Diamante</label>
+                            </div>
+
+                            <div class="row my-3">
+                                <div class="col-lg-4">
+                                    <div class="border border-primary">
+                                        <h4 class="my-4">Platino</h4>
+                                        <p>S/.<span class="fs-2">39</span>/mes</p>
+                                        <ul class="features text-start">
+                                            <li>
+                                                <i class="fa-solid fa-check"></i>
+                                                <span>Descuentos</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="border border-info">
+                                        <h4 class="my-4">Diamante</h4>
+                                        <p>S/.<span class="fs-2">69</span>/mes</p>
+                                        <ul class="features text-start">
+                                            <li>
+                                                <i class="fa-solid fa-check"></i>
+                                                <span>Descuentos</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="border border-warning">
+                                        <h4 class="my-4">Oro</h4>
+                                        <p>S/.<span class="fs-2">49</span>/mes</p>
+                                        <ul class="features text-center">
+                                            <li>
+                                                <i class="fa-solid fa-check"></i>
+                                                <span>Descuentos</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <label for="username">Usuario</label>
+                            <input type="text" name="usuario" class="form-control"
+                                placeholder="Input your username" />
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="password">Contraseña</label>
+                            <input type="password" name="contrasenia" class="form-control"
+                                placeholder="Input your password" />
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="firstname">Nombres</label>
+                            <input type="text" name="firstname" class="form-control"
+                                placeholder="Input your firstname" />
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="lastname">Apellidos</label>
+                            <input type="text" name="lastname" class="form-control"
+                                placeholder="Input your lastname" />
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="email">Correo</label>
+                            <input type="text" name="email" class="form-control"
+                                placeholder="Input your email" />
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="phone">Telefono</label>
+                            <input type="text" name="phone" class="form-control"
+                                placeholder="Input your phone number" maxlength="9" />
+                        </div>
+                        <div class="col-lg-3">
+                            <label for="dni">DNI</label>
+                            <input type="text" name="dni" class="form-control" placeholder="Input your dni"
+                                maxlength="8" />
+                        </div>
+                        <div class="col-lg-9">
+                            <label for="direction">Direccion</label>
+                            <input type="text" name="address" class="form-control"
+                                placeholder="Input your phone direction" />
+                        </div>
+                        <div class="text-center">
+                            <button type="button" class="btn btn-primary" id="btnRegistrar">Registrar</button>
+                            <a class="btn btn-danger" href="Ingresar.jsp">Cancelar</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="card-footer text-center">
+                <span>Se les agradece la confianza que entablaran con nosotros</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- JQUERY -->
+    <script
+        src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+        crossorigin="anonymous"
+      ></script>
+
+    <!-- ====== SWEETALERT ======== -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- PERSONAL SCRIPT -->
+    <script th:src="@{/assets/js/administrador/registro.js}"></script>
+
+</body>
+
+</html>

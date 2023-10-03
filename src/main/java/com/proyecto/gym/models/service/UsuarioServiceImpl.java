@@ -3,6 +3,7 @@ package com.proyecto.gym.models.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.proyecto.gym.models.entity.Usuario;
@@ -15,6 +16,9 @@ public class UsuarioServiceImpl implements IUsuarioService{
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @Override
     public List<Usuario> listarTodos() {
         return (List<Usuario>) usuarioRepository.findAll();
@@ -22,6 +26,12 @@ public class UsuarioServiceImpl implements IUsuarioService{
 
     @Override
     public Usuario guardar(Usuario usuario) {
+        usuario.setBloqueo(1);
+        usuario.setEstado(1);
+        usuario.setDesc_bloq("Pago pendiente");
+        
+        usuario.setContrasenia(this.passwordEncoder.encode(usuario.getContrasenia()));
+        
         return usuarioRepository.save(usuario);
     }
 

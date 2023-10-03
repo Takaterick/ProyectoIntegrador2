@@ -36,13 +36,13 @@ public class ClienteControllerREST {
     @PostMapping("/guardar")
     public Cliente guardarClientes(@RequestBody Cliente cliente){
 
-        cliente.getUsuario().setEstado(1);
+        /* cliente.getUsuario().setEstado(1);
         cliente.getUsuario().setBloqueo(1);
         cliente.getUsuario().setDesc_bloq("Pago cuenta pendiente");
         
         Usuario usuario = usuarioService.guardar(cliente.getUsuario());
 
-        cliente.setUsuario(usuario);
+        cliente.setUsuario(usuario); */
         
         return clienteService.guardarCliente(cliente);
     }
