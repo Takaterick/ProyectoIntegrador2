@@ -18,14 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.proyecto.gym.models.entity.Cliente;
 import com.proyecto.gym.models.entity.Mensaje;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.proyecto.gym.models.entity.Cliente;
 import com.proyecto.gym.models.entity.Usuario;
 import com.proyecto.gym.models.service.IClienteService;
 import com.proyecto.gym.models.service.IUsuarioService;
@@ -57,13 +49,7 @@ public class ClienteControllerREST {
             Mensaje mensaje = new Mensaje(result.getFieldError().getDefaultMessage(), "warning");
             return mensaje;
         }
-        cliente.getUsuario().setEstado(1);
-        cliente.getUsuario().setBloqueo(1);
-        cliente.getUsuario().setDesc_bloq("Pago pendiente");
-        
-        Usuario usuario = usuarioService.guardar(cliente.getUsuario());
-
-        cliente.setUsuario(usuario);
+        usuarioService.guardar(cliente.getUsuario());
 
         clienteService.guardarCliente(cliente);
         return new Mensaje("¡El cliente se guardó con exito!", "success");

@@ -27,6 +27,10 @@ public class ClienteServiceImpl implements IClienteService{
     @Override
     public Cliente guardarCliente(Cliente cliente) {
 
+        cliente.getUsuario().setEstado(1);
+        cliente.getUsuario().setBloqueo(1);
+        cliente.getUsuario().setDesc_bloq("Pago pendiente");
+        
         return clienteRepository.save(cliente);
     }
 
