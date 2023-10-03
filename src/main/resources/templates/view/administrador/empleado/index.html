@@ -38,182 +38,566 @@
 
         <section>
             <div class="card">
-                <div class="card-header pb-2">
-                    <h5>Lista de empleados</h5>
+                <div class="card-header pb-0">
                 </div>
                 <div class="card-body pt-0">
-                    <!-- ///******BOTON MODAL******/// -->
-                    <div class="pb-3">
-                        <button type="button" class="btn btn-primary" id="btnAgregar">
-                            <i class="fa fa-edit"></i> Agregar Nuevo Empleado
-                        </button>
-                    </div>
-                    <!-- ///******FIN BOTON MODAL******/// -->
-                    <div class="modal fade text-left" id="modalEmpleado" tabindex="-1" role="dialog"
-                        aria-labelledby="myModalLabel160" aria-hidden="true">
-                        <form id="formEmpleado">
-                            <div class="modal-lg modal-dialog modal-dialog-scrollable" role="document">
-                                <div class="modal-content">
-                                    <div id="color-modal" class="modal-header bg-primary">
-                                        <h5 class="modal-title white" id="titulo-form"></h5>
-                                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                                            <i data-feather="x"></i>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body px-4">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group has-icon-left">
-                                                    <label for="first-name-icon">Nombres</label>
-                                                    <div class="position-relative">
-                                                        <input type="hidden" name="idEmpl">
-                                                        <input type="text" class="form-control" name="nombreEmpl"
-                                                            placeholder="Ingrese el nombre" id="first-name-icon">
-                                                        <div class="form-control-icon">
-                                                            <i class="bi bi-person"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group has-icon-left">
-                                                    <label for="last-name-icon">Apellido</label>
-                                                    <div class="position-relative">
-                                                        <input type="text" class="form-control" name="apellidoEmpl"
-                                                            placeholder="Ingrese el apellido" id="last-name-icon">
-                                                        <div class="form-control-icon">
-                                                            <i class="bi bi-person"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                <div class="form-group has-icon-left">
-                                                    <label for="usuario-icon">Usuario</label>
-                                                    <div class="position-relative">
-                                                        <input type="hidden" name="idUsuario">
-                                                        <input type="text" class="form-control" name="usuario"
-                                                            placeholder="Ingrese Usuario" id="usuario-icon">
-                                                        <div class="form-control-icon">
-                                                            <i class="bi bi-person-badge"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="form-group has-icon-left">
-                                                    <label for="contrasenia-icon">Contraseña</label>
-                                                    <div class="position-relative">
-                                                        <input type="password" class="form-control" name="contrasenia"
-                                                            placeholder="Ingrese contraseña" id="contrasenia-icon">
-                                                        <div class="form-control-icon">
-                                                            <i class="fa-solid fa-key"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="form-group has-icon-left">
-                                                    <label for="dni-id-icon">Dni</label>
-                                                    <div class="position-relative">
-                                                        <input type="number" class="form-control" name="dniEmpl"
-                                                            placeholder="DNI" id="dni-id-icon">
-                                                        <div class="form-control-icon">
-                                                            <i class="fa-regular fa-address-card"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="form-group has-icon-left">
-                                                    <label for="mobile-id-icon">Telefono</label>
-                                                    <div class="position-relative">
-                                                        <input type="number" class="form-control" name="telefonoEmpl"
-                                                            placeholder="987-654-321" id="mobile-id-icon">
-                                                        <div class="form-control-icon">
-                                                            <i class="bi bi-phone"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group has-icon-left">
-                                                    <label for="direccion-id-icon">Dirección</label>
-                                                    <div class="position-relative">
-                                                        <input type="text" class="form-control" name="direccionEmpl"
-                                                            placeholder="Ingrese el domicilio" id="direccion-id-icon">
-                                                        <div class="form-control-icon">
-                                                            <i class="bi bi-pin-map"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="form-group has-icon-left">
-                                                    <label for="email-id-icon">Correo</label>
-                                                    <div class="position-relative">
-                                                        <input type="text" class="form-control" name="correoEmpl"
-                                                            placeholder="Ingrese el correo @ejemplo.com" id="email-id-icon">
-                                                        <div class="form-control-icon">
-                                                            <i class="bi bi-envelope"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label for="selectRoles">Rol</label>
-                                                    <div class="position-relative">
-                                                        <select class="form-select" id="selectRoles" name="idRol">
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>                     
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                                            <i class="bx bx-x d-block d-sm-none"></i>
-                                            <span class="d-none d-sm-block">Cerrar</span>
-                                        </button>
-                                        <button type="button" id="btnGuardar" class="btn btn-primary ml-1">
-                                            <i class="bx bx-check d-block d-sm-none"></i>
-                                            <span class="d-none d-sm-block">Agregar</span>
-                                        </button>
-                                        <button type="button" id="btnActualizar" class="btn btn-success ml-1">
-                                            <i class="bx bx-check d-block d-sm-none"></i>
-                                            <span class="d-none d-sm-block">Editar</span>
-                                        </button>
-                                    </div>
-                                </div>
+
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link active" id="empleado-tab" data-bs-toggle="tab" href="#empleado"
+                                role="tab" aria-controls="empleado" aria-selected="true">
+                                <h5>Empleado</h5>
+                            </a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="usuario-tab" data-bs-toggle="tab" href="#usuario" role="tab"
+                                aria-controls="usuario" aria-selected="false">
+                                <h5>Usuario</h5>
+                            </a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="rol-tab" data-bs-toggle="tab" href="#rol" role="tab"
+                                aria-controls="rol" aria-selected="false">
+                                <h5>Rol</h5>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content pt-4" id="myTabContent">
+                        <div class="tab-pane fade show active" id="empleado" role="tabpanel"
+                            aria-labelledby="empleado-tab">
+                            <div class="pb-3">
+                                <button type="button" class="btn btn-primary" id="btnAgregar">
+                                    <i class="fa fa-edit"></i> Agregar Nuevo Empleado
+                                </button>
                             </div>
-                        </form>
+                            <!-- ///******FIN BOTON MODAL******/// -->
+                            <div class="modal fade text-left" id="modalEmpleado" tabindex="-1" role="dialog"
+                                aria-labelledby="myModalLabel160" aria-hidden="true">
+                                <form id="formEmpleado">
+                                    <div class="modal-lg modal-dialog modal-dialog-scrollable" role="document">
+                                        <div class="modal-content">
+                                            <div id="color-modal" class="modal-header bg-primary">
+                                                <h5 class="modal-title white" id="titulo-form"></h5>
+                                                <button type="button" class="close" data-bs-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <i data-feather="x"></i>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body px-4">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group has-icon-left">
+                                                            <label for="first-name-icon">Nombres</label>
+                                                            <div class="position-relative">
+                                                                <input type="hidden" name="idEmpl">
+                                                                <input type="text" class="form-control"
+                                                                    name="nombreEmpl" placeholder="Ingrese el nombre"
+                                                                    id="first-name-icon">
+                                                                <div class="form-control-icon">
+                                                                    <i class="bi bi-person"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group has-icon-left">
+                                                            <label for="last-name-icon">Apellido</label>
+                                                            <div class="position-relative">
+                                                                <input type="text" class="form-control"
+                                                                    name="apellidoEmpl"
+                                                                    placeholder="Ingrese el apellido"
+                                                                    id="last-name-icon">
+                                                                <div class="form-control-icon">
+                                                                    <i class="bi bi-person"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group has-icon-left">
+                                                            <label for="usuario-icon">Usuario</label>
+                                                            <div class="position-relative">
+                                                                <input type="hidden" name="idUsuario">
+                                                                <input type="text" class="form-control" name="usuario"
+                                                                    placeholder="Ingrese Usuario" id="usuario-icon">
+                                                                <div class="form-control-icon">
+                                                                    <i class="bi bi-person-badge"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group has-icon-left">
+                                                            <label for="contrasenia-icon">Contraseña</label>
+                                                            <div class="position-relative">
+                                                                <input type="password" class="form-control"
+                                                                    name="contrasenia" placeholder="Ingrese contraseña"
+                                                                    id="contrasenia-icon">
+                                                                <div class="form-control-icon">
+                                                                    <i class="fa-solid fa-key"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group has-icon-left">
+                                                            <label for="dni-id-icon">Dni</label>
+                                                            <div class="position-relative">
+                                                                <input type="number" class="form-control" name="dniEmpl"
+                                                                    placeholder="DNI" id="dni-id-icon">
+                                                                <div class="form-control-icon">
+                                                                    <i class="fa-regular fa-address-card"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group has-icon-left">
+                                                            <label for="mobile-id-icon">Telefono</label>
+                                                            <div class="position-relative">
+                                                                <input type="number" class="form-control"
+                                                                    name="telefonoEmpl" placeholder="987-654-321"
+                                                                    id="mobile-id-icon">
+                                                                <div class="form-control-icon">
+                                                                    <i class="bi bi-phone"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group has-icon-left">
+                                                            <label for="direccion-id-icon">Dirección</label>
+                                                            <div class="position-relative">
+                                                                <input type="text" class="form-control"
+                                                                    name="direccionEmpl"
+                                                                    placeholder="Ingrese el domicilio"
+                                                                    id="direccion-id-icon">
+                                                                <div class="form-control-icon">
+                                                                    <i class="bi bi-pin-map"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group has-icon-left">
+                                                            <label for="email-id-icon">Correo</label>
+                                                            <div class="position-relative">
+                                                                <input type="text" class="form-control"
+                                                                    name="correoEmpl"
+                                                                    placeholder="Ingrese el correo @ejemplo.com"
+                                                                    id="email-id-icon">
+                                                                <div class="form-control-icon">
+                                                                    <i class="bi bi-envelope"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="selectRoles">Rol</label>
+                                                            <div class="position-relative">
+                                                                <select class="form-select" id="selectRoles" name="idRol">
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                                    <i class="bx bx-x d-block d-sm-none"></i>
+                                                    <span class="d-none d-sm-block">Cerrar</span>
+                                                </button>
+                                                <button type="button" id="btnGuardar" class="btn btn-primary ml-1">
+                                                    <i class="bx bx-check d-block d-sm-none"></i>
+                                                    <span class="d-none d-sm-block">Agregar</span>
+                                                </button>
+                                                <button type="button" id="btnActualizar" class="btn btn-success ml-1">
+                                                    <i class="bx bx-check d-block d-sm-none"></i>
+                                                    <span class="d-none d-sm-block">Editar</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <table class="table table-striped" id="tablaEmpleado">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Empleado</th>
+                                        <th>Dni</th>
+                                        <th>Telefono</th>
+                                        <th>Correo</th>
+                                        <th>Direccion</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                        <div class="tab-pane fade" id="usuario" role="tabpanel" aria-labelledby="usuario-tab">
+                            <!-- ///******FIN BOTON MODAL******/// -->
+                            <div class="modal fade text-left" id="modalUsuario" tabindex="-1" role="dialog"
+                                aria-labelledby="myModalLabel160" aria-hidden="true">
+                                <!-- <form id="formUsuario">
+                                    <div class="modal-lg modal-dialog modal-dialog-scrollable" role="document">
+                                        <div class="modal-content">
+                                            <div id="color-modal" class="modal-header bg-primary">
+                                                <h5 class="modal-title white" id="titulo-form"></h5>
+                                                <button type="button" class="close" data-bs-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <i data-feather="x"></i>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body px-4">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group has-icon-left">
+                                                            <label for="first-name-icon">Nombres</label>
+                                                            <div class="position-relative">
+                                                                <input type="hidden" name="idEmpl">
+                                                                <input type="text" class="form-control"
+                                                                    name="nombreEmpl" placeholder="Ingrese el nombre"
+                                                                    id="first-name-icon">
+                                                                <div class="form-control-icon">
+                                                                    <i class="bi bi-person"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group has-icon-left">
+                                                            <label for="last-name-icon">Apellido</label>
+                                                            <div class="position-relative">
+                                                                <input type="text" class="form-control"
+                                                                    name="apellidoEmpl"
+                                                                    placeholder="Ingrese el apellido"
+                                                                    id="last-name-icon">
+                                                                <div class="form-control-icon">
+                                                                    <i class="bi bi-person"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group has-icon-left">
+                                                            <label for="usuario-icon">Usuario</label>
+                                                            <div class="position-relative">
+                                                                <input type="hidden" name="idUsuario">
+                                                                <input type="text" class="form-control" name="usuario"
+                                                                    placeholder="Ingrese Usuario" id="usuario-icon">
+                                                                <div class="form-control-icon">
+                                                                    <i class="bi bi-person-badge"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group has-icon-left">
+                                                            <label for="contrasenia-icon">Contraseña</label>
+                                                            <div class="position-relative">
+                                                                <input type="password" class="form-control"
+                                                                    name="contrasenia" placeholder="Ingrese contraseña"
+                                                                    id="contrasenia-icon">
+                                                                <div class="form-control-icon">
+                                                                    <i class="fa-solid fa-key"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group has-icon-left">
+                                                            <label for="dni-id-icon">Dni</label>
+                                                            <div class="position-relative">
+                                                                <input type="number" class="form-control" name="dniEmpl"
+                                                                    placeholder="DNI" id="dni-id-icon">
+                                                                <div class="form-control-icon">
+                                                                    <i class="fa-regular fa-address-card"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group has-icon-left">
+                                                            <label for="mobile-id-icon">Telefono</label>
+                                                            <div class="position-relative">
+                                                                <input type="number" class="form-control"
+                                                                    name="telefonoEmpl" placeholder="987-654-321"
+                                                                    id="mobile-id-icon">
+                                                                <div class="form-control-icon">
+                                                                    <i class="bi bi-phone"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group has-icon-left">
+                                                            <label for="direccion-id-icon">Dirección</label>
+                                                            <div class="position-relative">
+                                                                <input type="text" class="form-control"
+                                                                    name="direccionEmpl"
+                                                                    placeholder="Ingrese el domicilio"
+                                                                    id="direccion-id-icon">
+                                                                <div class="form-control-icon">
+                                                                    <i class="bi bi-pin-map"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group has-icon-left">
+                                                            <label for="email-id-icon">Correo</label>
+                                                            <div class="position-relative">
+                                                                <input type="text" class="form-control"
+                                                                    name="correoEmpl"
+                                                                    placeholder="Ingrese el correo @ejemplo.com"
+                                                                    id="email-id-icon">
+                                                                <div class="form-control-icon">
+                                                                    <i class="bi bi-envelope"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="selectRoles">Rol</label>
+                                                            <div class="position-relative">
+                                                                <select class="form-select" id="selectRoles"
+                                                                    name="idRol">
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                                    <i class="bx bx-x d-block d-sm-none"></i>
+                                                    <span class="d-none d-sm-block">Cerrar</span>
+                                                </button>
+                                                <button type="button" id="btnGuardar" class="btn btn-primary ml-1">
+                                                    <i class="bx bx-check d-block d-sm-none"></i>
+                                                    <span class="d-none d-sm-block">Agregar</span>
+                                                </button>
+                                                <button type="button" id="btnActualizar" class="btn btn-success ml-1">
+                                                    <i class="bx bx-check d-block d-sm-none"></i>
+                                                    <span class="d-none d-sm-block">Editar</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form> -->
+                            </div>
+                            <table class="table table-striped" id="tablaUsuario">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Empleado</th>
+                                        <th>Usuario</th>
+                                        <th>Estado</th>
+                                        <th>Motivo</th>
+                                        <th>Accion</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                        <div class="tab-pane fade" id="rol" role="tabpanel" aria-labelledby="rol-tab">
+                            <div class="pb-3">
+                                <button type="button" class="btn btn-primary" id="btnAgregar">
+                                    <i class="fa fa-user-plus"></i> &nbsp;Agregar Rol
+                                </button>
+                                <button type="button" class="btn btn-success" id="btnAgregar">
+                                    <i class="fa fa-edit"></i> Mostrar Roles
+                                </button>
+                            </div>
+                            <!-- ///******FIN BOTON MODAL******/// -->
+                            <div class="modal fade text-left" id="modalEmpleado" tabindex="-1" role="dialog"
+                                aria-labelledby="myModalLabel160" aria-hidden="true">
+                                <!-- <form id="formEmpleado">
+                                    <div class="modal-lg modal-dialog modal-dialog-scrollable" role="document">
+                                        <div class="modal-content">
+                                            <div id="color-modal" class="modal-header bg-primary">
+                                                <h5 class="modal-title white" id="titulo-form"></h5>
+                                                <button type="button" class="close" data-bs-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <i data-feather="x"></i>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body px-4">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group has-icon-left">
+                                                            <label for="first-name-icon">Nombres</label>
+                                                            <div class="position-relative">
+                                                                <input type="hidden" name="idEmpl">
+                                                                <input type="text" class="form-control"
+                                                                    name="nombreEmpl" placeholder="Ingrese el nombre"
+                                                                    id="first-name-icon">
+                                                                <div class="form-control-icon">
+                                                                    <i class="bi bi-person"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group has-icon-left">
+                                                            <label for="last-name-icon">Apellido</label>
+                                                            <div class="position-relative">
+                                                                <input type="text" class="form-control"
+                                                                    name="apellidoEmpl"
+                                                                    placeholder="Ingrese el apellido"
+                                                                    id="last-name-icon">
+                                                                <div class="form-control-icon">
+                                                                    <i class="bi bi-person"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group has-icon-left">
+                                                            <label for="usuario-icon">Usuario</label>
+                                                            <div class="position-relative">
+                                                                <input type="hidden" name="idUsuario">
+                                                                <input type="text" class="form-control" name="usuario"
+                                                                    placeholder="Ingrese Usuario" id="usuario-icon">
+                                                                <div class="form-control-icon">
+                                                                    <i class="bi bi-person-badge"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group has-icon-left">
+                                                            <label for="contrasenia-icon">Contraseña</label>
+                                                            <div class="position-relative">
+                                                                <input type="password" class="form-control"
+                                                                    name="contrasenia" placeholder="Ingrese contraseña"
+                                                                    id="contrasenia-icon">
+                                                                <div class="form-control-icon">
+                                                                    <i class="fa-solid fa-key"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group has-icon-left">
+                                                            <label for="dni-id-icon">Dni</label>
+                                                            <div class="position-relative">
+                                                                <input type="number" class="form-control" name="dniEmpl"
+                                                                    placeholder="DNI" id="dni-id-icon">
+                                                                <div class="form-control-icon">
+                                                                    <i class="fa-regular fa-address-card"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group has-icon-left">
+                                                            <label for="mobile-id-icon">Telefono</label>
+                                                            <div class="position-relative">
+                                                                <input type="number" class="form-control"
+                                                                    name="telefonoEmpl" placeholder="987-654-321"
+                                                                    id="mobile-id-icon">
+                                                                <div class="form-control-icon">
+                                                                    <i class="bi bi-phone"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group has-icon-left">
+                                                            <label for="direccion-id-icon">Dirección</label>
+                                                            <div class="position-relative">
+                                                                <input type="text" class="form-control"
+                                                                    name="direccionEmpl"
+                                                                    placeholder="Ingrese el domicilio"
+                                                                    id="direccion-id-icon">
+                                                                <div class="form-control-icon">
+                                                                    <i class="bi bi-pin-map"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group has-icon-left">
+                                                            <label for="email-id-icon">Correo</label>
+                                                            <div class="position-relative">
+                                                                <input type="text" class="form-control"
+                                                                    name="correoEmpl"
+                                                                    placeholder="Ingrese el correo @ejemplo.com"
+                                                                    id="email-id-icon">
+                                                                <div class="form-control-icon">
+                                                                    <i class="bi bi-envelope"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="selectRoles">Rol</label>
+                                                            <div class="position-relative">
+                                                                <select class="form-select" id="selectRoles"
+                                                                    name="idRol">
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                                    <i class="bx bx-x d-block d-sm-none"></i>
+                                                    <span class="d-none d-sm-block">Cerrar</span>
+                                                </button>
+                                                <button type="button" id="btnGuardar" class="btn btn-primary ml-1">
+                                                    <i class="bx bx-check d-block d-sm-none"></i>
+                                                    <span class="d-none d-sm-block">Agregar</span>
+                                                </button>
+                                                <button type="button" id="btnActualizar" class="btn btn-success ml-1">
+                                                    <i class="bx bx-check d-block d-sm-none"></i>
+                                                    <span class="d-none d-sm-block">Editar</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form> -->
+                            </div>
+                            <table class="table table-striped" id="tablaRolEmpleado">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Empleado</th>
+                                        <th>Rol</th>
+                                        <th>Accion</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
                     </div>
-                    <table class="table table-striped" id="tablaEmpleado">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Nombre</th>
-                                <th>Usuario</th>
-                                <th>Rol</th>
-                                <th>Dni</th>
-                                <th>Telefono</th>
-                                <th>Correo</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
+                    <!-- ///******BOTON MODAL******/// -->
+
                 </div>
             </div>
         </section>
     </div>
     <th:block layout:fragment="page-scripts">
         <script th:src="@{/assets/js/administrador/empleado.js}"></script>
+        <!--<script th:src="@{/assets/js/administrador/usuario.js}"></script>-->
         <script src="https://cdn.datatables.net/v/bs5/dt-1.13.6/datatables.min.js"></script>
     </th:block>
 </body>

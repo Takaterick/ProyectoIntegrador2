@@ -40,6 +40,4 @@ public class Rol implements Serializable{
     public void setNom_rol(String nom_rol) {
         this.nom_rol = nom_rol;
     }
-
-    
 }

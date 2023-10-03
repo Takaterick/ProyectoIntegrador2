@@ -1,43 +1,35 @@
 //VARIABLES PARA EL END POINT Y LA TABLA
 const backend = "http://localhost:8080/api/v1/membresias";
-const tablaMembresias = $("#tablaMembresias");
+const tablaMembresias = $("#tablaMembresias").DataTable({
+  language: {
+    url: "//cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json",
+  },
+});
 
 /*------------METODOS CRUD------------*/
 
 //METODO LISTAR MEMBRESIAS
 const listarMembresias = () => {
-  //Inicializamos el dataTable
-  tablaMembresias.DataTable({
-    language: {
-      url: "//cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json",
-    },
-    ajax: {
-      url: backend + "/lista",
-      type: "GET",
-      dataType: "json",
-      dataSrc: function(response){
-        return response;
-      }
-    },
-    columns: [
-      {data: "id_sus"},
-      {data: "nom_sus"},
-      {
-        data: "precio_sus",
-        render: function(data, type, row, meta){
-          return "S/ " + row.precio_sus;
-        }
-      },
-      {
-        render: function(data, type, row){
-          return `
-          <button type="button" data-id="${row.id_sus}" data-membresia="${row.nom_sus}" id="btn-editar" class="btn btn-warning"><i class="fa fa-edit"></i></button>
-          <button type="button" data-id="${row.id_sus}" data-membresia="${row.nom_sus}" id="btn-eliminar" class="btn btn-danger"><i class="fa fa-trash"></i></button>
-        `;
-        }
-      }
-    ]
-  })
+  tablaMembresias.clear();
+  $.ajax({
+    type: "GET",
+    url: backend + "/lista",
+    dataType: "json",
+    success: function (response) {
+      $.each(response, function (i, value) { 
+        //limpiar tabla
+        tablaMembresias.row.add([
+          value.id_sus,
+          value.nom_sus,
+          "S/ " + value.precio_sus,
+          `
+          <button type="button" data-id="${value.id_sus}" data-membresia="${value.nom_sus}" id="btn-editar" class="btn btn-warning"><i class="fa fa-edit"></i></button>
+          <button type="button" data-id="${value.id_sus}" data-membresia="${value.nom_sus}" id="btn-eliminar" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+          `
+        ]).draw(false);
+      });
+    }
+  });
 }
 
 //METODO GUARDAR MEMBRESIA
@@ -68,7 +60,7 @@ const guardarMembresia = () =>{
         if(data.tipo === "success"){
           alertas(data.mensaje,data.tipo);
           limpiarFormulario();
-          tablaMembresias.DataTable().ajax.reload();
+          listarMembresias();
           $("#modalGuardarMembresia").modal("hide");
           return;
         }else{
@@ -117,7 +109,7 @@ const actualizarMembresia = () =>{
         if(data.tipo === "success"){
           alertas(data.mensaje,data.tipo);
           limpiarFormulario();
-          tablaMembresias.DataTable().ajax.reload();
+          listarMembresias();
           $("#modalGuardarMembresia").modal("hide");
           return;
         }else{
@@ -150,7 +142,7 @@ const eliminarMembresia = () =>{
           datatype: 'json',
           success: function(res){
             alertas("La membresia "+membresia+" fue eliminada!","success");
-            tablaMembresias.DataTable().ajax.reload();
+            listarMembresias();
           }
         })
       }else{
@@ -166,17 +158,14 @@ const eliminarMembresia = () =>{
 /*------------METODOS SECUNDARIOS------------*/
 
 //Metodo alertas
-const alertas = (mensaje, icono, foco) =>{
-  if(foco!==""){
-    $('#'+foco).trigger('focus');
-  }
+const alertas = (mensaje, icono) => {
   Swal.fire({
-    title:mensaje,
-    icon:icono,
-    customClass: {confirmButton: 'btn btn-primary', popup: 'animated xoomIn'},
-    buttonsStyling: false
-  })
-}
+    title: mensaje,
+    icon: icono,
+    showConfirmButton: false,
+    timer: 1000,
+  });
+};
 
 //Metodo para limpiar
 const limpiarFormulario = () =>{
