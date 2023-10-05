@@ -1,8 +1,10 @@
 package com.proyecto.gym.Controller.APIs;
 
 import java.util.List;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,9 +12,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.proyecto.gym.models.entity.Empleado;
+import com.proyecto.gym.models.entity.Mensaje;
 import com.proyecto.gym.models.service.IEmpleadoService;
 import com.proyecto.gym.models.service.IUsuarioService;
 
@@ -35,17 +39,29 @@ public class EmpleadoControllerREST {
         return empleadoService.buscarPorId(id);
     }
 
+    //metodo para guardar
     @PostMapping("/guardar")
-    public Empleado guardarEmpleados(@RequestBody Empleado empleado){
-
+    @ResponseBody
+    public Mensaje guardarEmpleado(@Valid @RequestBody Empleado empleado, BindingResult result){
+        if(result.hasErrors()){
+            Mensaje mensaje = new Mensaje(result.getFieldError().getDefaultMessage(), "warning");
+            return mensaje;
+        }
         usuarioService.guardar(empleado.getUsuario());
-        
-        return empleadoService.guardarEmpleado(empleado);
+
+        empleadoService.guardarEmpleado(empleado);
+        return new Mensaje("¡El empleado se guardó con éxito!", "success");
     }
 
+    //metodo para actualizar
     @PutMapping("/actualizar/{id}")
-    public Empleado actualizarEmpleados(@RequestBody Empleado empleado, @PathVariable("id") Long idEmpleado){
-        return empleadoService.actualizarEmpleado(empleado, idEmpleado);
+    @ResponseBody
+    public Mensaje actualizarEmpleado(@Valid @RequestBody Empleado empleado, BindingResult result, @PathVariable("id") Long idEmpleado){
+        if(result.hasErrors()){
+            return new Mensaje(result.getFieldError().getDefaultMessage(), "warning");
+        }
+        empleadoService.actualizarEmpleado(empleado, idEmpleado);
+        return new Mensaje("¡Los datos de "+ empleado.getNombreEmpl()+" se actualizó con éxito!", "success");
     }
 
     @DeleteMapping("/eliminar/{id}")

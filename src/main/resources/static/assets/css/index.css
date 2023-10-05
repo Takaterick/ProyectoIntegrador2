@@ -1,0 +1,27 @@
+.shadow{
+    box-shadow: 15px 15px 10px #808080;
+}
+
+.separator{
+    width: 100%;
+    height: 3rem;
+}
+
+.text-justify{
+    text-align: justify;
+}
+
+.img-circle{
+    border-radius: 50%;
+}
+
+@media (max-width: 991px) {
+    .navbar-item{
+        text-align: center;
+    }
+
+    .card {
+        margin-left: 1rem;
+        width: 20rem;
+    }
+}

@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="head">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lucky Gym</title>
+
+    <!-- BOOSTRAP STYLES -->
+    <link rel="stylesheet" th:href="@{/assets/css/bootstrap.css}" />
+    
+    <!-- FONTAWESOME ICONS -->
+    <link rel="stylesheet" th:href="@{/assets/css/font-awesome-icons.css}" />
+
+    <!-- OWL.CAROUSEL STYLES -->
+    <link rel="stylesheet" th:href="@{/assets/css/owl.carousel.css}" />
+    <link rel="stylesheet" th:href="@{/assets/css/owl.theme.default.css}" />
+
+    <!-- PERSONAL STYLES -->
+    <link rel="stylesheet" th:href="@{/assets/css/index.css}" />
+
+    <!-- BOOTSTRAP STYLES -->
+    <!--<link rel="stylesheet" th:href="@{/assets/css/main/app.css}" />
+    <link rel="shortcut icon" th:href="@{/assets/images/logo/favicon.svg}" type="image/x-icon" />
+    <link rel="shortcut icon" th:href="@{/assets/images/logo/favicon.png}" type="image/png" /> -->
+
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />-->
+
+    
+</head>
+<body>
+    <!-- START HEADER -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top shadow">
+            <div class="container">
+                <a class="navbar-brand" href="#"
+                   ><span class="text-danger">Lucky</span> Gym</a
+                >
+                <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav"
+                    aria-controls="navbarNav"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                    >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <!-- items -->
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto navbar-item">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#About">Nosotros</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#Review">Reseñas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="login.html">Ingresar</a>
+                            
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- END HEADER -->
+    <!-- START CAROUSEL -->
+    <div class="my-4 ">
+        <br /><br />
+        <div
+            id="carouselExampleCaptions"
+            class="carousel slide"
+            data-bs-ride="carousel"
+            >
+            <div class="carousel-indicators">
+                <button
+                    type="button"
+                    data-bs-target="#carouselExampleCaptions"
+                    data-bs-slide-to="0"
+                    class="active"
+                    aria-current="true"
+                    aria-label="Slide 1"
+                    ></button>
+                <button
+                    type="button"
+                    data-bs-target="#carouselExampleCaptions"
+                    data-bs-slide-to="1"
+                    aria-label="Slide 2"
+                    ></button>
+                <button
+                    type="button"
+                    data-bs-target="#carouselExampleCaptions"
+                    data-bs-slide-to="2"
+                    aria-label="Slide 3"
+                    ></button>
+                <button
+                    type="button"
+                    data-bs-target="#carouselExampleCaptions"
+                    data-bs-slide-to="3"
+                    aria-label="Slide 4"
+                    ></button>
+            </div>
+            <!-- items -->
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img th:src="@{/assets/images/banner-01.jpg}" class="d-block w-100" alt="..." />
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5 class="text-danger fw-bold">Inicia sesión y accede al mejor plan de membresía que se adecua para ti ❤</h5>
+                        <p>
+                            <a href="login.html" class="btn btn-info text-black">Ingresar</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img th:src="@{/assets/images/banner-02.jpg}" class="d-block w-100" alt="..." />
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5 class="text-danger fw-bold">Regístrate y accede a todos los beneficios que tenemos para ti 😀</h5>
+                        <p>
+                            <a href="registro.html" class="btn btn-info text-black">Registrate</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img th:src="@{/assets/images/banner-03.jpg}" class="d-block w-100" alt="..." />
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5 class="text-danger fw-bold">¡Inicia sesión y juntos cuidaremos tu salud física y mental! 💪🏻</h5>
+                        <p>
+                            <a href="login.html" class="btn btn-info text-black">Ingresar</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img th:src="@{/assets/images/banner-04.jpg}" class="d-block w-100" alt="..." />
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5 class="text-danger fw-bold">Regístrate y vive la experiencia Lucky Gym: El gimnasio para ti ✨</h5>
+                        <p>
+                            <a href="registro.html" class="btn btn-info text-black">Registrate</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <button
+                class="carousel-control-prev"
+                type="button"
+                data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="prev"
+                >
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button
+                class="carousel-control-next"
+                type="button"
+                data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="next"
+                >
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+    <!-- END CAROUSEL -->
+
+    <!-- DIV SEPARATOR START -->
+    <div class="separator"></div>
+    <!-- DIV SEPARATOR END -->
+
+    <div class="container">
+        <!-- ABOUT US START -->
+        <div id="About" class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-7">
+                    <img th:src="@{/assets/images/logo-grande-luckyGym.jpg}" class="img-fluid" />
+                </div>
+                <div class="col-sm-12 col-md-5 m-auto">
+                    <h3>Sobre <span class="text-danger">nosotros</span></h3>
+                    <p class="text-justify">
+                        Lucky Gym es un gimnasio peruano con 23 años en el mercado, se fundó el 2 de octubre de 2000.
+                        Brinda un estilo de vida saludable en las familias mediante la actividad física y 
+                        la sana diversión. <br>
+
+                        Asimismo, ofrece varios servicios como una diversidad de entrenamientos, talleres de baile,  
+                        cuidado alimenticio y mucho más para ser una de las mejores alternativas con alcance a todos 
+                        los jóvenes y familia en general. <br>
+
+                        Nuestra competitividad, capacitación continua, buen ambiente y pasión por la atención de 
+                        los socios son nuestros pilares diarios.
+                    </p>
+                    <hr>
+                    <p class="text-justify">
+                        DISCIPLINAS DE ENTRENAMIENTO: <br>
+
+                        Nuestra filosofía facilita una enseñanza de humildad promoviendo la auto – 
+                        motivación, generando así, socios motivados, alineados y enfocados con sus metas de 
+                        vida personal y profesional. <br>
+
+                        Cada servicio permitirá generar y construir herramientas que los beneficiarán en sus 
+                        aptitudes mentales para el resto de sus vidas.
+                    </p>
+                    <button class="btn btn-danger shadow">Ver más</button>
+                </div>
+            </div>
+        </div>
+        <!-- ABOUT US END -->
+
+        <!-- DIV SEPARATOR START -->
+        <div class="separator"></div>
+        <!-- DIV SEPARATOR END -->
+
+        <!-- REVIEW START -->
+        <div id="Review" class="container">
+            <h3 class="text-center mb-5">
+                Comentarios de n<span class="text-danger">uestros clientes</span>
+            </h3>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div id="carousel-review" class="owl-carousel">
+                        <!-- ITEMS -->
+                        <div class="item">
+                            <div>
+                                <div class="card shadow">
+                                    <div class="card-body">
+                                        <img
+                                            src="https://i.pinimg.com/736x/77/bd/61/77bd613a4b19781d43e17b1e841a6b42.jpg"
+                                            class="img-fluid img-circle"
+                                            />
+                                        <h5 class="text-center my-4 text-danger">
+                                            Alexander Rodríguez
+                                        </h5>
+                                        <p class="text-justify">
+                                            "Buena calidad y servicio, lugar perfecto para entrenar 💪"
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div>
+                                <div class="card shadow">
+                                    <div class="card-body">
+                                        <img
+                                            src="https://i.dailymail.co.uk/i/newpix/2018/10/22/15/5188318D00000578-6303355-Toyah_Cordingley_pictured_24_was_found_dead_on_Wangetti_Beach_in-a-37_1540217334553.jpg"
+                                            class="img-fluid img-circle"
+                                            />
+                                        <h5 class="text-center my-4 text-danger">
+                                            María Sauceda
+                                        </h5>
+                                        <p class="text-justify">
+                                            "Buen ambiente y buenos entrenadores, ¡Muy recomendable! :D"
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div>
+                                <div class="card shadow">
+                                    <div class="card-body">
+                                        <img
+                                            src="https://i.pinimg.com/564x/74/b0/f3/74b0f38ae9fc925da7c0160fe6b950c6.jpg"
+                                            class="img-fluid img-circle"
+                                            />
+                                        <h5 class="text-center my-4 text-danger">
+                                            Andrea Zambrano
+                                        </h5>
+                                        <p class="text-justify">
+                                            "Buen gimnasio, espacioso y con buenos entrenadores.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div>
+                                <div class="card shadow">
+                                    <div class="card-body">
+                                        <img
+                                            src="https://cortesdepelohombres.com/wp-content/uploads/2019/12/Hombre-guapos-y-gafas-bien-peinados.jpg"
+                                            class="img-fluid img-circle"
+                                            />
+                                        <h5 class="text-center my-4 text-danger">
+                                            Hugo Martinez
+                                        </h5>
+                                        <p class="text-justify">
+                                            "Me siento como en casa, la clase de cross training fue lo mejor 🔥"
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div>
+                                <div class="card shadow">
+                                    <div class="card-body">
+                                        <img
+                                            src="https://i.pinimg.com/736x/c2/32/ed/c232ed37a835c6c05210111b0bee3df5.jpg"
+                                            class="img-fluid img-circle"
+                                            />
+                                        <h5 class="text-center my-4 text-danger">
+                                            Sergio Barker
+                                        </h5>
+                                        <p class="text-justify">
+                                            "Los precios son accesibles y los talleres son de lo mejor!! 😃"
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div>
+                                <div class="card shadow">
+                                    <div class="card-body">
+                                        <img
+                                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjfw-LVAYrDbM7PyjhNhOCOpWk9a_kuBx7BA&usqp=CAU"
+                                            class="img-fluid img-circle"
+                                            />
+                                        <h5 class="text-center my-4 text-danger">
+                                            Antonia Rivera
+                                        </h5>
+                                        <p class="text-justify">
+                                            "Muy buena atención y ambiente! se los recomiendo, los entrenadores tienen bastante experiencia :D"
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div>
+                                <div class="card shadow">
+                                    <div class="card-body">
+                                        <img
+                                            src="https://i.pinimg.com/originals/6d/3b/48/6d3b480a75c514692a4ba4e222d2031f.jpg"
+                                            class="img-fluid img-circle"
+                                            />
+                                        <h5 class="text-center my-4 text-danger">
+                                            Michelle Tejeda
+                                        </h5>
+                                        <p class="text-justify">
+                                            "Buena calidad y servicio, lugar perfecto para entrenar 💪"
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div>
+                                <div class="card shadow">
+                                    <div class="card-body">
+                                        <img
+                                            src="https://okhosting.com/resources/uploads/2019/08/foto-de-perfil-1.jpg"
+                                            class="img-fluid img-circle"
+                                            />
+                                        <h5 class="text-center my-4 text-danger">
+                                            Romina Franco 
+                                        </h5>
+                                        <p class="text-justify">
+                                            "Me siento como en casa, la clase de cross training fue lo mejor 🔥"
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- REVIEW END -->
+        <!-- DIV SEPARATOR START -->
+        <div class="separator"></div>
+        <!-- DIV SEPARATOR END -->
+
+        <!-- OBJETIVES START -->
+        <div class="container my-4">
+            <h2 class="text-center mb-5">Objetivos y propó<span class="text-danger">sitos de Lucky Gym</span></h2>
+            <div class="row gx-5">
+                <div class="col-sm-12 col-md-4 text-center">
+                    <span><i class="fa-solid fa-scroll fs-2"></i></span>
+                    <h3 class="text-danger my-2">Misión</h3>
+                    <p class="text-justify">
+                        Brindar herramientas que ayuden a nuestros clientes a alcanzar una salud integral tanto física y mental. Para ello brindamos un entrenamiento de excelencia con equipo e instalaciones de alto nivel, que facilitará el cumplimiento de objetivos individuales.
+                    </p>
+                </div>
+                <div class="col-sm-12 col-md-4 text-center">
+                    <span><i class="fa-solid fa-eye fs-2"></i></span>
+                    <h3 class="text-danger my-2">Visión</h3>
+                    <p class="text-justify">
+                        Ser un gimnasio líder, brindando calidad y bienestar a nuestros miembros, generando valor humano y profesional a nuestra empresa, a nuestros colaboradores y a nuestra comunidad.
+                    </p>
+                </div>
+                <div class="col-sm-12 col-md-4 text-center">
+                    <span><i class="fa-solid fa-people-line fs-2"></i></span>
+                    <h3 class="text-danger my-2">Valores</h3>
+                    <p class="text-justify">
+                    <ul class="list-unstyled">
+                        <li>Respeto</li>
+                        <li>Solidaridad</li>
+                        <li>Confianza</li>
+                        <li>Tolerancia</li>
+                        <li>Responsabilidad</li>
+                    </ul>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- OBJETIVES END -->
+    </div>
+
+    <!-- FOOTER -->
+
+    <footer class="shadow mt-5 bg-dark">
+        <div class="row">
+            <div class="text-center">
+                <h4 class="m-4 p-4 text-white">- Todos los derehos reservados © 2023 lucky gym -</h4>
+            </div>
+        </div>
+    </footer>
+
+    <!-- BOOTSTRAP -->
+    <script th:src="@{/assets/js/bootstrap.bundle.js}"></script>
+
+    <!-- FONTAWESOME ICONS -->
+    <script th:src="@{/assets/js/font-awesome-icons.js}"></script>
+
+    <!-- JQUERY LIBRARY -->
+    <script th:src="@{/assets/js/jquery-3.6.0.js}"></script>
+
+    <!-- OWL.CAROUSEL -->
+    <script th:src="@{/assets/js/owl.carousel.js}"></script>
+
+    <!-- PERSONAL SCRIPT -->
+    <script th:src="@{/assets/js/index.js}"></script>
+
+    <!-- JQUERY -->
+    <!--<script
+        src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+        crossorigin="anonymous"
+      ></script> -->
+
+    <!-- ====== SWEETALERT ======== -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>  -->
+
+</body>
+</html>

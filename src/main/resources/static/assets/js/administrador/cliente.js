@@ -34,7 +34,7 @@ const listarClientes = () => {
         render: function (data, type, row) {
           return `
                 <button type="button" data-id="${row.id_cli}" data-nombre="${row.nom_cli}" data-apellido="${row.ape_cli}" id="btnEditar" class="btn btn-warning"><i class="fa fa-edit"></i></button>
-                <button type="button" data-id="${row.id_cli}" data-nombre="${row.nom_cli}" data-apellido="${row.ape_cli}"id="btnEliminar" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                <button type="button" data-id="${row.id_cli}" data-nombre="${row.nom_cli}" data-apellido="${row.ape_cli}" id="btnEliminar" class="btn btn-danger"><i class="fa fa-trash"></i></button>
           `;
         },
       },
@@ -46,7 +46,7 @@ const listarClientes = () => {
 const guardarCliente = () => {
   $("#btn-abrirModalCliente").on("click", function () {
     limpiarFormulario();
-    $("#titulo-form").html("Guardar Nuevo cliente");
+    $("#titulo-form").html("Nuevo cliente");
     $("#color-modal").removeClass("bg-success");
     $("#color-modal").addClass("bg-primary");
     $("#btn-actualizarCliente").hide();
@@ -90,7 +90,7 @@ const guardarCliente = () => {
 //EDITAR CLIENTE
 const rellenarCliente = () => {
   $(document).on("click", "#btnEditar", function () {
-    $("#titulo-form").html("Editar Cliente");
+    $("#titulo-form").html("Editar cliente");
     $("#color-modal").removeClass("bg-primary");
     $("#color-modal").addClass("bg-success");
     $("#btn-actualizarCliente").show();
@@ -195,6 +195,8 @@ const limpiarFormulario = () => {
   $("#id_cliente").val("");
   $("#nombre_cliente").val("");
   $("#apellido_cliente").val("");
+  $("#usuario_cliente").val("");
+  $("#contrasenia_cliente").val("");
   $("#dni_cliente").val("");
   $("#telefono_cliente").val("");
   $("#correo_cliente").val("");
