@@ -6,6 +6,7 @@ const formEmpleado = $("#formEmpleado")[0];
 const selectRoles = $("#selectRoles");
 
 /*------------METODOS CRUD------------*/
+//METODO LISTAR EMPLEADOS
 const listarEmpleados = () => {
   tablaEmpleado.DataTable({
     language: {
@@ -34,8 +35,8 @@ const listarEmpleados = () => {
       {
         render: function (data, type, row) {
           return `
-                <button type="button" data-id="${row.idEmpl}" data-nombre="${row.nombreEmpl}" id="btn-editar" class="btn btn-warning"><i class="fa fa-edit"></i></button>
-                <button type="button" data-id="${row.idEmpl}" data-nombre="${row.nombreEmpl}" id="btn-eliminar" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                <button type="button" data-id="${row.idEmpl}" data-nombre="${row.nombreEmpl}" data-apellido="${row.apellidoEmpl}" id="btn-editar" class="btn btn-warning"><i class="fa fa-edit"></i></button>
+                <button type="button" data-id="${row.idEmpl}" data-nombre="${row.nombreEmpl}" data-apellido="${row.apellidoEmpl}" id="btn-eliminar" class="btn btn-danger"><i class="fa fa-trash"></i></button>
                 `;
         },
       },
@@ -149,9 +150,15 @@ const listarRoles = () => {
   });
 };
 
+//METODO GUARDAR EMPLEADOS
 const guardarEmpleado = () => {
   $("#btnAgregar").on("click", function () {
-    $("#titulo-form").html("Nuevo Empleado");
+    limpiarFormulario();
+    $("#titulo-form").html("Nuevo empleado");
+    $("#color-modal").removeClass("bg-success");
+    $("#color-modal").addClass("bg-primary");
+    $("#btnActualizar").hide();
+    $("#btnGuardar").show();
     $("#modalEmpleado").modal("show");
   });
   $("#btnGuardar").on("click", function () {
@@ -178,18 +185,27 @@ const guardarEmpleado = () => {
       data: JSON.stringify(datosEmpleado),
       dataType: "json",
       success: function (response) {
-        alertas("El empleado "+datosEmpleado.usuario.usuario+" se agregó correctamente", "success");
-        tablaEmpleado.DataTable().ajax.reload();
-        $("#modalEmpleado").modal("hide");
-        formEmpleado.reset();
-      }
+        if (response.tipo == "success") {
+          alertas(response.mensaje, response.tipo);
+          tablaEmpleado.DataTable().ajax.reload();
+          $("#modalEmpleado").modal("hide");
+          formEmpleado.reset();
+        } else {
+          alertas(response.mensaje, response.tipo);
+        }
+      },
     });
   });
 };
 
+//EDITAR EMPLEADO
 const rellenarEmpleado = () => {
   $(document).on("click", "#btn-editar", function () {
-    //$("#titulo-form").html("Actualizar Empleado");
+    $("#titulo-form").html("Editar empleado");
+    $("#color-modal").removeClass("bg-primary");
+    $("#color-modal").addClass("bg-success");
+    $("#btnActualizar").show();
+    $("#btnGuardar").hide();
     $("#modalEmpleado").modal("show");
     let id = $(this).data("id");
     $.ajax({
@@ -214,6 +230,7 @@ const rellenarEmpleado = () => {
   });
 }
 
+//METODO ACTUALIZAR
 const actualizarEmpleado = () => {
   $("#btnActualizar").on("click", function () {
     let datosForm = new FormData(formEmpleado);
@@ -241,25 +258,33 @@ const actualizarEmpleado = () => {
       data: JSON.stringify(datosEmpleado),
       dataType: "json",
       success: function (response) {
-        alertas("El empleado "+datosEmpleado.usuario.usuario+" se actualizó correctamente", "success");
-        tablaEmpleado.DataTable().ajax.reload();
-        $("#modalEmpleado").modal("hide");
-        formEmpleado.reset();
+        if (response.tipo == "success") {
+          tablaEmpleado.DataTable().ajax.reload();
+          alertas(response.mensaje, response.tipo);
+          $("#modalEmpleado").modal("hide");
+          formEmpleado.reset();
+        } else {
+          alertas(response.mensaje, response.tipo);
+        }
       }
     });
   });
-}
+};
 
+//ELIMINAR CLIENTE
 const eliminarEmpleado = () =>{
   $(document).on("click", "#btn-eliminar", function () {
     let id = $(this).data("id");
     let nombreEmpleado = $(this).data("nombre");
+    let apellidoEmpleado = $(this).data("apellido");
+
     Swal.fire({
-      title: "¿Estás seguro de eliminar a " + nombreEmpleado + "?",
+      title: "¿Esta seguro de eliminar a " + nombreEmpleado + " " + apellidoEmpleado + "?",
+      text: "¡Una vez eliminado no se puede recuperar!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#d33",
-      cancelButtonColor: "#3085d6",
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
       cancelButtonText: "Cancelar",
       confirmButtonText: "Si, eliminar",
     }).then((result) => {
@@ -270,24 +295,37 @@ const eliminarEmpleado = () =>{
           dataType: "text",
           success: function (response) {
             tablaEmpleado.DataTable().ajax.reload();
-            alertas(
-              "¡El empleado " + nombreEmpleado + " se ha eliminado exitosamente!",
-              "success"
-            );
+            alertas("¡Se ha eliminado exitosamente a " + nombreEmpleado + " " + apellidoEmpleado + "!", "success");
           },
         });
       } else {
-        alertas("El empleado " + nombreEmpleado + " no se ha eliminado", "error");
+        alertas("No se ha eliminado a " + nombreEmpleado + " " + apellidoEmpleado, "error");
       }
     });
   });
 }
+
+//METODO LIMPIAR
+const limpiarFormulario = () => {
+  $("#id_empleado").val("");
+  $("#nombre_empleado").val("");
+  $("#apellido_empleado").val("");
+  $("#usuario_empleado").val("");
+  $("#contrasenia_empleado").val("");
+  $("#dni_empleado").val("");
+  $("#telefono_empleado").val("");
+  $("#direccion_empleado").val("");
+  $("#correo_empleado").val("");
+  $("#selectRoles").val("");
+};
+
+//METODO ALERTAS
 const alertas = (mensaje, icono) => {
   Swal.fire({
     title: mensaje,
     icon: icono,
     showConfirmButton: false,
-    timer: 1000,
+    timer: 2000,
   });
 };
 
