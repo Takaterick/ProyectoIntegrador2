@@ -1,23 +1,17 @@
 <!DOCTYPE html>
 <html
-  lang="en"
-  xmlns:th="http://www.thymeleaf.org"
-  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
   layout:decorate="~{view/layout/layout_administrador}"
 >
   <head th:replace="view/layout/layout_administrador :: head">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <th:block layout:fragment="page-titulo">
+      <title>Lucky Gym</title>
+    </th:block>
     <th:block layout:fragment="page-style">
-      <link
-        rel="stylesheet"
-        th:href="@{/assets/extensions/simple-datatables/style.css}"
-      />
-      <link
-        rel="stylesheet"
-        th:href="@{/assets/css/pages/simple-datatables.css}"
-      />
+      <link rel="stylesheet" th:href="@{/assets/extensions/simple-datatables/style.css}"/>
+      <link rel="stylesheet" th:href="@{/assets/css/pages/simple-datatables.css}"/>
     </th:block>
   </head>
   <body>

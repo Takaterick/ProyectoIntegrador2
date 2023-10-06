@@ -1,101 +1,97 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vicky Gym</title>
-    <!-- BOOSTRAP STYLES -->
-    <link type="text/css" rel="stylesheet" th:href="@{/assets/css/main/app.css}" />
-    <link rel="shortcut icon" th:href="@{/assets/images/logo/favicon.svg}" type="image/x-icon" />
-    <link rel="shortcut icon" th:href="@{/assets/images/logo/favicon.png}" type="image/png" />
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vicky Gym</title>
+  <link rel="shortcut icon" th:href="@{/assets/images/logo-ofi-luckyGym.jpg}" type="image/x-icon" />
+    <link rel="shortcut icon" th:href="@{/assets/images/logo-ofi-luckyGym.jpg}" type="image/png" />
+  <!-- BOOSTRAP STYLES -->
+  <link type="text/css" rel="stylesheet" th:href="@{/assets/css/main/app.css}" />
+  
 
-    <!-- PERSONAL STYLES -->
-    <link type="text/css" rel="stylesheet" th:href="@{/assets/css/Ingresar.css}">
-  </head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-  <body class="container">
+  <!-- PERSONAL STYLES -->
+  <link type="text/css" rel="stylesheet" th:href="@{/assets/css/Ingresar.css}">
+</head>
 
-    
-
-    <div class="form-login">
-        <form id="login-form" th:action="@{/login}" method="POST">
+<body class="m-0 vh-100 row justify-content-center">
+  <div class="col-md-4">
+    <div class="container pt-2 pb-3 d-flex justify-content-center">
+      <img class="img-lg" th:src="@{/assets/images/logo-ofi-luckyGym.jpg}" style="width: 200px;"/>
+    </div>
+    <div class="card">
+      <div class="card-content">
+        <div class="card-body">
+          <div class="card-title">
+            <h1 class="text-center">Iniciar Sesión</h1>
+          </div>
+          <form id="login-form" th:action="@{/login}" method="POST">
             <div class="img-login">
-                <img src="" class="img-fluid">
+              <img src="" class="img-fluid">
             </div>
-            <h3 class="text-center mb-3">Ingresar</h3>
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" name="username" id="floatingInput" placeholder="Please input your username">
-                <label for="floatingInput">Email address</label>
-              </div>
-              <div class="form-floating">
-                  <input type="password" class="form-control" name="password" id="floatingPassword" placeholder="Please input your password">
-                <label for="floatingPassword">Password</label>
+              <input type="text" class="form-control" name="username" id="floatingInput"
+                placeholder="">
+              <label for="floatingInput">Ingrese Usuario</label>
             </div>
-            <div class="my-3 text-center">
-                <button type="submit" class="btn btn-primary btnLogin">Ingresar</button>
-              <a class="mx-2" href="../index.jsp">Volver</a>
+            <div class="form-floating">
+              <input type="password" class="form-control" name="password" id="floatingPassword"
+                placeholder="">
+              <label for="floatingPassword">Ingrese contraseña</label>
+            </div>
+            <div class="my-3 pt-2 text-center">
+              <button type="submit" class="btn btn-primary btnLogin">Ingresar</button>
+              <a class="mx-2" th:href="@{/inicio}">Volver</a>
             </div>
             <p class="text-center mt-2">
-                Ya tienes una cuenta? <a th:href="@{/registro}">Registrate</a>
+              Ya tienes una cuenta? <a th:href="@{/registro}">Registrate</a>
             </p>
             <p class="text-center">
-                No recuerdas tu contraseña <a href="#">Cambiar contraseña</a>
+              No recuerdas tu contraseña <a href="#">Cambiar contraseña</a>
             </p>
-        </form>
+          </form>
+        </div>
+      </div>
     </div>
-      
-      <!-- ====== JQUERY ====== -->
-      <script
-        src="https://code.jquery.com/jquery-3.7.1.js"
-        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
-        crossorigin="anonymous"
-    ></script>
-      
-      <!-- ====== SWEETALERT ======== -->
-      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </div>
 
-      <script th:inline="javascript">
-        let mensajeError = /*[[${param.error}]]*/null;
-        let mensajeLogout = /*[[${param.logout}]]*/null;
-        if(mensajeLogout != null){
-            if(mensajeLogout == ""){
-                Swal.fire({
-                icon: 'warning',
-                title: 'Oops...',
-                text: `Cerraste sesion`,
-            });
-            }else{
-                Swal.fire({
-                icon: 'warning',
-                title: 'Oops...',
-                text: mensajeLogout,
-                footer: `<a href="https://api.whatsapp.com/send?phone=51964835210" target="_BLANK">Contactar Soporte</a>`
-                })
-            }
-        }
+  <!-- ====== JQUERY ====== -->
+  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+    crossorigin="anonymous"></script>
 
-        if(mensajeError != null){
-            if(mensajeError == ""){
-                Swal.fire({
-                icon: 'warning',
-                title: 'Oops...',
-                text: `Revisa tus credenciales`,
-            });
-            }else{
-                Swal.fire({
-                icon: 'warning',
-                title: 'Oops...',
-                text: mensajeError,
-                footer: `<a href="https://api.whatsapp.com/send?phone=51964835210" target="_BLANK">Contactar Soporte</a>`
-                })
-            }
-        }
-      </script>
-      
-  </body>
+  <!-- ====== SWEETALERT ======== -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <script th:inline="javascript">
+    let mensajeError = /*[[${param.error}]]*/null;
+    let op = /*[[${param.op}]]*/null;
+
+    if (mensajeError != null && op != null) {
+      if (op == "1") {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: mensajeError,
+        })
+      } else {
+        Swal.fire({
+          icon: 'warning',
+          title: 'Oops...',
+          text: mensajeError,
+          footer: `<a href="https://api.whatsapp.com/send?phone=51964835210" target="_BLANK">Contactar Soporte</a>`
+        })
+      }
+    }
+
+
+  </script>
+
+</body>
+
 </html>

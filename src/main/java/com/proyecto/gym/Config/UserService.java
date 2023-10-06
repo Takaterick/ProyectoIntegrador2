@@ -26,17 +26,21 @@ public class UserService implements UserDetailsService {
         Cliente cliente = clienteRepository.findByUsuario_Usuario(username);
         Empleado empleado = empleadoRepository.findByUsuario_Usuario(username);
 
+
+
         if (cliente != null) {
             return User.builder()
                     .username(cliente.getUsuario().getUsuario())
                     .password(cliente.getUsuario().getContrasenia())
                     .roles("CLIENTE")
+                    .accountLocked(cliente.getUsuario().getBloqueo() == 1 ? true : false)
                     .build();
         } else if (empleado != null) {
             return User.builder()
                     .username(empleado.getUsuario().getUsuario())
                     .password(empleado.getUsuario().getContrasenia())
                     .roles(empleado.getRol().getNom_rol())
+                    .accountLocked(empleado.getUsuario().getBloqueo() == 1 ? true : false)
                     .build();
         } else{
             throw new UsernameNotFoundException("Usuario no encontrado");

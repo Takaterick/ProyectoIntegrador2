@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lucky Gym</title>
+    <link rel="shortcut icon" th:href="@{/assets/images/logo-ofi-luckyGym.jpg}" type="image/x-icon" />
+    <link rel="shortcut icon" th:href="@{/assets/images/logo-ofi-luckyGym.jpg}" type="image/png" />
 
     <!-- BOOSTRAP STYLES -->
     <link rel="stylesheet" th:href="@{/assets/css/bootstrap.css}" />
@@ -63,7 +65,7 @@
                             <a class="nav-link" href="#Review">Reseñas</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="login.html">Ingresar</a>
+                            <a class="nav-link" th:href="@{/login}">Ingresar</a>
                             
                         </li>
                     </ul>
@@ -111,7 +113,7 @@
             <!-- items -->
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img th:src="@{/assets/images/banner-01.jpg}" class="d-block w-100" alt="..." />
+                    <img th:src="@{/assets/images/banner-01.jpg}" class="d-block w-100" height="700" alt="..." />
                     <div class="carousel-caption d-none d-md-block">
                         <h5 class="text-danger fw-bold">Inicia sesión y accede al mejor plan de membresía que se adecua para ti ❤</h5>
                         <p>
@@ -120,7 +122,7 @@
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img th:src="@{/assets/images/banner-02.jpg}" class="d-block w-100" alt="..." />
+                    <img th:src="@{/assets/images/banner-02.jpg}" class="d-block w-100" height="700" alt="..." />
                     <div class="carousel-caption d-none d-md-block">
                         <h5 class="text-danger fw-bold">Regístrate y accede a todos los beneficios que tenemos para ti 😀</h5>
                         <p>
@@ -129,7 +131,7 @@
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img th:src="@{/assets/images/banner-03.jpg}" class="d-block w-100" alt="..." />
+                    <img th:src="@{/assets/images/banner-03.jpg}" class="d-block w-100" height="700" alt="..." />
                     <div class="carousel-caption d-none d-md-block">
                         <h5 class="text-danger fw-bold">¡Inicia sesión y juntos cuidaremos tu salud física y mental! 💪🏻</h5>
                         <p>
@@ -138,7 +140,7 @@
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img th:src="@{/assets/images/banner-04.jpg}" class="d-block w-100" alt="..." />
+                    <img th:src="@{/assets/images/banner-04.jpg}" class="d-block w-100" height="700" alt="..." />
                     <div class="carousel-caption d-none d-md-block">
                         <h5 class="text-danger fw-bold">Regístrate y vive la experiencia Lucky Gym: El gimnasio para ti ✨</h5>
                         <p>
@@ -175,12 +177,14 @@
 
     <div class="container">
         <!-- ABOUT US START -->
-        <div id="About" class="container">
+        <div id="About">
             <div class="row">
-                <div class="col-sm-12 col-md-7">
-                    <img th:src="@{/assets/images/logo-grande-luckyGym.jpg}" class="img-fluid" />
+                <div class="col-sm-12 col-md-6">
+                    <div>
+                        <img th:src="@{/assets/images/logo-ofi-luckyGym.jpg}" class="d-block w-75"/>
+                    </div>
                 </div>
-                <div class="col-sm-12 col-md-5 m-auto">
+                <div class="col-sm-12 col-md-6 m-auto">
                     <h3>Sobre <span class="text-danger">nosotros</span></h3>
                     <p class="text-justify">
                         Lucky Gym es un gimnasio peruano con 23 años en el mercado, se fundó el 2 de octubre de 2000.
@@ -413,15 +417,64 @@
         <!-- OBJETIVES END -->
     </div>
 
-    <!-- FOOTER -->
-
-    <footer class="shadow mt-5 bg-dark">
-        <div class="row">
-            <div class="text-center">
-                <h4 class="m-4 p-4 text-white">- Todos los derehos reservados © 2023 lucky gym -</h4>
+    <!-- DIV SEPARATOR START -->
+<footer class="container-fluid bg-dark text-white">
+        <div class="container">
+            <div class="row py-5 d-flex">
+                <div class="col-sm-12 col-md-4">
+                    <h3 class="text-danger">Lucky Gym</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                        Natus, aspernatur. Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                        Natus, aspernatur. Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                        Natus, aspernatur. Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                        Natus, aspernatur.
+                    </p>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <h3 class="text-danger">Contacto</h3>
+                    <ul class="list-unstyled">
+                        <li>
+                            <span><i class="fa-solid fa-phone fs-2"></i></span>
+                            <a href="tel:+51-987654321" target="_blank" class="text-white">+51-987654321</a>
+                        </li>
+                        <li>
+                            <span><i class="fa-solid fa-envelope fs-2"></i></span>
+                            <a href="mailto:" class="text-white">
+                            </a>
+                        </li>
+                        <li>
+                            <span><i class="fa-solid fa-map-marker fs-2"></i></span>
+                            <a href="https://goo.gl/maps/7YVvJr9WZ2Y2" target="_blank" class="text-white">
+                                Av. Los Incas 1234, Lima, Perú
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <h3 class="text-danger">Síguenos en nuestras redes sociales</h3>
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="https://www.facebook.com/" target="_blank" class="text-white">
+                                <span><i class="fa-brands fa-facebook fs-2"></i>asd</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.instagram.com/" target="_blank" class="text-white">
+                                <span><i class="fa-brands fa-instagram fs-2"></i>asdasd</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.youtube.com/" target="_blank" class="text-white">
+                                <span><i class="fa-brands fa-youtube fs-2"></i>asd</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </footer>
+
 
     <!-- BOOTSTRAP -->
     <script th:src="@{/assets/js/bootstrap.bundle.js}"></script>

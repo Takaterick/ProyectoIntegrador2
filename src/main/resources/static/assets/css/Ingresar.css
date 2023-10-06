@@ -4,3 +4,55 @@
     margin: auto;
     margin-top: 7rem;
 }
+
+/* cambiar el color de fondo */
+body{
+    background: #343a40;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+h1 {
+    color: #343a40;
+}
+
+h3{
+    color: white;
+}
+
+a{
+    color: #d9534f;
+}
+
+.img-lg{
+    width: 10rem;
+    height: 10rem;
+    /* imagen redonda */
+    border-radius: 10%;
+}
+
+
+/* border de los inputs */
+.form-control{
+    border-color: #d9544f65;
+}
+/* hover de los bordes de los inputs */
+.form-control:focus{
+    border-color: #d9544f;
+    box-shadow: 0 0 0 0.2rem rgba(217, 84, 79, 0.25);
+}
+
+
+
+.btnLogin{
+    background: #d9534f;
+    border-color: #d9534f; 
+    color: white;
+}
+
+.btnLogin:hover{
+    background: #c74742;
+    border-color: #ac2925;
+    color: white;
+}

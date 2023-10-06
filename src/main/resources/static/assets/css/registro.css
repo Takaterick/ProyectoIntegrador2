@@ -1,3 +1,68 @@
+body{
+    background: #343a40;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+h1{
+    color: #343a40;
+}
+
+h5{
+    color: #d9534f;;
+}
+
+.form-control{
+    border-color: #d9544f65;
+}
+/* hover de los bordes de los inputs */
+.form-control:focus{
+    border-color: #d9544f;
+    box-shadow: 0 0 0 0.2rem rgba(217, 84, 79, 0.25);
+}
+
+/* cambiar el color del select */
+.btn-mem{
+    background: white;
+    border-color: #d9534f; 
+    color: #d9534f;
+}
+
+.btn-mem:hover{
+    background: #d9534f;
+    border-color: #d9534f; 
+    color: white;
+}
+
+/* cuando este presionado el select */
+.btn-mem:active{
+    background-color: #d9534f;
+}
+
+.btn-reg{
+    background: #d9534f;
+    border-color: #d9534f; 
+    color: white;
+}
+
+.btn-cancel{
+    background: #343a40;
+    border-color: #343a40; 
+    color: white;
+}
+
+.btn-cancel:hover{
+    background: #606163;
+    border-color: #343a40; 
+    color: white;
+}
+
+.btn-reg:hover{
+    background: #c74742;
+    border-color: #ac2925;
+    color: white;
+}
 .register-container{
     width: 60rem;
     margin: auto;

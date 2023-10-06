@@ -5,11 +5,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/empleados")
+@RequestMapping("/entrenador")
 public class EmpleadoController {
 
     @GetMapping({"/","","/index","/inicio"})
     public String index(){
-        return "view/administrador/empleado/index";
+        return "view/entrenador/inicio";
     }
 }
