@@ -12,4 +12,9 @@ public class ClienteController {
     public String index(){
         return "/view/administrador/cliente/index";
     }
+
+    @GetMapping("/home")
+    public String inicio(){
+        return "/view/cliente/inicio";
+    }
 }

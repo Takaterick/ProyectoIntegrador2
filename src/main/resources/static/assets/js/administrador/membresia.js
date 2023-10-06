@@ -61,6 +61,7 @@ const guardarMembresia = () =>{
           alertas(data.mensaje,data.tipo);
           limpiarFormulario();
           listarMembresias();
+          cbxMembresias();
           $("#modalGuardarMembresia").modal("hide");
           return;
         }else{
@@ -110,6 +111,7 @@ const actualizarMembresia = () =>{
           alertas(data.mensaje,data.tipo);
           limpiarFormulario();
           listarMembresias();
+          cbxMembresias();
           $("#modalGuardarMembresia").modal("hide");
           return;
         }else{
@@ -143,6 +145,7 @@ const eliminarMembresia = () =>{
           success: function(res){
             alertas("La membresia "+membresia+" fue eliminada!","success");
             listarMembresias();
+            cbxMembresias();
           }
         })
       }else{
@@ -174,8 +177,6 @@ const limpiarFormulario = () =>{
   $('#precio_sus').val('');
 }
 
-
-//probar otra forma de hacer de api
 
 
 /*------------METODOS SECUNDARIOS------------*/

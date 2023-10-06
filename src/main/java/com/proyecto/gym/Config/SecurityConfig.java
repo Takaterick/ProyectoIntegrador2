@@ -3,39 +3,60 @@ package com.proyecto.gym.Config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 @Configuration
+@EnableWebSecurity
 public class SecurityConfig {
+
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private SuccessRedirect successRedirect;
 
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
 
-    /* @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
+    @Bean
+    public SecurityFilterChain securityFilterChain (HttpSecurity http) throws Exception{
         return http
-            .authorizeRequests()
-                .antMatchers("/","/css/**","/js/**","/img/**","/registro","/login").permitAll()
-                .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/user/**").hasAnyRole("USER","ADMIN")
-                .anyRequest().authenticated()
-                .and()
-            .formLogin()
-                .loginPage("/login")
-                .defaultSuccessUrl("/user/index")
-                .permitAll()
-                .and()
-            .logout()
-                .logoutUrl("/logout")
-                .logoutSuccessUrl("/")
-                .permitAll()
-                .and()
-            .csrf().disable()
+            .csrf(csrf ->
+                csrf
+                .disable()
+            )
+            .userDetailsService(userService)
+            .authorizeHttpRequests(authRequest ->
+                authRequest
+                    .antMatchers("/clientes/home").hasRole("CLIENTE")
+                    //permitir estilos
+                    .antMatchers("/assets/**").permitAll()
+                    .anyRequest().authenticated()
+            )
+            .formLogin(
+                formLogin ->
+                    formLogin
+                        .loginPage("/login")
+                        .successHandler(successRedirect)
+                        .permitAll()
+            )
+            .logout(
+                logout ->
+                    logout
+                        //eliminar jsesion
+                        .invalidateHttpSession(true)
+                        .clearAuthentication(true)
+                        .permitAll()
+                        
+            )
             .build();
-    } */
-    
+    }
 }

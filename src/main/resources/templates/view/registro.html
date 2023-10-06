@@ -17,6 +17,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <link rel="stylesheet" th:href="@{/assets/css/registro.css}" />
+
 </head>
 
 <body class="container">
@@ -128,7 +129,7 @@
                         </div>
                         <div class="text-center">
                             <button type="button" class="btn btn-primary" id="btnRegistrar">Registrar</button>
-                            <a class="btn btn-danger" href="Ingresar.jsp">Cancelar</a>
+                            <a class="btn btn-danger" th:href="@{/login}">Cancelar</a>
                         </div>
                     </div>
                 </form>
@@ -145,7 +146,7 @@
         src="https://code.jquery.com/jquery-3.7.1.js"
         integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
         crossorigin="anonymous"
-      ></script>
+    ></script>
 
     <!-- ====== SWEETALERT ======== -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

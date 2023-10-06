@@ -6,4 +6,5 @@ import com.proyecto.gym.models.entity.Empleado;
 
 public interface EmpleadoRepository extends CrudRepository<Empleado, Long>{
     
+    public Empleado findByUsuario_Usuario(String usuario);
 }

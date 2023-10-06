@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vicky Gym</title>
+    <!-- BOOSTRAP STYLES -->
+    <link type="text/css" rel="stylesheet" th:href="@{/assets/css/main/app.css}" />
+    <link rel="shortcut icon" th:href="@{/assets/images/logo/favicon.svg}" type="image/x-icon" />
+    <link rel="shortcut icon" th:href="@{/assets/images/logo/favicon.png}" type="image/png" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- PERSONAL STYLES -->
+    <link type="text/css" rel="stylesheet" th:href="@{/assets/css/Ingresar.css}">
+  </head>
+
+  <body class="container">
+
+    
+
+    <div class="form-login">
+        <form id="login-form" th:action="@{/login}" method="POST">
+            <div class="img-login">
+                <img src="" class="img-fluid">
+            </div>
+            <h3 class="text-center mb-3">Ingresar</h3>
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" name="username" id="floatingInput" placeholder="Please input your username">
+                <label for="floatingInput">Email address</label>
+              </div>
+              <div class="form-floating">
+                  <input type="password" class="form-control" name="password" id="floatingPassword" placeholder="Please input your password">
+                <label for="floatingPassword">Password</label>
+            </div>
+            <div class="my-3 text-center">
+                <button type="submit" class="btn btn-primary btnLogin">Ingresar</button>
+              <a class="mx-2" href="../index.jsp">Volver</a>
+            </div>
+            <p class="text-center mt-2">
+                Ya tienes una cuenta? <a th:href="@{/registro}">Registrate</a>
+            </p>
+            <p class="text-center">
+                No recuerdas tu contraseña <a href="#">Cambiar contraseña</a>
+            </p>
+        </form>
+    </div>
+      
+      <!-- ====== JQUERY ====== -->
+      <script
+        src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+        crossorigin="anonymous"
+    ></script>
+      
+      <!-- ====== SWEETALERT ======== -->
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+      <script th:inline="javascript">
+        let mensajeError = /*[[${param.error}]]*/null;
+        let mensajeLogout = /*[[${param.logout}]]*/null;
+        if(mensajeLogout != null){
+            if(mensajeLogout == ""){
+                Swal.fire({
+                icon: 'warning',
+                title: 'Oops...',
+                text: `Cerraste sesion`,
+            });
+            }else{
+                Swal.fire({
+                icon: 'warning',
+                title: 'Oops...',
+                text: mensajeLogout,
+                footer: `<a href="https://api.whatsapp.com/send?phone=51964835210" target="_BLANK">Contactar Soporte</a>`
+                })
+            }
+        }
+
+        if(mensajeError != null){
+            if(mensajeError == ""){
+                Swal.fire({
+                icon: 'warning',
+                title: 'Oops...',
+                text: `Revisa tus credenciales`,
+            });
+            }else{
+                Swal.fire({
+                icon: 'warning',
+                title: 'Oops...',
+                text: mensajeError,
+                footer: `<a href="https://api.whatsapp.com/send?phone=51964835210" target="_BLANK">Contactar Soporte</a>`
+                })
+            }
+        }
+      </script>
+      
+  </body>
+</html>

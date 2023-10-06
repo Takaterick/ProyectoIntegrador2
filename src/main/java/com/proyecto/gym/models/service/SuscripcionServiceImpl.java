@@ -1,5 +1,6 @@
 package com.proyecto.gym.models.service;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -44,11 +45,15 @@ public class SuscripcionServiceImpl implements ISuscripcion{
     @Override
     public Suscripcion actualizarSuscripcion(Suscripcion suscripcion, Long Id) {
         Suscripcion suscripcionActual = suscripcionRepository.findById(Id).orElse(null);
+
         suscripcionActual.setFechaInicio(suscripcion.getFechaInicio());
         suscripcionActual.setFechaFin(suscripcion.getFechaFin());
-        suscripcionActual.setEstado(suscripcion.getEstado());
-        suscripcionActual.setCliente(suscripcion.getCliente());
-        suscripcionActual.setMembresia(suscripcion.getMembresia());
+
+        if (suscripcionActual.getFechaFin().after(new Date())) {
+            suscripcionActual.setEstado("Pagado");
+        } else {
+            suscripcionActual.setEstado("Vencido");
+        }
         return suscripcionRepository.save(suscripcionActual);
     }
     

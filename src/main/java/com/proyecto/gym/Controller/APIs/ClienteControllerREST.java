@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.proyecto.gym.models.entity.Cliente;
 import com.proyecto.gym.models.entity.Mensaje;
-import com.proyecto.gym.models.entity.Usuario;
 import com.proyecto.gym.models.service.IClienteService;
 import com.proyecto.gym.models.service.IUsuarioService;
 
