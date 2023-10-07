@@ -10,6 +10,6 @@ public class EmpleadoController {
 
     @GetMapping({"/","","/index","/inicio"})
     public String index(){
-        return "view/entrenador/inicio";
+        return "view/entrenador/taller";
     }
 }

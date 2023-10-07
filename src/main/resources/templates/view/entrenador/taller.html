@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{view/layout/layout_administrador}">
+    layout:decorate="~{view/layout/layout_entrenador}">
 
-<head th:replace="view/layout/layout_administrador :: head">
+<head th:replace="view/layout/layout_cliente :: head">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TALLER</title>
+    <th:block layout:fragment="page-titulo">
+        <title>Inicio</title>
+    </th:block>
     <th:block layout:fragment="page-style">
         <link href="https://cdn.datatables.net/v/bs5/dt-1.13.6/datatables.min.css" rel="stylesheet">
     </th:block>
@@ -14,235 +16,30 @@
 <body>
     <div class="sidebar-menu" layout:fragment="page-sidebar">
         <ul class="menu">
-          <li class="sidebar-title">Menu</li>
 
-          <li class="sidebar-item">
-            <a th:href="@{/administrador}" class="sidebar-link">
-              <i class="bi bi-grid-fill"></i>
-              <span>Dashboard</span>
-            </a>
-          </li>
+            <li class="sidebar-title">Recursos</li>
 
-          <li class="sidebar-title">Gestión</li>
-
-      <li class="sidebar-item has-sub">
-        <a href="#" class="sidebar-link">
-          <i class="bi bi-pentagon-fill"></i>
-          <span>Suscripciones</span>
-        </a>
-        <ul class="submenu">
-          <li class="submenu-item">
-            <a th:href="@{/administrador/suscripcion}">Clientes</a>
-          </li>
-          <!-- <li class="submenu-item">
-            <a href="ui-widgets-pricing.html">Pricing</a>
-          </li>
-          <li class="submenu-item">
-            <a href="ui-widgets-todolist.html">To-do List</a>
-          </li> -->
+            <li class="sidebar-item active">
+                <a th:href="@{/administrador/membresias}" class="sidebar-link">
+                    <i class="bi bi-file-earmark-medical-fill"></i>
+                    <span>Talleres</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a th:href="@{/administrador/clientes}" class="sidebar-link">
+                    <i class="bi bi-file-earmark-medical-fill"></i>
+                    <span>Alumnos</span>
+                </a>
+            </li>
         </ul>
-      </li>
-
-          <!-- <li class="sidebar-item has-sub">
-            <a href="#" class="sidebar-link">
-              <i class="bi bi-egg-fill"></i>
-              <span>Icons</span>
-            </a>
-            <ul class="submenu">
-              <li class="submenu-item">
-                <a href="ui-icons-bootstrap-icons.html">Bootstrap Icons </a>
-              </li>
-              <li class="submenu-item">
-                <a href="ui-icons-fontawesome.html">Fontawesome</a>
-              </li>
-              <li class="submenu-item">
-                <a href="ui-icons-dripicons.html">Dripicons</a>
-              </li>
-            </ul>
-          </li>
-
-          <li class="sidebar-item has-sub">
-            <a href="#" class="sidebar-link">
-              <i class="bi bi-bar-chart-fill"></i>
-              <span>Charts</span>
-            </a>
-            <ul class="submenu">
-              <li class="submenu-item">
-                <a href="ui-chart-chartjs.html">ChartJS</a>
-              </li>
-              <li class="submenu-item">
-                <a href="ui-chart-apexcharts.html">Apexcharts</a>
-              </li>
-            </ul>
-          </li>
-
-          <li class="sidebar-item">
-            <a href="ui-file-uploader.html" class="sidebar-link">
-              <i class="bi bi-cloud-arrow-up-fill"></i>
-              <span>File Uploader</span>
-            </a>
-          </li>
-
-          <li class="sidebar-item has-sub">
-            <a href="#" class="sidebar-link">
-              <i class="bi bi-map-fill"></i>
-              <span>Maps</span>
-            </a>
-            <ul class="submenu">
-              <li class="submenu-item">
-                <a href="ui-map-google-map.html">Google Map</a>
-              </li>
-              <li class="submenu-item">
-                <a href="ui-map-jsvectormap.html">JS Vector Map</a>
-              </li>
-            </ul>
-          </li> -->
-
-          <li class="sidebar-title">Mantenimiento</li>
-
-          <li class="sidebar-item">
-            <a th:href="@{/administrador/membresias}"class="sidebar-link">
-              <i class="bi bi-file-earmark-medical-fill"></i>
-              <span>Membresias</span>
-            </a>
-          </li>
-          <li class="sidebar-item">
-            <a th:href="@{/administrador/clientes}" class="sidebar-link">
-              <i class="bi bi-file-earmark-medical-fill"></i>
-              <span>Clientes</span>
-            </a>
-          </li>
-          <li class="sidebar-item active">
-            <a th:href="@{/administrador/empleados}" class="sidebar-link">
-              <i class="bi bi-file-earmark-medical-fill"></i>
-              <span>Empleados</span>
-            </a>
-          </li>
-          <li class="sidebar-item">
-            <a th:href="@{/administrador/talleres}" class="sidebar-link">
-              <i class="bi bi-file-earmark-medical-fill"></i>
-              <span>Talleres</span>
-            </a>
-          </li>
-          <li class="sidebar-item">
-            <a th:href="@{/administrador/roles}" class="sidebar-link">
-              <i class="bi bi-file-earmark-medical-fill"></i>
-              <span>Roles</span>
-            </a>
-          </li>
-          <li class="sidebar-item">
-            <a th:href="@{/logout}" class="sidebar-link">
-              <i class="bi bi-box-arrow-left"></i>
-              <span>Cerrar sesion</span>
-            </a>
-          </li>
-
-          <!-- <li class="sidebar-title">Pages</li>
-
-          <li class="sidebar-item">
-            <a href="application-email.html" class="sidebar-link">
-              <i class="bi bi-envelope-fill"></i>
-              <span>Email Application</span>
-            </a>
-          </li>
-
-          <li class="sidebar-item">
-            <a href="application-chat.html" class="sidebar-link">
-              <i class="bi bi-chat-dots-fill"></i>
-              <span>Chat Application</span>
-            </a>
-          </li>
-
-          <li class="sidebar-item">
-            <a href="application-gallery.html" class="sidebar-link">
-              <i class="bi bi-image-fill"></i>
-              <span>Photo Gallery</span>
-            </a>
-          </li>
-
-          <li class="sidebar-item">
-            <a href="application-checkout.html" class="sidebar-link">
-              <i class="bi bi-basket-fill"></i>
-              <span>Checkout Page</span>
-            </a>
-          </li>
-
-          <li class="sidebar-item has-sub">
-            <a href="#" class="sidebar-link">
-              <i class="bi bi-person-badge-fill"></i>
-              <span>Authentication</span>
-            </a>
-            <ul class="submenu">
-              <li class="submenu-item">
-                <a href="auth-login.html">Login</a>
-              </li>
-              <li class="submenu-item">
-                <a href="auth-register.html">Register</a>
-              </li>
-              <li class="submenu-item">
-                <a href="auth-forgot-password.html">Forgot Password</a>
-              </li>
-            </ul>
-          </li>
-
-          <li class="sidebar-item has-sub">
-            <a href="#" class="sidebar-link">
-              <i class="bi bi-x-octagon-fill"></i>
-              <span>Errors</span>
-            </a>
-            <ul class="submenu">
-              <li class="submenu-item">
-                <a href="error-403.html">403</a>
-              </li>
-              <li class="submenu-item">
-                <a href="error-404.html">404</a>
-              </li>
-              <li class="submenu-item">
-                <a href="error-500.html">500</a>
-              </li>
-            </ul>
-          </li>
-
-          <li class="sidebar-title">Raise Support</li>
-
-          <li class="sidebar-item">
-            <a
-              href="https://zuramai.github.io/mazer/docs"
-              class="sidebar-link"
-            >
-              <i class="bi bi-life-preserver"></i>
-              <span>Documentation</span>
-            </a>
-          </li>
-
-          <li class="sidebar-item">
-            <a
-              href="https://github.com/zuramai/mazer/blob/main/CONTRIBUTING.md"
-              class="sidebar-link"
-            >
-              <i class="bi bi-puzzle"></i>
-              <span>Contribute</span>
-            </a>
-          </li>
-
-          <li class="sidebar-item">
-            <a
-              href="https://github.com/zuramai/mazer#donation"
-              class="sidebar-link"
-            >
-              <i class="bi bi-cash"></i>
-              <span>Donate</span>
-            </a>
-          </li> -->
-        </ul>
-      </div>
+    </div>
     <div class="page-heading" layout:fragment="page-heading">
         <div class="page-title">
             <div class="row">
                 <div class="col-12 col-md-6 order-md-1 order-last">
-                    <h3>Empleados</h3>
+                    <h3>Talleres</h3>
                     <p class="text-subtitle text-muted">
-                        Aqui se mostrara el listados de todos los empleados.
+                        Aqui podra gestionar sus talleres.
                     </p>
                 </div>
                 <div class="col-12 col-md-6 order-md-2 order-first">
@@ -259,39 +56,31 @@
                 </div>
             </div>
         </div>
-
-        <section>
+        <section class="section">
             <div class="card">
-                <div class="card-header pb-0">
+                <div class="card-header pb-0" >
                 </div>
                 <div class="card-body pt-0">
-
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item" role="presentation">
                             <a class="nav-link active" id="empleado-tab" data-bs-toggle="tab" href="#empleado"
                                 role="tab" aria-controls="empleado" aria-selected="true">
-                                <h5>Empleado</h5>
-                            </a>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="usuario-tab" data-bs-toggle="tab" href="#usuario" role="tab"
-                                aria-controls="usuario" aria-selected="false">
-                                <h5>Usuario</h5>
+                                <h5>Control de Talleres</h5>
                             </a>
                         </li>
                         <li class="nav-item" role="presentation">
                             <a class="nav-link" id="rol-tab" data-bs-toggle="tab" href="#rol" role="tab"
                                 aria-controls="rol" aria-selected="false">
-                                <h5>Rol</h5>
+                                <h5>Talleres</h5>
                             </a>
                         </li>
                     </ul>
                     <div class="tab-content pt-4" id="myTabContent">
                         <div class="tab-pane fade show active" id="empleado" role="tabpanel"
                             aria-labelledby="empleado-tab">
-                            <div class="pb-3">
+                            <div class="">
                                 <button type="button" class="btn btn-primary" id="btnAgregar">
-                                    <i class="fa fa-edit"></i> Agregar Nuevo Empleado
+                                    <i class="fa fa-edit"></i> Agregar Nuevo Taller
                                 </button>
                             </div>
                             <!-- ///******FIN BOTON MODAL******/// -->
@@ -440,191 +229,181 @@
                                     </div>
                                 </form>
                             </div>
-                            <table class="table table-striped" id="tablaEmpleado">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Empleado</th>
-                                        <th>Dni</th>
-                                        <th>Telefono</th>
-                                        <th>Correo</th>
-                                        <th>Direccion</th>
-                                        <th>Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody></tbody>
-                            </table>
-                        </div>
-                        <div class="tab-pane fade" id="usuario" role="tabpanel" aria-labelledby="usuario-tab">
-                            <!-- ///******FIN BOTON MODAL******/// -->
-                            <div class="modal fade text-left" id="modalUsuario" tabindex="-1" role="dialog"
-                                aria-labelledby="myModalLabel160" aria-hidden="true">
-                                <!-- <form id="formUsuario">
-                                    <div class="modal-lg modal-dialog modal-dialog-scrollable" role="document">
-                                        <div class="modal-content">
-                                            <div id="color-modal" class="modal-header bg-primary">
-                                                <h5 class="modal-title white" id="titulo-form"></h5>
-                                                <button type="button" class="close" data-bs-dismiss="modal"
-                                                    aria-label="Close">
-                                                    <i data-feather="x"></i>
-                                                </button>
+                            <hr class="">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="card">
+                                        <div class="card-header pt-3 pb-0 bg-success" style="background-color: #d7d8da94;">
+                                            <div class="card-title d-flex justify-content-between align-items-center ">
+                                                <h4 class="card-title text-white">
+                                                    Entrenamiento Funcional
+                                                </h4>
+                                                <h4>
+                                                    <span class="badge badge-pill bg-danger" style="border: 5px;">Hoy</span>
+                                                </h4>
                                             </div>
-                                            <div class="modal-body px-4">
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group has-icon-left">
-                                                            <label for="first-name-icon">Nombres</label>
-                                                            <div class="position-relative">
-                                                                <input type="hidden" name="idEmpl">
-                                                                <input type="text" class="form-control"
-                                                                    name="nombreEmpl" placeholder="Ingrese el nombre"
-                                                                    id="first-name-icon">
-                                                                <div class="form-control-icon">
-                                                                    <i class="bi bi-person"></i>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group has-icon-left">
-                                                            <label for="last-name-icon">Apellido</label>
-                                                            <div class="position-relative">
-                                                                <input type="text" class="form-control"
-                                                                    name="apellidoEmpl"
-                                                                    placeholder="Ingrese el apellido"
-                                                                    id="last-name-icon">
-                                                                <div class="form-control-icon">
-                                                                    <i class="bi bi-person"></i>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                        </div>
+                                        <div class="card-body border-bottom py-3 px-3" style="background-color: #d7d8da94;">
+                                            <div class="d-flex justify-content-start align-items-center">
+                                                <div class="img-fluid pe-3">
+                                                    <img src="https://portal.utp.edu.pe/static/media/Entrenamiento.a3ccee71.svg" alt="icon"  width="76" height="76">
                                                 </div>
-                                                <div class="row">
-                                                    <div class="col-md-3">
-                                                        <div class="form-group has-icon-left">
-                                                            <label for="usuario-icon">Usuario</label>
-                                                            <div class="position-relative">
-                                                                <input type="hidden" name="idUsuario">
-                                                                <input type="text" class="form-control" name="usuario"
-                                                                    placeholder="Ingrese Usuario" id="usuario-icon">
-                                                                <div class="form-control-icon">
-                                                                    <i class="bi bi-person-badge"></i>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div class="form-group has-icon-left">
-                                                            <label for="contrasenia-icon">Contraseña</label>
-                                                            <div class="position-relative">
-                                                                <input type="password" class="form-control"
-                                                                    name="contrasenia" placeholder="Ingrese contraseña"
-                                                                    id="contrasenia-icon">
-                                                                <div class="form-control-icon">
-                                                                    <i class="fa-solid fa-key"></i>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div class="form-group has-icon-left">
-                                                            <label for="dni-id-icon">Dni</label>
-                                                            <div class="position-relative">
-                                                                <input type="number" class="form-control" name="dniEmpl"
-                                                                    placeholder="DNI" id="dni-id-icon">
-                                                                <div class="form-control-icon">
-                                                                    <i class="fa-regular fa-address-card"></i>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div class="form-group has-icon-left">
-                                                            <label for="mobile-id-icon">Telefono</label>
-                                                            <div class="position-relative">
-                                                                <input type="number" class="form-control"
-                                                                    name="telefonoEmpl" placeholder="987-654-321"
-                                                                    id="mobile-id-icon">
-                                                                <div class="form-control-icon">
-                                                                    <i class="bi bi-phone"></i>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                <div class="vr"></div>
+                                                <div class="ps-3">
+                                                    <p class="card-text"><i class="bi bi-calendar-event"></i> 08 Oct 2023</p>
+                                                    
+                                                    <p class="card-text"><i class="bi bi-clock"></i> 20:00 - 22:00</p>
                                                 </div>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group has-icon-left">
-                                                            <label for="direccion-id-icon">Dirección</label>
-                                                            <div class="position-relative">
-                                                                <input type="text" class="form-control"
-                                                                    name="direccionEmpl"
-                                                                    placeholder="Ingrese el domicilio"
-                                                                    id="direccion-id-icon">
-                                                                <div class="form-control-icon">
-                                                                    <i class="bi bi-pin-map"></i>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div class="form-group has-icon-left">
-                                                            <label for="email-id-icon">Correo</label>
-                                                            <div class="position-relative">
-                                                                <input type="text" class="form-control"
-                                                                    name="correoEmpl"
-                                                                    placeholder="Ingrese el correo @ejemplo.com"
-                                                                    id="email-id-icon">
-                                                                <div class="form-control-icon">
-                                                                    <i class="bi bi-envelope"></i>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <label for="selectRoles">Rol</label>
-                                                            <div class="position-relative">
-                                                                <select class="form-select" id="selectRoles"
-                                                                    name="idRol">
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                                                    <i class="bx bx-x d-block d-sm-none"></i>
-                                                    <span class="d-none d-sm-block">Cerrar</span>
-                                                </button>
-                                                <button type="button" id="btnGuardar" class="btn btn-primary ml-1">
-                                                    <i class="bx bx-check d-block d-sm-none"></i>
-                                                    <span class="d-none d-sm-block">Agregar</span>
-                                                </button>
-                                                <button type="button" id="btnActualizar" class="btn btn-success ml-1">
-                                                    <i class="bx bx-check d-block d-sm-none"></i>
-                                                    <span class="d-none d-sm-block">Editar</span>
-                                                </button>
                                             </div>
                                         </div>
                                     </div>
-                                </form> -->
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card">
+                                        <div class="card-header pt-3 pb-0 bg-success" style="background-color: #d7d8da94;">
+                                            <div class="card-title d-flex justify-content-between align-items-center ">
+                                                <h4 class="card-title text-white">
+                                                    Defensa Personal
+                                                </h4>
+                                                <h4>
+                                                    <span class="badge badge-pill bg-danger" style="border: 5px;">Hoy</span>
+                                                </h4>
+                                            </div>
+                                        </div>
+                                        <div class="card-body border-bottom py-3 px-3" style="background-color: #d7d8da94;">
+                                            <div class="d-flex justify-content-start align-items-center">
+                                                <div class="img-fluid pe-3">
+                                                    <img src="https://portal.utp.edu.pe/static/media/Karate.804ea5c6.svg" alt="icon"  width="76" height="76">
+                                                </div>
+                                                <div class="vr"></div>
+                                                <div class="ps-3">
+                                                    <p class="card-text"><i class="bi bi-calendar-event"></i> 08 Oct 2023</p>
+                                                    
+                                                    <p class="card-text"><i class="bi bi-clock"></i> 20:00 - 22:00</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card">
+                                        <div class="card-header pt-3 pb-0 bg-success" style="background-color: #d7d8da94;">
+                                            <div class="card-title d-flex justify-content-between align-items-center ">
+                                                <h4 class="card-title text-white">
+                                                    Baile Moderno
+                                                </h4>
+                                                <h4>
+                                                    <span class="badge badge-pill bg-danger" style="border: 5px;">Hoy</span>
+                                                </h4>
+                                            </div>
+                                        </div>
+                                        <div class="card-body border-bottom py-3 px-3" style="background-color: #d7d8da94;">
+                                            <div class="d-flex justify-content-start align-items-center">
+                                                <div class="pe-3">
+                                                    <img src="https://portal.utp.edu.pe/static/media/Expresiones-otros.eed6bc30.svg" alt="icon" width="76" height="76">
+                                                </div>
+                                                <div class="vr"></div>
+                                                <div class="ps-3">
+                                                    <p class="card-text"><i class="bi bi-calendar-event"></i> 08 Oct 2023</p>
+                                                    
+                                                    <p class="card-text"><i class="bi bi-clock"></i> 20:00 - 22:00</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <table class="table table-striped" id="tablaUsuario">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Empleado</th>
-                                        <th>Usuario</th>
-                                        <th>Estado</th>
-                                        <th>Motivo</th>
-                                        <th>Accion</th>
-                                    </tr>
-                                </thead>
-                                <tbody></tbody>
-                            </table>
+                            <!-- <div class="row">
+                                <div class="col-md-4">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="d-flex justify-content-between">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="avatar bg-light-primary p-50 me-1">
+                                                        <div class="avatar-content">
+                                                            <i class="fa-solid fa-user"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="total-amount">
+                                                        <h5 class="mb-0">Empleados</h5>
+                                                        <span class="fw-bolder mb-0" id="totalEmpleados">0</span>
+                                                    </div>
+                                                </div>
+                                                <div class="avatar bg-light-primary">
+                                                    <div class="avatar-content">
+                                                        <i class="fa-solid fa-user"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="progress mt-1 mb-0" style="height: 7px;">
+                                                <div class="progress-bar bg-primary" role="progressbar"
+                                                    style="width: 100%" aria-valuenow="50" aria-valuemin="50"
+                                                    aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="d-flex justify-content-between">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="avatar bg-light-warning p-50 me-1">
+                                                        <div class="avatar-content">
+                                                            <i class="fa-solid fa-user"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="total-amount">
+                                                        <h5 class="mb-0">Administradores</h5>
+                                                        <span class="fw-bolder mb-0" id="totalAdministradores">0</span>
+                                                    </div>
+                                                </div>
+                                                <div class="avatar bg-light-warning">
+                                                    <div class="avatar-content">
+                                                        <i class="fa-solid fa-user"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="progress mt-1 mb-0" style="height: 7px;">
+                                                <div class="progress-bar bg-warning" role="progressbar"
+                                                    style="width: 100%" aria-valuenow="50" aria-valuemin="50"
+                                                    aria-valuemax="100">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="d-flex justify-content-between">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="avatar bg-light-warning p-50 me-1">
+                                                        <div class="avatar-content">
+                                                            <i class="fa-solid fa-user"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="total-amount">
+                                                        <h5 class="mb-0">Administradores</h5>
+                                                        <span class="fw-bolder mb-0" id="totalAdministradores">0</span>
+                                                    </div>
+                                                </div>
+                                                <div class="avatar bg-light-warning">
+                                                    <div class="avatar-content">
+                                                        <i class="fa-solid fa-user"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="progress mt-1 mb-0" style="height: 7px;">
+                                                <div class="progress-bar bg-warning" role="progressbar"
+                                                    style="width: 100%" aria-valuenow="50" aria-valuemin="50"
+                                                    aria-valuemax="100">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> -->
                         </div>
                         <div class="tab-pane fade" id="rol" role="tabpanel" aria-labelledby="rol-tab">
                             <div class="pb-3">
@@ -810,11 +589,6 @@
             </div>
         </section>
     </div>
-    <th:block layout:fragment="page-scripts">
-        <script th:src="@{/assets/js/administrador/empleado.js}"></script>
-        <!--<script th:src="@{/assets/js/administrador/usuario.js}"></script>-->
-        <script src="https://cdn.datatables.net/v/bs5/dt-1.13.6/datatables.min.js"></script>
-    </th:block>
 </body>
 
 </html>

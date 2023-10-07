@@ -1,11 +1,437 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{view/layout/layout_cliente}">
+
+<head th:replace="view/layout/layout_cliente :: head">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <th:block layout:fragment="page-titulo">
     <title>Inicio</title>
+  </th:block>
+  <th:block layout:fragment="page-style">
+    <link href="https://cdn.datatables.net/v/bs5/dt-1.13.6/datatables.min.css" rel="stylesheet">
+  </th:block>
 </head>
+
 <body>
-    <h1>PAGINA CLIENTE</h1>
+  <div class="sidebar-menu" layout:fragment="page-sidebar">
+    <ul class="menu">
+      <li class="sidebar-title">Menu</li>
+
+      <li class="sidebar-item">
+        <a href="index.html" class="sidebar-link">
+          <i class="bi bi-grid-fill"></i>
+          <span>Dashboard</span>
+        </a>
+      </li>
+
+      <li class="sidebar-title">Gestión</li>
+
+      <li class="sidebar-item has-sub">
+        <a href="#" class="sidebar-link">
+          <i class="bi bi-pentagon-fill"></i>
+          <span>Suscripciones</span>
+        </a>
+        <ul class="submenu">
+          <li class="submenu-item">
+            <a th:href="@{/administrador/suscripcion}">Clientes</a>
+          </li>
+          <!-- <li class="submenu-item">
+            <a href="ui-widgets-pricing.html">Pricing</a>
+          </li>
+          <li class="submenu-item">
+            <a href="ui-widgets-todolist.html">To-do List</a>
+          </li> -->
+        </ul>
+      </li>
+
+      <!-- <li class="sidebar-item has-sub">
+            <a href="#" class="sidebar-link">
+              <i class="bi bi-egg-fill"></i>
+              <span>Icons</span>
+            </a>
+            <ul class="submenu">
+              <li class="submenu-item">
+                <a href="ui-icons-bootstrap-icons.html">Bootstrap Icons </a>
+              </li>
+              <li class="submenu-item">
+                <a href="ui-icons-fontawesome.html">Fontawesome</a>
+              </li>
+              <li class="submenu-item">
+                <a href="ui-icons-dripicons.html">Dripicons</a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="sidebar-item has-sub">
+            <a href="#" class="sidebar-link">
+              <i class="bi bi-bar-chart-fill"></i>
+              <span>Charts</span>
+            </a>
+            <ul class="submenu">
+              <li class="submenu-item">
+                <a href="ui-chart-chartjs.html">ChartJS</a>
+              </li>
+              <li class="submenu-item">
+                <a href="ui-chart-apexcharts.html">Apexcharts</a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="sidebar-item">
+            <a href="ui-file-uploader.html" class="sidebar-link">
+              <i class="bi bi-cloud-arrow-up-fill"></i>
+              <span>File Uploader</span>
+            </a>
+          </li>
+
+          <li class="sidebar-item has-sub">
+            <a href="#" class="sidebar-link">
+              <i class="bi bi-map-fill"></i>
+              <span>Maps</span>
+            </a>
+            <ul class="submenu">
+              <li class="submenu-item">
+                <a href="ui-map-google-map.html">Google Map</a>
+              </li>
+              <li class="submenu-item">
+                <a href="ui-map-jsvectormap.html">JS Vector Map</a>
+              </li>
+            </ul>
+          </li> -->
+
+      <li class="sidebar-title">Mantenimiento</li>
+
+      <li class="sidebar-item">
+        <a th:href="@{/administrador/membresias}" class="sidebar-link">
+          <i class="bi bi-file-earmark-medical-fill"></i>
+          <span>Membresias</span>
+        </a>
+      </li>
+      <li class="sidebar-item">
+        <a th:href="@{/administrador/clientes}" class="sidebar-link">
+          <i class="bi bi-file-earmark-medical-fill"></i>
+          <span>Clientes</span>
+        </a>
+      </li>
+      <li class="sidebar-item">
+        <a th:href="@{/administrador/empleados}" class="sidebar-link">
+          <i class="bi bi-file-earmark-medical-fill"></i>
+          <span>Empleados</span>
+        </a>
+      </li>
+      <li class="sidebar-item">
+        <a th:href="@{/administrador/talleres}" class="sidebar-link">
+          <i class="bi bi-file-earmark-medical-fill"></i>
+          <span>Talleres</span>
+        </a>
+      </li>
+      <li class="sidebar-item">
+        <a th:href="@{/administrador/roles}" class="sidebar-link">
+          <i class="bi bi-file-earmark-medical-fill"></i>
+          <span>Roles</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="page-heading" layout:fragment="page-heading">
+    <div class="page-title">
+      <div class="row">
+        <div class="col-12 col-md-6 order-md-1 order-last">
+          <h3>Perfil</h3>
+          <p class="text-subtitle text-muted">Bienvenido cliente: <span th:text="*{nom_cli}"></span>!!!</p>
+        </div>
+        <div class="col-12 col-md-6 order-md-2 order-first">
+          <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Perfil
+              </li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <section class="section">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+              <img th:src="@{/assets/images/faces/2.jpg}" alt="Avatar" class="rounded-circle" style="width: 70%; padding-bottom: 10px;">
+              <h2 style="color: #393e44;" th:text="*{nom_cli + ' ' + ape_cli}"></h2>
+              <h3 th:text="${suscripcion.membresia.nom_sus}"></h3>
+              <div class="mt-2" style="font-size: 25px;">
+                <a href="#" style="color: rgba(31, 25, 25, 0.5);" class="twitter"><i class="bi bi-twitter"></i></a>
+                <a href="#" style="color: rgba(31, 25, 25, 0.5);" class="facebook"><i class="bi bi-facebook"></i></a>
+                <a href="#" style="color: rgba(31, 25, 25, 0.5);" class="instagram"><i class="bi bi-instagram"></i></a>
+                <a href="#" style="color: rgba(31, 25, 25, 0.5);" class="linkedin"><i class="bi bi-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="card">
+            <div class="card-body pt-3">
+              <!-- Bordered Tabs -->
+              <ul class="nav nav-tabs nav-tabs-bordered">
+                <li class="nav-item">
+                  <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Descripcion general</button>
+                </li>
+
+                <!-- <li class="nav-item">
+                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Edit Profile</button>
+                </li>
+
+                <li class="nav-item">
+                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-settings">Settings</button>
+                </li>
+
+                <li class="nav-item">
+                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">Change Password</button>
+                </li>
+ -->
+              </ul>
+              <div class="tab-content pt-4">
+                <div class="tab-pane fade show active profile-overview" id="profile-overview">
+
+                  <h5 class="card-title">Detalles del perfi</h5>
+
+                  <div class="row pb-3">
+                    <div class="col-lg-3 col-md-4 font-bold">Nombre Completo</div>
+                    <div class="col-lg-9 col-md-8" th:text="*{nom_cli + ' ' + ape_cli}"></div>
+                  </div>
+
+                  <div class="row pb-3">
+                    <div class="col-lg-3 col-md-4 font-bold">Email</div>
+                    <div class="col-lg-9 col-md-8">k.anderson@example.com</div>
+                  </div>
+
+                  <div class="row pb-3">
+                    <div class="col-lg-3 col-md-4 font-bold">Usuario</div>
+                    <div class="col-lg-9 col-md-8" th:text="*{usuario.usuario}"></div>
+                  </div>
+
+                  <div class="row pb-3">
+                    <div class="col-lg-3 col-md-4 font-bold">Membresia</div>
+                    <div class="col-lg-9 col-md-8" th:text="${suscripcion.membresia.nom_sus}"></div>
+                  </div>
+
+                  <div class="row pb-3">
+                    <div class="col-lg-3 col-md-4 font-bold">Fecha Inicio</div>
+                    <div class="col-lg-9 col-md-8" th:text="${#dates.format(suscripcion.fechaInicio, 'dd-MMM-yyyy')}"></div>
+                  </div>
+
+                  <div class="row pb-3">
+                    <div class="col-lg-3 col-md-4 font-bold">Fecha Fin</div>
+                    <div class="col-lg-9 col-md-8" th:text="${#dates.format(suscripcion.fechaFin, 'dd-MMM-yyyy')}"></div>
+                  </div>
+
+                  <div class="row pb-3">
+                    <div class="col-lg-3 col-md-4 font-bold">Estado</div>
+                    <div class="col-lg-9 col-md-8" id="diasRestantes" th:text="${suscripcion.estado}"></div>
+                  </div>
+                </div>
+
+                <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
+
+                  <!-- Profile Edit Form -->
+                  <form>
+                    <div class="row mb-3">
+                      <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
+                      <div class="col-md-8 col-lg-9">
+                        <img src="assets/img/profile-img.jpg" alt="Profile">
+                        <div class="pt-2">
+                          <a href="#" class="btn btn-primary btn-sm" title="Upload new profile image"><i class="bi bi-upload"></i></a>
+                          <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Full Name</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="fullName" type="text" class="form-control" id="fullName" value="Kevin Anderson">
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="about" class="col-md-4 col-lg-3 col-form-label">About</label>
+                      <div class="col-md-8 col-lg-9">
+                        <textarea name="about" class="form-control" id="about" style="height: 100px">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</textarea>
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="company" class="col-md-4 col-lg-3 col-form-label">Company</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="company" type="text" class="form-control" id="company" value="Lueilwitz, Wisoky and Leuschke">
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="Job" class="col-md-4 col-lg-3 col-form-label">Job</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="job" type="text" class="form-control" id="Job" value="Web Designer">
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="Country" class="col-md-4 col-lg-3 col-form-label">Country</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="country" type="text" class="form-control" id="Country" value="USA">
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="Address" class="col-md-4 col-lg-3 col-form-label">Address</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="address" type="text" class="form-control" id="Address" value="A108 Adam Street, New York, NY 535022">
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Phone</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="phone" type="text" class="form-control" id="Phone" value="(436) 486-3538 x29071">
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="email" type="email" class="form-control" id="Email" value="k.anderson@example.com">
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="Twitter" class="col-md-4 col-lg-3 col-form-label">Twitter Profile</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="twitter" type="text" class="form-control" id="Twitter" value="https://twitter.com/#">
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="Facebook" class="col-md-4 col-lg-3 col-form-label">Facebook Profile</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="facebook" type="text" class="form-control" id="Facebook" value="https://facebook.com/#">
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="Instagram" class="col-md-4 col-lg-3 col-form-label">Instagram Profile</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="instagram" type="text" class="form-control" id="Instagram" value="https://instagram.com/#">
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="Linkedin" class="col-md-4 col-lg-3 col-form-label">Linkedin Profile</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="linkedin" type="text" class="form-control" id="Linkedin" value="https://linkedin.com/#">
+                      </div>
+                    </div>
+
+                    <div class="text-center">
+                      <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </div>
+                  </form><!-- End Profile Edit Form -->
+
+                </div>
+
+                <div class="tab-pane fade pt-3" id="profile-settings">
+
+                  <!-- Settings Form -->
+                  <form>
+
+                    <div class="row mb-3">
+                      <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Email Notifications</label>
+                      <div class="col-md-8 col-lg-9">
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" id="changesMade" checked>
+                          <label class="form-check-label" for="changesMade">
+                            Changes made to your account
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" id="newProducts" checked>
+                          <label class="form-check-label" for="newProducts">
+                            Information on new products and services
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" id="proOffers">
+                          <label class="form-check-label" for="proOffers">
+                            Marketing and promo offers
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" id="securityNotify" checked disabled>
+                          <label class="form-check-label" for="securityNotify">
+                            Security alerts
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="text-center">
+                      <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </div>
+                  </form><!-- End settings Form -->
+
+                </div>
+
+                <div class="tab-pane fade pt-3" id="profile-change-password">
+                  <!-- Change Password Form -->
+                  <form>
+
+                    <div class="row mb-3">
+                      <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="password" type="password" class="form-control" id="currentPassword">
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">New Password</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="newpassword" type="password" class="form-control" id="newPassword">
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Re-enter New Password</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="renewpassword" type="password" class="form-control" id="renewPassword">
+                      </div>
+                    </div>
+
+                    <div class="text-center">
+                      <button type="submit" class="btn btn-primary">Change Password</button>
+                    </div>
+                  </form><!-- End Change Password Form -->
+
+                </div>
+
+              </div><!-- End Bordered Tabs -->
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script  th:inline="javascript">
+    $(document).ready(function() {
+      var inicio = [['${suscripcion.fechaInicio}']];
+      var fin = [['${suscripcion.fechaFin}']];
+      var fechaInicio = new Date(inicio);
+      var fechaFin = new Date(fin);
+      var dias = fechaFin.getTime() - fechaInicio.getTime();
+      var diasRestantes = Math.round(dias / (1000 * 60 * 60 * 24));
+      console.log(diasRestantes);
+      document.getElementById("diasRestantes").innerHTML = diasRestantes;
+    });    
+</script>
 </body>
+
 </html>

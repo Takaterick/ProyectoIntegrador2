@@ -18,4 +18,6 @@ public interface IClienteService {
     public Cliente actualizarCliente(Cliente cliente, Long id);
     //metodo que elimina
     public Boolean eliminarDos(Long id);
+
+    public Cliente buscarPorUsuario(String usuario);
 }

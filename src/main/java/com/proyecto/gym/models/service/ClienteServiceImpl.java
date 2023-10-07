@@ -75,5 +75,10 @@ public class ClienteServiceImpl implements IClienteService{
             return false;
         }
     }
+
+    @Override
+    public Cliente buscarPorUsuario(String usuario) {
+        return clienteRepository.findByUsuario_Usuario(usuario);
+    }
     
 }

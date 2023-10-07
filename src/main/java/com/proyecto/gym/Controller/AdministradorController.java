@@ -10,7 +10,7 @@ public class AdministradorController {
     
     @GetMapping({"/","","/index","/inicio"})
     public String index(){
-        return "/view/layout/layout_administrador";
+        return "/view/administrador/index";
     }
 
     @GetMapping("/perfil")
@@ -38,7 +38,7 @@ public class AdministradorController {
         return "/view/administrador/membresia/index";
     }
 
-    @GetMapping("/rol")
+    @GetMapping("/roles")
     public String rol(){
         return "/view/administrador/rol/index";
     }

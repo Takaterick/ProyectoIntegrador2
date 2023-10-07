@@ -10,4 +10,5 @@ public interface ISuscripcion {
     public Suscripcion buscarPorId(Long Id);
     public void eliminarSuscripcion(Long Id);
     public Suscripcion actualizarSuscripcion(Suscripcion suscripcion, Long Id);
+    public Suscripcion buscarPorCliente(Long Id);
 }

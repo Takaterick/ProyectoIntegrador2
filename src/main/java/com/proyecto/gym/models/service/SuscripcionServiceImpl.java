@@ -56,5 +56,10 @@ public class SuscripcionServiceImpl implements ISuscripcion{
         }
         return suscripcionRepository.save(suscripcionActual);
     }
+
+    @Override
+    public Suscripcion buscarPorCliente(Long Id) {
+        return suscripcionRepository.findByCliente_Id(Id);
+    }
     
 }
