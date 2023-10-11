@@ -52,7 +52,16 @@ public class SuscripcionControllerREST {
 
     @DeleteMapping("/eliminar/{id}")
     public void eliminarSuscripcion(@PathVariable("id") Long idSuscripcion) {
+
+        Long idCliente = suscripcionServiceImpl.buscarPorId(idSuscripcion).getCliente().getId_cli();
+        Long idUsuario = suscripcionServiceImpl.buscarPorId(idSuscripcion).getCliente().getUsuario().getId();
+
         suscripcionServiceImpl.eliminarSuscripcion(idSuscripcion);
+
+
+        clienteServiceImpl.eliminarCliente(idCliente);
+        
+        usuarioServiceImpl.eliminar(idUsuario);
     }
 
     @PutMapping("/actualizar/{id}")

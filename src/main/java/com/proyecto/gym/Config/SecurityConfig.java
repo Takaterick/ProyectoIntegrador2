@@ -40,9 +40,9 @@ public class SecurityConfig {
                     .antMatchers("/clientes/**").hasRole("CLIENTE")
                     .antMatchers("/administrador/**").hasRole("Administrador")
                     .antMatchers("/entrenador/**").hasRole("Entrenador")
-                    //permitir estilos
                     .antMatchers("/assets/**").permitAll()
                     .antMatchers("/login", "/registro", "/inicio").permitAll()
+                    .antMatchers("/api/v1/suscripciones/guardar").permitAll()
                     .anyRequest().authenticated()
             )
             .formLogin(
@@ -60,7 +60,6 @@ public class SecurityConfig {
                         .invalidateHttpSession(true)
                         .clearAuthentication(true)
                         .permitAll()
-                        
             )
             .build();
     }

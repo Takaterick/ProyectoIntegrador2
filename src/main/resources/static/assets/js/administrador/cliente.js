@@ -28,7 +28,6 @@ const listarClientes = () => {
       { data: "usuario.usuario" },
       { data: "dni_cli" },
       { data: "tel_cli" },
-      { data: "correo_cli" },
       { data: "dir_cli" },
       {
         render: function (data, type, row) {
@@ -38,6 +37,21 @@ const listarClientes = () => {
           `;
         },
       },
+    ],
+    //redimensionar columnas
+    columnDefs: [
+      {
+        targets: [0],
+        width: "5%",
+      },
+      {
+        targets: [1],
+        width: "15%",
+      },
+      {
+        targets: [5],
+        width: "20%",
+      }
     ],
   });
 }
