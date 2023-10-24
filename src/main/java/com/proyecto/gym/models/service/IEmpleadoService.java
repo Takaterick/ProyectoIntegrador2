@@ -10,4 +10,6 @@ public interface IEmpleadoService {
     public Empleado buscarPorId(Long Id);
     public void eliminarEmpleado(Long Id);
     public Empleado actualizarEmpleado(Empleado empleado, Long Id);
+
+    public Empleado buscarPorUsuario(String usuario);
 }

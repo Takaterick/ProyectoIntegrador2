@@ -1,6 +1,5 @@
 package com.proyecto.gym.models.service;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -51,6 +50,8 @@ public class SuscripcionServiceImpl implements ISuscripcion{
 
         if (suscripcionActual.getFechaFin().after(new Date())) {
             suscripcionActual.setEstado("Pagado");
+            suscripcionActual.getCliente().getUsuario().setBloqueo(0);
+
         } else {
             suscripcionActual.setEstado("Vencido");
         }

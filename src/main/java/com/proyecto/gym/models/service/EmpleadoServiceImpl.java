@@ -59,4 +59,9 @@ public class EmpleadoServiceImpl implements IEmpleadoService {
         empleadoRepository.save(empleadoModificado);
         return empleadoModificado;
     }
+
+    @Override
+    public Empleado buscarPorUsuario(String usuario) {
+        return empleadoRepository.findByUsuario_Usuario(usuario);
+    }
 }

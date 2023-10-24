@@ -231,7 +231,7 @@
                             </div>
                             <hr class="">
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-4" th:each=" taller : ${talleres}">
                                     <div class="card">
                                         <div class="card-header pt-3 pb-0 bg-success" style="background-color: #d7d8da94;">
                                             <div class="card-title d-flex justify-content-between align-items-center ">
@@ -250,15 +250,15 @@
                                                 </div>
                                                 <div class="vr"></div>
                                                 <div class="ps-3">
-                                                    <p class="card-text"><i class="bi bi-calendar-event"></i> 08 Oct 2023</p>
-                                                    
-                                                    <p class="card-text"><i class="bi bi-clock"></i> 20:00 - 22:00</p>
+                                                    <p class="card-text mb-2"><i class="bi bi-calendar-event"></i> [[${#dates.format(taller.fechaTaller, 'dd MMM yyyy')}]]</p>
+                                                    <p class="card-text mb-2"><i class="bi bi-clock"></i> [[${#dates.format(taller.horaInicio, 'HH:mm')}]] - [[${#dates.format(taller.horaFin, 'HH:mm')}]]</p>
+                                                    <p class="card-text mb-2"><i class="bi bi-clock"></i> [[${taller.cupos}]]</p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <!-- <div class="col-md-4">
                                     <div class="card">
                                         <div class="card-header pt-3 pb-0 bg-success" style="background-color: #d7d8da94;">
                                             <div class="card-title d-flex justify-content-between align-items-center ">
@@ -311,7 +311,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                             <!-- <div class="row">
                                 <div class="col-md-4">

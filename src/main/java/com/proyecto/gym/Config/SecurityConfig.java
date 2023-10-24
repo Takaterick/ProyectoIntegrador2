@@ -42,7 +42,7 @@ public class SecurityConfig {
                     .antMatchers("/entrenador/**").hasRole("Entrenador")
                     .antMatchers("/assets/**").permitAll()
                     .antMatchers("/login", "/registro", "/inicio").permitAll()
-                    .antMatchers("/api/v1/suscripciones/guardar").permitAll()
+                    .antMatchers("/api/v1/**").permitAll()
                     .anyRequest().authenticated()
             )
             .formLogin(
