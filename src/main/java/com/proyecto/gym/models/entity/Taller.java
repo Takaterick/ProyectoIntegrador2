@@ -45,4 +45,14 @@ public class Taller implements Serializable{
     public void setNomTaller(String nomTaller) {
         this.nomTaller = nomTaller;
     }
+
+    public String getDescTaller() {
+        return descTaller;
+    }
+
+    public void setDescTaller(String descTaller) {
+        this.descTaller = descTaller;
+    }
+
+    
 }

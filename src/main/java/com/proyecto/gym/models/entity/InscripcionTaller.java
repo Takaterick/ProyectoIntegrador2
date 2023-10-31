@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "det_emp_taller")
@@ -24,9 +26,11 @@ public class InscripcionTaller implements Serializable{
     @Column(name = "fecha_detemptaller")
     private Date fechaTaller;
 
+    @Temporal(value = TemporalType.TIME)
     @Column(name = "hora_inicio_detemptaller")
     private Date horaInicio;
 
+    @Temporal(TemporalType.TIME)
     @Column(name = "hora_fin_detemptaller")
     private Date horaFin;
 

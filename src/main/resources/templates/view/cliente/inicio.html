@@ -157,7 +157,8 @@
         <div class="col-md-4">
           <div class="card">
             <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-              <img th:src="@{/assets/images/faces/2.jpg}" alt="Avatar" class="rounded-circle" style="width: 70%; padding-bottom: 10px;">
+              <img th:src="@{/assets/images/faces/2.jpg}" alt="Avatar" class="rounded-circle"
+                style="width: 70%; padding-bottom: 10px;">
               <h2 style="color: #393e44;" th:text="*{nom_cli + ' ' + ape_cli}"></h2>
               <h3 th:text="${suscripcion.membresia.nom_sus}"></h3>
               <div class="mt-2" style="font-size: 25px;">
@@ -175,7 +176,8 @@
               <!-- Bordered Tabs -->
               <ul class="nav nav-tabs nav-tabs-bordered">
                 <li class="nav-item">
-                  <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Descripcion general</button>
+                  <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Descripcion
+                    general</button>
                 </li>
 
                 <!-- <li class="nav-item">
@@ -218,31 +220,33 @@
 
                   <div class="row pb-3">
                     <div class="col-lg-3 col-md-4 font-bold">Fecha Inicio</div>
-                    <div class="col-lg-9 col-md-8" th:text="${#dates.format(suscripcion.fechaInicio, 'dd-MMM-yyyy')}"></div>
+                    <div class="col-lg-9 col-md-8 fecha fecha-inicio" th:data-inicio="${suscripcion.fechaInicio}">
+                    </div>
                   </div>
 
                   <div class="row pb-3">
                     <div class="col-lg-3 col-md-4 font-bold">Fecha Fin</div>
-                    <div class="col-lg-9 col-md-8" th:text="${#dates.format(suscripcion.fechaFin, 'dd-MMM-yyyy')}"></div>
+                    <div class="col-lg-9 col-md-8 fecha-fin" th:data-fin="${#dates.format(suscripcion.fechaFin, 'dd-MMM-yyyy')}">
+                    </div>
                   </div>
 
                   <div class="row pb-3">
-                    <div class="col-lg-3 col-md-4 font-bold">Estado</div>
-                    <div class="col-lg-9 col-md-8" id="diasRestantes" th:text="${suscripcion.estado}"></div>
+                    <div class="col-lg-3 col-md-4 font-bold">Dias Restantes</div>
+                    <div class="col-lg-9 col-md-8 dias-restantes" th:data-restantes="${suscripcion.fechaFin}"></div>
                   </div>
                 </div>
 
                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
-
-                  <!-- Profile Edit Form -->
                   <form>
                     <div class="row mb-3">
                       <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
                       <div class="col-md-8 col-lg-9">
                         <img src="assets/img/profile-img.jpg" alt="Profile">
                         <div class="pt-2">
-                          <a href="#" class="btn btn-primary btn-sm" title="Upload new profile image"><i class="bi bi-upload"></i></a>
-                          <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
+                          <a href="#" class="btn btn-primary btn-sm" title="Upload new profile image"><i
+                              class="bi bi-upload"></i></a>
+                          <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i
+                              class="bi bi-trash"></i></a>
                         </div>
                       </div>
                     </div>
@@ -257,14 +261,16 @@
                     <div class="row mb-3">
                       <label for="about" class="col-md-4 col-lg-3 col-form-label">About</label>
                       <div class="col-md-8 col-lg-9">
-                        <textarea name="about" class="form-control" id="about" style="height: 100px">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</textarea>
+                        <textarea name="about" class="form-control" id="about"
+                          style="height: 100px">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</textarea>
                       </div>
                     </div>
 
                     <div class="row mb-3">
                       <label for="company" class="col-md-4 col-lg-3 col-form-label">Company</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="company" type="text" class="form-control" id="company" value="Lueilwitz, Wisoky and Leuschke">
+                        <input name="company" type="text" class="form-control" id="company"
+                          value="Lueilwitz, Wisoky and Leuschke">
                       </div>
                     </div>
 
@@ -285,7 +291,8 @@
                     <div class="row mb-3">
                       <label for="Address" class="col-md-4 col-lg-3 col-form-label">Address</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="address" type="text" class="form-control" id="Address" value="A108 Adam Street, New York, NY 535022">
+                        <input name="address" type="text" class="form-control" id="Address"
+                          value="A108 Adam Street, New York, NY 535022">
                       </div>
                     </div>
 
@@ -306,28 +313,32 @@
                     <div class="row mb-3">
                       <label for="Twitter" class="col-md-4 col-lg-3 col-form-label">Twitter Profile</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="twitter" type="text" class="form-control" id="Twitter" value="https://twitter.com/#">
+                        <input name="twitter" type="text" class="form-control" id="Twitter"
+                          value="https://twitter.com/#">
                       </div>
                     </div>
 
                     <div class="row mb-3">
                       <label for="Facebook" class="col-md-4 col-lg-3 col-form-label">Facebook Profile</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="facebook" type="text" class="form-control" id="Facebook" value="https://facebook.com/#">
+                        <input name="facebook" type="text" class="form-control" id="Facebook"
+                          value="https://facebook.com/#">
                       </div>
                     </div>
 
                     <div class="row mb-3">
                       <label for="Instagram" class="col-md-4 col-lg-3 col-form-label">Instagram Profile</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="instagram" type="text" class="form-control" id="Instagram" value="https://instagram.com/#">
+                        <input name="instagram" type="text" class="form-control" id="Instagram"
+                          value="https://instagram.com/#">
                       </div>
                     </div>
 
                     <div class="row mb-3">
                       <label for="Linkedin" class="col-md-4 col-lg-3 col-form-label">Linkedin Profile</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="linkedin" type="text" class="form-control" id="Linkedin" value="https://linkedin.com/#">
+                        <input name="linkedin" type="text" class="form-control" id="Linkedin"
+                          value="https://linkedin.com/#">
                       </div>
                     </div>
 
@@ -420,18 +431,24 @@
       </div>
     </section>
   </div>
-  <!-- <script  th:inline="javascript">
-    $(document).ready(function() {
-      var inicio = [['${suscripcion.fechaInicio}']];
-      var fin = [['${suscripcion.fechaFin}']];
-      var fechaInicio = new Date(inicio);
-      var fechaFin = new Date(fin);
-      var dias = fechaFin.getTime() - fechaInicio.getTime();
-      var diasRestantes = Math.round(dias / (1000 * 60 * 60 * 24));
-      console.log(diasRestantes);
-      document.getElementById("diasRestantes").innerHTML = diasRestantes;
-    });    
-</script> -->
+  <th:block layout:fragment="page-scripts">
+    <script>
+      $(document).ready(function () {
+        $(".dias-restantes").each(function () {
+          let fecha = $(this).data("restantes");
+          //extraer mes
+          let mes = fecha.split("-")[1];
+          $(this).text("Su membresia termina " + moment(fecha).endOf(mes).fromNow());
+        });
+      });
+      
+      let fechaInicio = $(".fecha-inicio").data("inicio");
+      let fechaFin = $(".fecha-fin").data("fin");
+      $(".fecha-inicio").text(moment(fechaInicio).format("DD-MMM-YYYY"));
+      $(".fecha-fin").text(moment(fechaFin).format("DD-MMM-YYYY"));
+
+    </script>
+  </th:block>
 </body>
 
 </html>

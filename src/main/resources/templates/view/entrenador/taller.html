@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
     layout:decorate="~{view/layout/layout_entrenador}">
 
 <head th:replace="view/layout/layout_cliente :: head">
@@ -58,7 +58,7 @@
         </div>
         <section class="section">
             <div class="card">
-                <div class="card-header pb-0" >
+                <div class="card-header pb-0">
                 </div>
                 <div class="card-body pt-0">
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -84,10 +84,10 @@
                                 </button>
                             </div>
                             <!-- ///******FIN BOTON MODAL******/// -->
-                            <div class="modal fade text-left" id="modalEmpleado" tabindex="-1" role="dialog"
+                            <div class="modal fade text-left" id="modalInscripcion" tabindex="-1" role="dialog"
                                 aria-labelledby="myModalLabel160" aria-hidden="true">
-                                <form id="formEmpleado">
-                                    <div class="modal-lg modal-dialog modal-dialog-scrollable" role="document">
+                                <form id="formInscripcion">
+                                    <div class="modal-dialog modal-dialog-scrollable" role="document">
                                         <div class="modal-content">
                                             <div id="color-modal" class="modal-header bg-primary">
                                                 <h5 class="modal-title white" id="titulo-form"></h5>
@@ -99,113 +99,56 @@
                                             <div class="modal-body px-4">
                                                 <div class="row">
                                                     <div class="col-md-6">
-                                                        <div class="form-group has-icon-left">
-                                                            <label for="nombre_empleado">Nombres:</label>
-                                                            <div class="position-relative">
-                                                                <input type="hidden" name="idEmpl" id="id_empleado">
-                                                                <input type="text" name="nombreEmpl" placeholder="Ingrese los nombres" id="nombre_empleado"
-                                                                    class="form-control">
-                                                                <div class="form-control-icon">
-                                                                    <i class="bi bi-person"></i>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group has-icon-left">
-                                                            <label for="apellido_empleado">Apellido:</label>
-                                                            <div class="position-relative">
-                                                                <input type="text" name="apellidoEmpl" placeholder="Ingrese los apellidos" id="apellido_empleado"
-                                                                    class="form-control">
-                                                                <div class="form-control-icon">
-                                                                    <i class="bi bi-person"></i>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-3">
-                                                        <div class="form-group has-icon-left">
-                                                            <label for="usuario_empleado">Usuario:</label>
-                                                            <div class="position-relative">
-                                                                <input type="hidden" name="idUsuario">
-                                                                <input type="text" name="usuario" placeholder="Ingrese usuario" id="usuario_empleado"
-                                                                    class="form-control" >
-                                                                <div class="form-control-icon">
-                                                                    <i class="bi bi-person-badge"></i>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div class="form-group has-icon-left">
-                                                            <label for="contrasenia_empleado">Contraseña:</label>
-                                                            <div class="position-relative">
-                                                                <input type="password" name="contrasenia" placeholder="Ingrese contraseña" id="contrasenia_empleado"
-                                                                    class="form-control">
-                                                                <div class="form-control-icon">
-                                                                    <i class="fa-solid fa-key"></i>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div class="form-group has-icon-left">
-                                                            <label for="dni_empleado">Dni:</label>
-                                                            <div class="position-relative">
-                                                                <input type="number" name="dniEmpl" placeholder="DNI" id="dni_empleado"
-                                                                    class="form-control">
-                                                                <div class="form-control-icon">
-                                                                    <i class="fa-regular fa-address-card"></i>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div class="form-group has-icon-left">
-                                                            <label for="telefono_empleado">Teléfono:</label>
-                                                            <div class="position-relative">
-                                                                <input type="number" name="telefonoEmpl" placeholder="987-654-321" id="telefono_empleado"
-                                                                    class="form-control">
-                                                                <div class="form-control-icon">
-                                                                    <i class="bi bi-phone"></i>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group has-icon-left">
-                                                            <label for="direccion_empleado">Dirección:</label>
-                                                            <div class="position-relative">
-                                                                <input type="text" name="direccionEmpl" placeholder="Ingrese el domicilio" id="direccion_empleado"
-                                                                    class="form-control">
-                                                                <div class="form-control-icon">
-                                                                    <i class="bi bi-pin-map"></i>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div class="form-group has-icon-left">
-                                                            <label for="correo_empleado">Correo:</label>
-                                                            <div class="position-relative">
-                                                                <input type="text" name="correoEmpl" placeholder="Ingrese el correo @ejemplo.com" id="correo_empleado"
-                                                                    class="form-control">
-                                                                <div class="form-control-icon">
-                                                                    <i class="bi bi-envelope"></i>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
+                                                        <input type="hidden" name="idEmpl" th:value="${empleado.idEmpl}">
                                                         <div class="form-group">
-                                                            <label for="selectRoles">Rol:</label>
+                                                            <label for="fecha_taller">Fecha:</label>
                                                             <div class="position-relative">
-                                                                <select class="form-select" name="idRol" id="selectRoles">
-                                                                </select>
+                                                                <input type="hidden" name="idInscripcion">
+                                                                <input type="date" name="fechaTaller" id="fecha_taller"
+                                                                    class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label for="selectTaller">Asunto</label>
+                                                        <div class="position-relative">
+                                                            <select class="form-select" id="selectTaller" name="taller">
+                                                                <option selected="">-- Elija una opcion --</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group has-icon-left">
+                                                            <label for="cupos_taller">Cupos:</label>
+                                                            <div class="position-relative">
+                                                                <input type="number" name="cuposTaller" placeholder="40"
+                                                                    id="cupos_taller" class="form-control">
+                                                                <div class="form-control-icon">
+                                                                    <i class="bi bi-people"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="horaInicio_taller">Hora Inicio:</label>
+                                                            <div class="position-relative">
+                                                                <!-- <input type="hidden" name="idUsuario"> -->
+                                                                <input type="time" name="horaInicioTaller"
+                                                                    placeholder="Ingrese la hora" id="horaInicio_taller"
+                                                                    class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="horaFin_taller">Hora Fin:</label>
+                                                            <div class="position-relative">
+                                                                <input type="time" name="horaFinTaller"
+                                                                    placeholder="Ingrese contraseña" id="horaFin_taller"
+                                                                    class="form-control">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -230,29 +173,44 @@
                                 </form>
                             </div>
                             <hr class="">
-                            <div class="row">
-                                <div class="col-md-4" th:each=" taller : ${talleres}">
+                            <div class="row" th:with="fechaActual=${#dates.createNow()}">
+                                <div class="col-md-4" th:each="inscripcion: ${talleres}" th:if="${inscripcion.fechaTaller.after(fechaActual) or #dates.format(inscripcion.fechaTaller, 'yyyy-MM-dd').equals(#dates.format(fechaActual, 'yyyy-MM-dd'))}">
                                     <div class="card">
-                                        <div class="card-header pt-3 pb-0 bg-success" style="background-color: #d7d8da94;">
+                                        <button class="card-header pt-3 pb-0 bg-success asistencia" style="background-color: #d7d8da94;">
                                             <div class="card-title d-flex justify-content-between align-items-center ">
                                                 <h4 class="card-title text-white">
-                                                    Entrenamiento Funcional
+                                                    [[${inscripcion.taller.nomTaller}]]
                                                 </h4>
                                                 <h4>
-                                                    <span class="badge badge-pill bg-danger" style="border: 5px;">Hoy</span>
+                                                    <span class="badge badge-pill bg-danger dias-restantes"
+                                                        style="border: 5px;" th:data-restantes="${inscripcion.fechaTaller}" th:data-hora="${inscripcion.horaInicio}"></span>
                                                 </h4>
                                             </div>
-                                        </div>
-                                        <div class="card-body border-bottom py-3 px-3" style="background-color: #d7d8da94;">
-                                            <div class="d-flex justify-content-start align-items-center">
-                                                <div class="img-fluid pe-3">
-                                                    <img src="https://portal.utp.edu.pe/static/media/Entrenamiento.a3ccee71.svg" alt="icon"  width="76" height="76">
+                                        </button>
+                                        <div class="card-body border-bottom py-2 px-0"
+                                            style="background-color: #d7d8da94;">
+                                            <div class="d-flex align-items-center justify-content-center">
+                                                <div class="pe-3">
+                                                    <img src="https://portal.utp.edu.pe/static/media/Entrenamiento.a3ccee71.svg"
+                                                        alt="icon" width="76" height="76">
                                                 </div>
                                                 <div class="vr"></div>
-                                                <div class="ps-3">
-                                                    <p class="card-text mb-2"><i class="bi bi-calendar-event"></i> [[${#dates.format(taller.fechaTaller, 'dd MMM yyyy')}]]</p>
-                                                    <p class="card-text mb-2"><i class="bi bi-clock"></i> [[${#dates.format(taller.horaInicio, 'HH:mm')}]] - [[${#dates.format(taller.horaFin, 'HH:mm')}]]</p>
-                                                    <p class="card-text mb-2"><i class="bi bi-clock"></i> [[${taller.cupos}]]</p>
+                                                <div class="px-4">
+                                                    <p class="card-text mb-2" >
+                                                        <i class="bi bi-calendar-event"></i>
+                                                        <span class="fecha-taller" th:data-fecha="${inscripcion.fechaTaller}"></span>
+                                                    </p>
+                                                    <p class="card-text mb-2"><i class="bi bi-clock"></i>
+                                                        [[${#dates.format(inscripcion.horaInicio, 'HH:mm')}]] -
+                                                        [[${#dates.format(inscripcion.horaFin, 'HH:mm')}]]</p>
+                                                    <p class="card-text mb-2"><i class="bi bi-clock"></i>
+                                                        [[${inscripcion.cupos}]]</p>
+                                                </div>
+                                                <div class="px-3">
+                                                    <div class="btn-group-vertical">
+                                                        <button type="button" id="btnEditar" class="btn btn-warning mb-2 btnEditar" th:data-id="${inscripcion.idInsTaller}"><i class="fa fa-edit"></i></button>
+                                                        <button type="button" id="btnEliminar" class="btn btn-danger btnEliminar" th:data-id="${inscripcion.idInsTaller}"><i class="fa fa-trash"></i></button>
+                                                      </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -570,12 +528,11 @@
                                     </div>
                                 </form> -->
                             </div>
-                            <table class="table table-striped" id="tablaRolEmpleado">
+                            <table class="table table-striped" id="tablaTalleres">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Empleado</th>
-                                        <th>Rol</th>
+                                        <th>Taller</th>
                                         <th>Accion</th>
                                     </tr>
                                 </thead>
@@ -589,6 +546,10 @@
             </div>
         </section>
     </div>
+    <th:block layout:fragment="page-scripts">
+        <script th:src="@{/assets/js/entrenador/taller.js}"></script>
+        <script th:src="@{/assets/js/administrador/taller.js}"></script>
+    </th:block>
 </body>
 
 </html>

@@ -1,5 +1,9 @@
 const backend = "http://localhost:8080/api/v1/talleres";
-const tablaTalleres = $("#tablaTalleres");
+const tablaTalleres = $("#tablaTalleres").DataTable({
+  language: {
+    url: "//cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json",
+  },
+});
 
 ///*** otra forma de capturar los datos de los inputs */
 const formulario = $("#formTaller")[0];
@@ -33,35 +37,24 @@ const guardar = () => {
 /*------------METODOS CRUD------------*/
 //METODO LISTAR TALLERES
 const listarTalleres = () => {
-  tablaTalleres.DataTable({
-    language: {
-      url: "//cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json",
-    },
-    ajax: {
-      url: backend + "/lista",
-      type: "GET",
-      dataType: "json",
-      dataSrc: function (response) {
-        return response;
-      },
-    },
-    columns: [
-      {
-        data: "id_taller",
-        render: function (data, type, row, meta) {
-          return meta.row + 1;
-        },
-      },
-      { data: "nomTaller" },
-      {
-        render: function (data, type, row) {
-          return `
-                <button type="button" data-id="${row.id_taller}" data-nombre="${row.nomTaller}" id="btnEditar" class="btn btn-warning"><i class="fa fa-edit"></i></button>
-                <button type="button" data-id="${row.id_taller}" data-nombre="${row.nomTaller}" id="btnEliminar" class="btn btn-danger"><i class="fa fa-trash"></i></button>
-          `;
-        },
-      },
-    ],
+  tablaTalleres.clear();
+  $.ajax({
+    type: "GET",
+    url: backend + "/lista",
+    dataType: "json",
+    success: function (response) {
+      $.each(response, function (i, value) {
+        //limpiar tabla
+        tablaTalleres.row.add([
+          i+1,
+          value.nomTaller,
+          `
+          <button type="button" data-id="${value.id_taller}" data-nombre="${value.nomTaller}" id="btnEditar" class="btn btn-warning"><i class="fa fa-edit"></i></button>
+          <button type="button" data-id="${value.id_taller}" data-nombre="${value.nomTaller}" id="btnEliminar" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+          `,
+        ]).draw(false);
+      })
+    }
   });
 };
 

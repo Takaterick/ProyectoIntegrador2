@@ -206,10 +206,13 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
     <script src="https://code.jquery.com/jquery-3.7.1.js"
         integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/v/bs5/dt-1.13.6/datatables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment-with-locales.min.js" integrity="sha512-42PE0rd+wZ2hNXftlM78BSehIGzezNeQuzihiBCvUEB3CVxHvsShF86wBWwQORNxNINlBPuq7rG4WWhNiTVHFg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>  
+    <script>
+        moment.locale("es");
+    </script>
 
     <!-- bloque para agregar mas archivos js, independiente de la plantilla -->
     <th:block layout:fragment="page-scripts">
-
     </th:block>
 </body>
 

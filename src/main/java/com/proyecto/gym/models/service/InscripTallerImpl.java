@@ -42,7 +42,6 @@ public class InscripTallerImpl implements ITallerInscripService{
         inscripcionActualizada.setHoraFin(inscripcion.getHoraFin());
         inscripcionActualizada.setCupos(inscripcion.getCupos());
         inscripcionActualizada.setTaller(inscripcion.getTaller());
-        inscripcionActualizada.setEmpleado(inscripcion.getEmpleado());
 
         inscripcionRepository.save(inscripcionActualizada);
         return inscripcionActualizada;

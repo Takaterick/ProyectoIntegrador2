@@ -37,7 +37,7 @@ const listarEmpleados = () => {
           return `
                 <button type="button" data-id="${row.idEmpl}" data-nombre="${row.nombreEmpl}" data-apellido="${row.apellidoEmpl}" id="btn-editar" class="btn btn-warning"><i class="fa fa-edit"></i></button>
                 <button type="button" data-id="${row.idEmpl}" data-nombre="${row.nombreEmpl}" data-apellido="${row.apellidoEmpl}" id="btn-eliminar" class="btn btn-danger"><i class="fa fa-trash"></i></button>
-                `;
+              `;
         },
       },
     ],
@@ -136,6 +136,7 @@ const listarRolEmpleado = () => {
 
 //LISTAR ROLES
 const listarRoles = () => {
+  selectRoles.append(`<option value="">-- Seleccionar --</option>`);
   $.ajax({
     url: backend + "roles/lista",
     type: "GET",
