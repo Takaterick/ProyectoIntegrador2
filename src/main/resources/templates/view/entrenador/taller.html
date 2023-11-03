@@ -99,7 +99,8 @@
                                             <div class="modal-body px-4">
                                                 <div class="row">
                                                     <div class="col-md-6">
-                                                        <input type="hidden" name="idEmpl" th:value="${empleado.idEmpl}">
+                                                        <input type="hidden" name="idEmpl"
+                                                            th:value="${empleado.idEmpl}">
                                                         <div class="form-group">
                                                             <label for="fecha_taller">Fecha:</label>
                                                             <div class="position-relative">
@@ -113,7 +114,6 @@
                                                         <label for="selectTaller">Asunto</label>
                                                         <div class="position-relative">
                                                             <select class="form-select" id="selectTaller" name="taller">
-                                                                <option selected="">-- Elija una opcion --</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -174,19 +174,26 @@
                             </div>
                             <hr class="">
                             <div class="row" th:with="fechaActual=${#dates.createNow()}">
-                                <div class="col-md-4" th:each="inscripcion: ${talleres}" th:if="${inscripcion.fechaTaller.after(fechaActual) or #dates.format(inscripcion.fechaTaller, 'yyyy-MM-dd').equals(#dates.format(fechaActual, 'yyyy-MM-dd'))}">
-                                    <div class="card">
-                                        <button class="card-header pt-3 pb-0 bg-success asistencia" style="background-color: #d7d8da94;">
+                                <div class="col-md-4" th:each="inscripcion: ${talleres}"
+                                    th:if="${inscripcion.fechaTaller.after(fechaActual) or #dates.format(inscripcion.fechaTaller, 'yyyy-MM-dd').equals(#dates.format(fechaActual, 'yyyy-MM-dd'))}">
+                                    <div class="card" id="tarjeta">
+                                        <button class="card-header pt-3 pb-0 bg-success btnAsistencia"
+                                            th:data-fecha="${inscripcion.fechaTaller}"
+                                            th:data-taller="${inscripcion.taller.nomTaller}"
+                                            style="background-color: #d7d8da94">
                                             <div class="card-title d-flex justify-content-between align-items-center ">
                                                 <h4 class="card-title text-white">
                                                     [[${inscripcion.taller.nomTaller}]]
                                                 </h4>
                                                 <h4>
                                                     <span class="badge badge-pill bg-danger dias-restantes"
-                                                        style="border: 5px;" th:data-restantes="${inscripcion.fechaTaller}" th:data-hora="${inscripcion.horaInicio}"></span>
+                                                        style="border: 5px;"
+                                                        th:data-restantes="${inscripcion.fechaTaller}"
+                                                        th:data-hora="${inscripcion.horaInicio}"></span>
                                                 </h4>
                                             </div>
                                         </button>
+
                                         <div class="card-body border-bottom py-2 px-0"
                                             style="background-color: #d7d8da94;">
                                             <div class="d-flex align-items-center justify-content-center">
@@ -196,9 +203,10 @@
                                                 </div>
                                                 <div class="vr"></div>
                                                 <div class="px-4">
-                                                    <p class="card-text mb-2" >
+                                                    <p class="card-text mb-2">
                                                         <i class="bi bi-calendar-event"></i>
-                                                        <span class="fecha-taller" th:data-fecha="${inscripcion.fechaTaller}"></span>
+                                                        <span class="fecha-taller"
+                                                            th:data-fecha="${inscripcion.fechaTaller}"></span>
                                                     </p>
                                                     <p class="card-text mb-2"><i class="bi bi-clock"></i>
                                                         [[${#dates.format(inscripcion.horaInicio, 'HH:mm')}]] -
@@ -208,13 +216,58 @@
                                                 </div>
                                                 <div class="px-3">
                                                     <div class="btn-group-vertical">
-                                                        <button type="button" id="btnEditar" class="btn btn-warning mb-2 btnEditar" th:data-id="${inscripcion.idInsTaller}"><i class="fa fa-edit"></i></button>
-                                                        <button type="button" id="btnEliminar" class="btn btn-danger btnEliminar" th:data-id="${inscripcion.idInsTaller}"><i class="fa fa-trash"></i></button>
-                                                      </div>
+                                                        <button type="button" class="btn btn-warning mb-2 btnEditar"
+                                                            th:data-id="${inscripcion.idInsTaller}"><i
+                                                                class="fa fa-edit"></i></button>
+                                                        <button type="button" class="btn btn-danger btnEliminar"
+                                                            th:data-id="${inscripcion.idInsTaller}"><i
+                                                                class="fa fa-trash"></i></button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="modal fade text-left" tabindex="-1" id="modalAsistencia" role="dialog"
+                                    aria-labelledby="myModalLabel160" aria-hidden="true">
+                                    <form id="">
+                                        <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header bg-primary">
+                                                    <h5 class="modal-title white" id="titAsistencia">Asitencia | </h5>
+                                                    <button type="button" class="close" data-bs-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <i data-feather="x"></i>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body px-4">
+                                                    <table class="table table-striped" id="tablaAsistencia">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>ID</th>
+                                                                <th>rol</th>
+                                                                <th>Estado</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">
+                                                        <i class="bx bx-x d-block d-sm-none"></i>
+                                                        <span class="d-none d-sm-block">Cancelar</span>
+                                                    </button>
+                                                    <button type="button" id="btnGuardar" class="btn btn-primary ml-1">
+                                                        <i class="bx bx-check d-block d-sm-none"></i>
+                                                        <span class="d-none d-sm-block">Guardar
+                                                            asistencia</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
                                 <!-- <div class="col-md-4">
                                     <div class="card">
@@ -365,146 +418,37 @@
                         </div>
                         <div class="tab-pane fade" id="rol" role="tabpanel" aria-labelledby="rol-tab">
                             <div class="pb-3">
-                                <button type="button" class="btn btn-primary" id="btnAgregar">
-                                    <i class="fa fa-user-plus"></i> &nbsp;Agregar Rol
+                                <button type="button" class="btn btn-primary" id="btn-abrirModalTaller">
+                                    <i class="fa fa-edit"></i> &nbsp;Agregar Taller
                                 </button>
                                 <button type="button" class="btn btn-success" id="btnAgregar">
                                     <i class="fa fa-edit"></i> Mostrar Roles
                                 </button>
                             </div>
                             <!-- ///******FIN BOTON MODAL******/// -->
-                            <div class="modal fade text-left" id="modalEmpleado" tabindex="-1" role="dialog"
+                            <div class="modal fade text-left" id="modalTaller" tabindex="-1" role="dialog"
                                 aria-labelledby="myModalLabel160" aria-hidden="true">
-                                <!-- <form id="formEmpleado">
-                                    <div class="modal-lg modal-dialog modal-dialog-scrollable" role="document">
+                                <form id="formTaller">
+                                    <div class="modal-dialog modal-dialog-scrollable" role="document">
                                         <div class="modal-content">
-                                            <div id="color-modal" class="modal-header bg-primary">
-                                                <h5 class="modal-title white" id="titulo-form"></h5>
+                                            <div id="color2-modal" class="modal-header">
+                                                <h5 class="modal-title white" id="titulo2-form"></h5>
                                                 <button type="button" class="close" data-bs-dismiss="modal"
                                                     aria-label="Close">
                                                     <i data-feather="x"></i>
                                                 </button>
                                             </div>
-                                            <div class="modal-body px-4">
+                                            <div class="modal-body">
                                                 <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group has-icon-left">
-                                                            <label for="first-name-icon">Nombres</label>
-                                                            <div class="position-relative">
-                                                                <input type="hidden" name="idEmpl">
-                                                                <input type="text" class="form-control"
-                                                                    name="nombreEmpl" placeholder="Ingrese el nombre"
-                                                                    id="first-name-icon">
-                                                                <div class="form-control-icon">
-                                                                    <i class="bi bi-person"></i>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group has-icon-left">
-                                                            <label for="last-name-icon">Apellido</label>
-                                                            <div class="position-relative">
-                                                                <input type="text" class="form-control"
-                                                                    name="apellidoEmpl"
-                                                                    placeholder="Ingrese el apellido"
-                                                                    id="last-name-icon">
-                                                                <div class="form-control-icon">
-                                                                    <i class="bi bi-person"></i>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-3">
-                                                        <div class="form-group has-icon-left">
-                                                            <label for="usuario-icon">Usuario</label>
-                                                            <div class="position-relative">
-                                                                <input type="hidden" name="idUsuario">
-                                                                <input type="text" class="form-control" name="usuario"
-                                                                    placeholder="Ingrese Usuario" id="usuario-icon">
-                                                                <div class="form-control-icon">
-                                                                    <i class="bi bi-person-badge"></i>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div class="form-group has-icon-left">
-                                                            <label for="contrasenia-icon">Contraseña</label>
-                                                            <div class="position-relative">
-                                                                <input type="password" class="form-control"
-                                                                    name="contrasenia" placeholder="Ingrese contraseña"
-                                                                    id="contrasenia-icon">
-                                                                <div class="form-control-icon">
-                                                                    <i class="fa-solid fa-key"></i>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div class="form-group has-icon-left">
-                                                            <label for="dni-id-icon">Dni</label>
-                                                            <div class="position-relative">
-                                                                <input type="number" class="form-control" name="dniEmpl"
-                                                                    placeholder="DNI" id="dni-id-icon">
-                                                                <div class="form-control-icon">
-                                                                    <i class="fa-regular fa-address-card"></i>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div class="form-group has-icon-left">
-                                                            <label for="mobile-id-icon">Telefono</label>
-                                                            <div class="position-relative">
-                                                                <input type="number" class="form-control"
-                                                                    name="telefonoEmpl" placeholder="987-654-321"
-                                                                    id="mobile-id-icon">
-                                                                <div class="form-control-icon">
-                                                                    <i class="bi bi-phone"></i>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group has-icon-left">
-                                                            <label for="direccion-id-icon">Dirección</label>
-                                                            <div class="position-relative">
-                                                                <input type="text" class="form-control"
-                                                                    name="direccionEmpl"
-                                                                    placeholder="Ingrese el domicilio"
-                                                                    id="direccion-id-icon">
-                                                                <div class="form-control-icon">
-                                                                    <i class="bi bi-pin-map"></i>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div class="form-group has-icon-left">
-                                                            <label for="email-id-icon">Correo</label>
-                                                            <div class="position-relative">
-                                                                <input type="text" class="form-control"
-                                                                    name="correoEmpl"
-                                                                    placeholder="Ingrese el correo @ejemplo.com"
-                                                                    id="email-id-icon">
-                                                                <div class="form-control-icon">
-                                                                    <i class="bi bi-envelope"></i>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <label for="selectRoles">Rol</label>
-                                                            <div class="position-relative">
-                                                                <select class="form-select" id="selectRoles"
-                                                                    name="idRol">
-                                                                </select>
+                                                    <div class="col-md-12">
+                                                        <div class="px-3">
+                                                            <label>Taller: </label>
+                                                            <div class="form-group">
+                                                                <input type="hidden" name="id_taller"
+                                                                    class="form-control" />
+                                                                <input type="text" name="nom_taller"
+                                                                    placeholder="Ingrese el nombre del taller"
+                                                                    class="form-control" />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -515,18 +459,20 @@
                                                     <i class="bx bx-x d-block d-sm-none"></i>
                                                     <span class="d-none d-sm-block">Cerrar</span>
                                                 </button>
-                                                <button type="button" id="btnGuardar" class="btn btn-primary ml-1">
+                                                <button type="button" id="btn-guardarTaller"
+                                                    class="btn btn-primary ml-1">
                                                     <i class="bx bx-check d-block d-sm-none"></i>
                                                     <span class="d-none d-sm-block">Agregar</span>
                                                 </button>
-                                                <button type="button" id="btnActualizar" class="btn btn-success ml-1">
+                                                <button type="button" id="btn-actualizarTaller"
+                                                    class="btn btn-success ml-1">
                                                     <i class="bx bx-check d-block d-sm-none"></i>
                                                     <span class="d-none d-sm-block">Editar</span>
                                                 </button>
                                             </div>
                                         </div>
                                     </div>
-                                </form> -->
+                                </form>
                             </div>
                             <table class="table table-striped" id="tablaTalleres">
                                 <thead>

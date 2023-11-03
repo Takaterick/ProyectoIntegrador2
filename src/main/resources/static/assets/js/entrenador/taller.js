@@ -1,6 +1,10 @@
 const backendInscripcion = "http://localhost:8080/api/v1/";
 const formInscripcion = $("#formInscripcion")[0];
-
+const tablaAsistencia = $("#tablaAsistencia").DataTable({
+  language: {
+    url: "//cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json",
+  }
+});
 const selectTalleres = $("#selectTaller");
 
 const guardarInscripcion = () => {
@@ -14,6 +18,13 @@ const guardarInscripcion = () => {
   });
   $("#btnGuardar").on("click", function () {
     let datosForm = new FormData(formInscripcion);
+    let fechaTaller = datosForm.get("fechaTaller");
+    //validar si la fecha Taller esta vacia
+    if(fechaTaller != ""){
+      fechaTaller = moment(fechaTaller).format('YYYY-MM-DD');
+
+    }
+
     let datosInscripcion = {
       fechaTaller: moment(datosForm.get("fechaTaller")).format('YYYY-MM-DD') + "T"+ datosForm.get("horaInicioTaller") + ":00.000Z",
       horaInicio: moment(datosForm.get("fechaTaller")).format('YYYY-MM-DD') + "T"+ datosForm.get("horaInicioTaller") + "-03:00",
@@ -52,6 +63,8 @@ const guardarInscripcion = () => {
 };
 
 const listarCbxTalleres = () => {
+  selectTalleres.empty();
+  selectTalleres.append(`<option selected="">-- Elija una opcion --</option>`)
     $.ajax({
         url: backendInscripcion + "talleres/lista",
         type: "GET",
@@ -70,7 +83,7 @@ const eliminarInscripciones = () => {
     $(".btnEliminar").on("click", function () {
         let id = $(this).data("id");
         Swal.fire({
-            title: "¿Está seguro de eliminar el Taller?" + id,
+            title: "¿Está seguro de eliminar el Taller?",
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
@@ -121,6 +134,7 @@ const editarInscripciones = () => {
 const actualizarInscripciones = () => {
   $("#btnActualizar").on("click", function(){
     const datosForm = new FormData(formInscripcion);
+    
     let datosInscripcion = {
       idInsTaller: datosForm.get("idInscripcion"),
       fechaTaller: moment(datosForm.get("fechaTaller")).format('YYYY-MM-DD') + "T"+ datosForm.get("horaInicioTaller") + "-03:00",
@@ -150,8 +164,28 @@ const actualizarInscripciones = () => {
 }
 
 const listarAsistencias = () => {
-  $(".asistencia").on("click", function () {
-    $("#modalInscripcion").modal("show");
+  $(".btnAsistencia").on("click", function () {
+    $("#modalAsistencia").modal("show");
+    let fecha = $(this).data("fecha");
+    let taller = $(this).data("taller");
+    fecha = moment(fecha, "YYYY-MM-DD").format("DD MMM YYYY");
+    //console.log(id);
+    $("#titAsistencia").text(taller +" - "+fecha);
+    tablaAsistencia.clear();
+    $.ajax({
+      type: "GET",
+      url: backendInscripcion + "clientes/lista",
+      dataType: "json",
+      success: function (response) {
+        $.each(response, function (i, value) {
+          tablaAsistencia.row.add([
+            value.id_cli,
+            value.nom_cli,
+            value.ape_cli
+          ]).draw();
+        })
+      },
+    });
   })
 }
 

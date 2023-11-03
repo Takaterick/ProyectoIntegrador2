@@ -11,6 +11,7 @@ import com.proyecto.gym.models.entity.Cliente;
 import com.proyecto.gym.models.entity.Suscripcion;
 import com.proyecto.gym.models.service.IClienteService;
 import com.proyecto.gym.models.service.ISuscripcion;
+import com.proyecto.gym.models.service.ITallerInscripService;
 
 @Controller
 @RequestMapping("/clientes")
@@ -21,6 +22,9 @@ public class ClienteController {
 
     @Autowired
     private ISuscripcion suscripcionService;
+
+    @Autowired
+    private ITallerInscripService inscripcionService;
 
     @GetMapping({"/","","/index","/inicio"})
     public String index(Authentication auth, Model model){
@@ -42,7 +46,12 @@ public class ClienteController {
     }
 
     @GetMapping("/talleres")
-    public String talleres(){
+    public String talleres(Authentication auth, Model model){
+        Cliente cliente = clienteService.buscarPorUsuario(auth.getName());
+        Suscripcion suscripcion = suscripcionService.buscarPorCliente(cliente.getId_cli());
+        model.addAttribute("cliente", cliente);
+        model.addAttribute("suscripcion", suscripcion);
+        model.addAttribute("talleres", inscripcionService.listarTodos());
         return "view/cliente/talleres";
     }
 

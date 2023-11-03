@@ -62,9 +62,9 @@ const listarTalleres = () => {
 const guardarTaller = () => {
   $("#btn-abrirModalTaller").on("click", function () {
     formulario.reset();
-    $("#titulo-form").html("Guardar Taller");
-    $("#color-modal").removeClass("bg-success");
-    $("#color-modal").addClass("bg-primary");
+    $("#titulo2-form").html("Guardar Taller");
+    $("#color2-modal").removeClass("bg-success");
+    $("#color2-modal").addClass("bg-primary");
     $("#btn-actualizarTaller").hide();
     $("#btn-guardarTaller").show();
     $("#modalTaller").modal("show");
@@ -84,7 +84,8 @@ const guardarTaller = () => {
       success: function (response) {
         if (response.tipo == "success") {
           alertas(response.mensaje, response.tipo);
-          tablaTalleres.DataTable().ajax.reload();
+          listarTalleres();
+          listarCbxTalleres();
           $("#modalTaller").modal("hide");
           formulario.reset();
         } else {
@@ -115,7 +116,7 @@ const eliminarTaller = () => {
           type: "DELETE",
           url: backend + "/eliminar/" + idTaller,
           success: function (response) {
-            tablaTalleres.DataTable().ajax.reload();
+            listarTalleres();
             alertas(
               "¡El taller " + nombreTaller + " se ha eliminado exitosamente!",
               "success"
@@ -132,9 +133,9 @@ const eliminarTaller = () => {
 //EDITAR TALLER
 const rellenarTaller = () => {
   $(document).on("click", "#btnEditar", function () {
-    $("#titulo-form").html("Editar Taller");
-    $("#color-modal").removeClass("bg-primary");
-    $("#color-modal").addClass("bg-success");
+    $("#titulo2-form").html("Editar Taller");
+    $("#color2-modal").removeClass("bg-primary");
+    $("#color2-modal").addClass("bg-success");
     $("#btn-actualizarTaller").show();
     $("#btn-guardarTaller").hide();
     $("#modalTaller").modal("show");
@@ -167,7 +168,7 @@ const actualizarTaller = () => {
       dataType: "json",
       success: function (response) {
         if (response.tipo == "success") {
-          tablaTalleres.DataTable().ajax.reload();
+          listarTalleres();
           alertas(response.mensaje, response.tipo);
           $("#modalTaller").modal("hide");
         } else {

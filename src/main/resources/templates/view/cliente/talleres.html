@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{view/layout/layout_cliente}">
+
+<head th:replace="view/layout/layout_cliente :: head">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <th:block layout:fragment="page-titulo">
+        <title>Talleres</title>
+    </th:block>
+    <th:block layout:fragment="page-style">
+        <link href="https://cdn.datatables.net/v/bs5/dt-1.13.6/datatables.min.css" rel="stylesheet">
+    </th:block>
+</head>
+
+<body>
+    <div class="sidebar-menu" layout:fragment="page-sidebar">
+        <ul class="menu">
+            <li class="sidebar-title">Menu</li>
+
+            <li class="sidebar-item">
+                <a href="index.html" class="sidebar-link">
+                    <i class="bi bi-grid-fill"></i>
+                    <span>Perfil</span>
+                </a>
+            </li>
+
+            <li class="sidebar-title">Gestión</li>
+
+            <li class="sidebar-item has-sub">
+                <a href="#" class="sidebar-link">
+                    <i class="bi bi-pentagon-fill"></i>
+                    <span>Suscripciones</span>
+                </a>
+                <ul class="submenu">
+                    <li class="submenu-item">
+                        <a th:href="@{/administrador/suscripcion}">Clientes</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="sidebar-title">Mantenimiento</li>
+
+            <li class="sidebar-item">
+                <a th:href="@{/clientes/talleres}" class="sidebar-link">
+                    <i class="bi bi-file-earmark-medical-fill"></i>
+                    <span>Talleres</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a th:href="@{/administrador/clientes}" class="sidebar-link">
+                    <i class="bi bi-file-earmark-medical-fill"></i>
+                    <span>Clientes</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a th:href="@{/administrador/empleados}" class="sidebar-link">
+                    <i class="bi bi-file-earmark-medical-fill"></i>
+                    <span>Empleados</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a th:href="@{/administrador/talleres}" class="sidebar-link">
+                    <i class="bi bi-file-earmark-medical-fill"></i>
+                    <span>Talleres</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a th:href="@{/administrador/roles}" class="sidebar-link">
+                    <i class="bi bi-file-earmark-medical-fill"></i>
+                    <span>Roles</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="page-heading" layout:fragment="page-heading">
+        <div class="page-title">
+            <div class="row pb-2">
+                <div class="col-12 col-md-6 order-md-1 order-last">
+                    <h3>Talleres</h3>
+                    <!-- <p class="text-subtitle text-muted">Bienvenido cliente: <span th:text="*{nom_cli}"></span>!!!</p> -->
+                </div>
+                <div class="col-12 col-md-6 order-md-2 order-first">
+                    <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Talleres
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <section class="section">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active" id="disponible-tab" data-bs-toggle="tab" href="#disponible" role="tab"
+                        aria-controls="disponible" aria-selected="true">
+                        <h5 style="color: #607080;">Disponibles</h5>
+                    </a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="inscrito-tab" data-bs-toggle="tab" href="#inscrito" role="tab"
+                        aria-controls="inscrito" aria-selected="false">
+                        <h5 style="color: #607080;">Inscritos</h5>
+                    </a>
+                </li>
+            </ul>
+            <div class="tab-content pt-4" id="myTabContent">
+                <div class="tab-pane fade show active" id="disponible" role="tabpanel" aria-labelledby="home-tab">
+                    <div class="row" th:with="fechaActual=${#dates.createNow()}">
+                        <div class="col-md-4" th:each="inscripcion: ${talleres}"
+                            th:if="${inscripcion.fechaTaller.after(fechaActual) or #dates.format(inscripcion.fechaTaller, 'yyyy-MM-dd').equals(#dates.format(fechaActual, 'yyyy-MM-dd'))}">
+                            <div class="card" id="tarjeta">
+                                <div class="card-header pt-3 pb-0 bg-success" th:data-fecha="${inscripcion.fechaTaller}"
+                                    th:data-taller="${inscripcion.taller.nomTaller}"
+                                    style="background-color: #d7d8da94">
+                                    <div class="card-title d-flex justify-content-between align-items-center ">
+                                        <h4 class="card-title text-white">
+                                            [[${inscripcion.taller.nomTaller}]]
+                                        </h4>
+                                        <h4>
+                                            <span class="badge badge-pill bg-danger dias-restantes" style="border: 5px;"
+                                                th:data-restantes="${inscripcion.fechaTaller}"
+                                                th:data-hora="${inscripcion.horaInicio}"></span>
+                                        </h4>
+                                    </div>
+                                </div>
+
+                                <div class="card-body border-bottom py-2 px-0" style="background-color: #d7d8da94;">
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        <div class="pe-3">
+                                            <img src="https://portal.utp.edu.pe/static/media/Entrenamiento.a3ccee71.svg"
+                                                alt="icon" width="76" height="76">
+                                        </div>
+                                        <div class="vr"></div>
+                                        <div class="px-4">
+                                            <p class="card-text mb-2">
+                                                <i class="bi bi-calendar-event"></i>
+                                                <span class="fecha-taller"
+                                                    th:data-fecha="${inscripcion.fechaTaller}"></span>
+                                            </p>
+                                            <p class="card-text mb-2"><i class="bi bi-clock"></i>
+                                                [[${#dates.format(inscripcion.horaInicio, 'HH:mm')}]] -
+                                                [[${#dates.format(inscripcion.horaFin, 'HH:mm')}]]</p>
+                                        </div>
+                                        <div class="px-3">
+                                            <!-- <div class="btn-group-vertical">
+                                                <button type="button" class="btn btn-warning mb-2 btnEditar"
+                                                    th:data-id="${inscripcion.idInsTaller}"><i
+                                                        class="fa fa-edit"></i></button>
+                                                <button type="button" class="btn btn-danger btnEliminar"
+                                                    th:data-id="${inscripcion.idInsTaller}"><i
+                                                        class="fa fa-trash"></i></button>
+                                            </div> -->
+                                            <!-- boton sin contorno-->
+                                            <button class="mostrarTaller" style="margin: 0; padding: 0; border: 0;"
+                                            th:data-modal="modalTaller + ${inscripcion.idInsTaller}"
+                                            >
+                                                <i class="bi bi-arrow-right-square-fill h1" style="color: #607080;"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal fade text-left" tabindex="-1" th:id="modalTaller + ${inscripcion.idInsTaller}" role="dialog"
+                                aria-labelledby="myModalLabel160" aria-hidden="true">
+                                <form id="">
+                                    <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header bg-success">
+                                                <div class="d-flex">
+                                                    <div class="pe-3">
+                                                        <h4 class="modal-title white" id="tallerMostrar">Taller: [[${inscripcion.taller.nomTaller}]] / [[${#dates.format(inscripcion.fechaTaller, 'dd-MM-yyyy')}]]</h4>
+                                                    </div>
+                                                    <div class="px-2">
+                                                        <span class="badge badge-pill bg-danger dias-restantes" style="border: 5px;"
+                                                th:data-restantes="${inscripcion.fechaTaller}"
+                                                th:data-hora="${inscripcion.horaInicio}"></span>
+                                                    </div>
+                                                </div>
+                                                <button type="button" class="close" data-bs-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <i data-feather="x"></i>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body px-4 pb-0">
+                                                <!-- traer toda la informacion del taller -->
+                                                <h4 class="pb-2">[[${inscripcion.taller.nomTaller}]]</h4>
+                                                <p class="card-text mb-1">
+                                                    <i class="bi bi-calendar-event"></i>&nbsp; Inicia: 
+                                                    <span class="fecha-taller"
+                                                        th:data-fecha="${inscripcion.fechaTaller}" style="color: #343A40;"></span>
+                                                </p>
+                                                <p class="card-text mb-1"><i class="bi bi-clock"></i>&nbsp; <span style="color: #343A40;">[[${#dates.format(inscripcion.horaInicio, 'HH:mm')}]] -
+                                                    [[${#dates.format(inscripcion.horaFin, 'HH:mm')}]]</span>
+                                                </p>
+                                                <p class="card-text mb-2"><i class="bi bi-person-circle"></i>&nbsp; Entrenador: <span style="color: #343A40;">[[${inscripcion.empleado.nombreEmpl}]] [[${inscripcion.empleado.apellidoEmpl}]]</span>
+                                                </p>
+                                                <p class="card-text mb-4"><i class="bi bi-people"></i>&nbsp; Cupos disponibles: <span style="color: #343A40;">[[${inscripcion.cupos}]]</span>
+                                                </p>
+                                                <p class="h6">
+                                                    Descripcion: 
+                                                </p>
+                                                <p>
+                                                    [[${inscripcion.taller.descTaller}]]
+                                                </p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                                    <i class="bx bx-x d-block d-sm-none"></i>
+                                                    <span class="d-none d-sm-block">Cancelar</span>
+                                                </button>
+                                                <button type="button" id="btnGuardar" class="btn btn-primary ml-1">
+                                                    <i class="bx bx-check d-block d-sm-none"></i>
+                                                    <span class="d-none d-sm-block">Guardar</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="inscrito" role="tabpanel" aria-labelledby="profile-tab">
+                    2
+                </div>
+            </div>
+        </section>
+    </div>
+    <th:block layout:fragment="page-scripts">
+        <script th:src="@{/assets/js/cliente/taller.js}"></script>
+    </th:block>
+</body>
+
+</html>
