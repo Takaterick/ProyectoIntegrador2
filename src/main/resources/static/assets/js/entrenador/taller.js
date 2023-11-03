@@ -5,19 +5,37 @@ const selectTalleres = $("#selectTaller");
 
 const guardarInscripcion = () => {
   $("#btnAgregar").on("click", function () {
-    formInscripcion.reset();
+    limpiarFormulario();
     $("#titulo-form").html("Agregar Inscripcion");
     $("#color-modal").removeClass("bg-success");
+    $("#color-modal").addClass("bg-primary");
     $("#btnActualizar").hide();
     $("#btnGuardar").show();
     $("#modalInscripcion").modal("show");
   });
   $("#btnGuardar").on("click", function () {
     let datosForm = new FormData(formInscripcion);
+    let fechaTaller = datosForm.get("fechaTaller");
+    let horaInicio = datosForm.get("horaInicioTaller");
+    let horaFin = datosForm.get("horaFinTaller");
+    if (fechaTaller!="" && horaInicio!=""){
+      fechaTaller = moment(datosForm.get("fechaTaller")).format('YYYY-MM-DD') + "T"+ datosForm.get("horaInicioTaller") + ":00.000Z";
+    } else if (fechaTaller!="" && horaInicio=="") {
+      fechaTaller = moment(datosForm.get("fechaTaller")).format();
+    }
+
+    if (horaInicio!=""){
+      horaInicio = moment().format('YYYY-MM-DD') + "T"+ datosForm.get("horaInicioTaller") + "-05:00";
+    }
+
+    if (horaFin!=""){
+      horaFin = moment().format('YYYY-MM-DD') + "T"+ datosForm.get("horaFinTaller")+ "-05:00";
+    }
+
     let datosInscripcion = {
-      fechaTaller: moment(datosForm.get("fechaTaller")).format('YYYY-MM-DD') + "T"+ datosForm.get("horaInicioTaller") + ":00.000Z",
-      horaInicio: moment(datosForm.get("fechaTaller")).format('YYYY-MM-DD') + "T"+ datosForm.get("horaInicioTaller") + "-03:00",
-      horaFin: moment(datosForm.get("fechaTaller")).format('YYYY-MM-DD') + "T"+ datosForm.get("horaFinTaller")+ "-03:00",
+      fechaTaller: fechaTaller,
+      horaInicio: horaInicio,
+      horaFin: horaFin,
       cupos: datosForm.get("cuposTaller"),
       taller: {
         id_taller: datosForm.get("taller"),
@@ -26,7 +44,7 @@ const guardarInscripcion = () => {
         idEmpl: datosForm.get("idEmpl"),
       },
     };
-    console.log(datosInscripcion.horaInicio);
+    //console.log(datosInscripcion.horaInicio);
     $.ajax({
       type: "POST",
       url: backendInscripcion + "inscripciones/guardar",
@@ -38,14 +56,15 @@ const guardarInscripcion = () => {
           alertasInsc(response.mensaje, response.tipo);
           $("#modalInscripcion").modal("hide");
           formInscripcion.reset();
+          setTimeout(function () {
+               location.reload();
+            }, 800);
         } else {
           alertasInsc(response.mensaje, response.tipo);
         }
-        $("#modalInscripcion").modal("hide");
-        alertasInsc("Inscripción guardada", "success");
-        setTimeout(function () {
-          location.reload();
-        }, 800);
+        //$("#modalInscripcion").modal("hide");
+        //alertasInsc("Inscripción guardada", "success");
+        
       },
     });
   });
@@ -123,27 +142,33 @@ const actualizarInscripciones = () => {
     const datosForm = new FormData(formInscripcion);
     let datosInscripcion = {
       idInsTaller: datosForm.get("idInscripcion"),
-      fechaTaller: moment(datosForm.get("fechaTaller")).format('YYYY-MM-DD') + "T"+ datosForm.get("horaInicioTaller") + "-03:00",
-      horaInicio: moment(datosForm.get("fechaTaller")).format('YYYY-MM-DD') + "T"+ datosForm.get("horaInicioTaller") + "-03:00",
-      horaFin: moment(datosForm.get("fechaTaller")).format('YYYY-MM-DD') + "T"+ datosForm.get("horaFinTaller")+ "-03:00",
+      fechaTaller: moment(datosForm.get("fechaTaller")).format('YYYY-MM-DD') + "T"+ datosForm.get("horaInicioTaller") + "-05:00",
+      horaInicio: moment(datosForm.get("fechaTaller")).format('YYYY-MM-DD') + "T"+ datosForm.get("horaInicioTaller") + "-05:00",
+      horaFin: moment(datosForm.get("fechaTaller")).format('YYYY-MM-DD') + "T"+ datosForm.get("horaFinTaller")+ "-05:00",
       cupos: datosForm.get("cuposTaller"),
       taller: {
         id_taller: datosForm.get("taller"),
       }
     };
-    console.log(datosInscripcion);
+    //console.log(datosInscripcion);
     $.ajax({
       type: "PUT",
       url: backendInscripcion + "inscripciones/actualizar/" + datosInscripcion.idInsTaller,
+      contentType: "application/json",
       data: JSON.stringify(datosInscripcion),
       dataType: "json",
-      contentType: "application/json",
       success: function (response) {
-        $("#modalInscripcion").modal("hide");
-        alertasInsc("Inscripción actualizada", "success");
-        setTimeout(function () {
-          location.reload();
-        }, 800);
+        if (response.tipo == "success") {
+          alertasInsc(response.mensaje, response.tipo);
+          $("#modalInscripcion").modal("hide");
+          formInscripcion.reset();
+          setTimeout(function () {
+            location.reload();
+          }, 800);
+        } else {
+          alertasInsc(response.mensaje, response.tipo);
+        }
+        
       }
     });
   })
@@ -154,6 +179,16 @@ const listarAsistencias = () => {
     $("#modalInscripcion").modal("show");
   })
 }
+
+//METODO LIMPIAR
+const limpiarFormulario = () => {
+  $("#id_inscripcion").val("");
+  $("#fecha_taller").val("");
+  $("#selectTaller").val("");
+  $("#cupos_taller").val("");
+  $("#horaInicio_taller").val("");
+  $("#horaFin_taller").val("");
+};
 
 const alertasInsc = (mensaje, icono) => {
     Swal.fire({

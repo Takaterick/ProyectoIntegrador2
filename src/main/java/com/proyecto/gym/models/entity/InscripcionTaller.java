@@ -13,6 +13,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "det_emp_taller")
@@ -24,18 +28,25 @@ public class InscripcionTaller implements Serializable{
     private Long idInsTaller;
 
     @Column(name = "fecha_detemptaller")
+    @NotNull(message = "El fecha del taller no puede estar vacio")
+    @Future(message = "La fecha del taller debe ser mayor que ahora")
     private Date fechaTaller;
 
     @Temporal(value = TemporalType.TIME)
     @Column(name = "hora_inicio_detemptaller")
+    @NotNull(message = "La hora de inicio del taller no puede estar vacio")
     private Date horaInicio;
 
     @Temporal(TemporalType.TIME)
     @Column(name = "hora_fin_detemptaller")
+    @NotNull(message = "La hora de fin del taller no puede estar vacio")
     private Date horaFin;
 
     @Column(name = "cupos_detemptaller")
-    private int cupos;
+    @NotNull(message = "Los cupos no puede estar vacio")
+    @Min(value = 5, message = "La cantidad de cupo debe ser mayor o igual a 5")
+    @Max(value = 30, message = "El cantidad de cupo debe ser menor o igual a 30")
+    private Integer cupos;
 
     @ManyToOne
     @JoinColumn(name = "id_taller")
@@ -77,11 +88,11 @@ public class InscripcionTaller implements Serializable{
         this.horaFin = horaFin;
     }
 
-    public int getCupos() {
+    public Integer getCupos() {
         return cupos;
     }
 
-    public void setCupos(int cupos) {
+    public void setCupos(Integer cupos) {
         this.cupos = cupos;
     }
 
@@ -100,4 +111,5 @@ public class InscripcionTaller implements Serializable{
     public void setEmpleado(Empleado empleado) {
         this.empleado = empleado;
     }
+
 }
