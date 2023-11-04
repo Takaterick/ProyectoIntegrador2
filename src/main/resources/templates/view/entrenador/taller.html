@@ -178,6 +178,7 @@
                                         <button class="card-header pt-3 pb-0 bg-success btnAsistencia"
                                             th:data-fecha="${inscripcion.fechaTaller}"
                                             th:data-taller="${inscripcion.taller.nomTaller}"
+                                            th:data-idtaller="${inscripcion.idInsTaller}"
                                             style="background-color: #d7d8da94">
                                             <div class="card-title d-flex justify-content-between align-items-center ">
                                                 <h4 class="card-title text-white">
@@ -242,9 +243,10 @@
                                                     <table class="table table-striped" id="tablaAsistencia">
                                                         <thead>
                                                             <tr>
-                                                                <th>ID</th>
-                                                                <th>rol</th>
-                                                                <th>Estado</th>
+                                                                <th>#</th>
+                                                                <th>Miembro</th>
+                                                                <th>Asistencia</th>
+                                                                <th>Accion</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -252,15 +254,9 @@
                                                     </table>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
-                                                        data-bs-dismiss="modal">
-                                                        <i class="bx bx-x d-block d-sm-none"></i>
-                                                        <span class="d-none d-sm-block">Cancelar</span>
-                                                    </button>
-                                                    <button type="button" id="btnGuardar" class="btn btn-primary ml-1">
+                                                    <button type="button" id="btnGuardar" class="btn btn-primary ml-1" data-bs-dismiss="modal">
                                                         <i class="bx bx-check d-block d-sm-none"></i>
-                                                        <span class="d-none d-sm-block">Guardar
-                                                            asistencia</span>
+                                                        <span class="d-none d-sm-block">Cerrar</span>
                                                     </button>
                                                 </div>
                                             </div>

@@ -52,4 +52,14 @@ public class InscripTallerImpl implements ITallerInscripService{
     public List<InscripcionTaller> buscarPorEmpleado(Long Id) {
         return inscripcionRepository.findByEmpleado_idEmpl(Id);
     }
+
+    @Override
+    public List<InscripcionTaller> listarTalleresNoInscritos(Long Id) {
+        return inscripcionRepository.listTallersNoInscript(Id);
+    }
+
+    @Override
+    public List<InscripcionTaller> listarTalleresInscritos(Long Id) {
+        return inscripcionRepository.listTallersInscript(Id);
+    }
 }

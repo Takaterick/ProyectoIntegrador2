@@ -4,6 +4,13 @@ const tablaMembresias = $("#tablaMembresias").DataTable({
   language: {
     url: "//cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json",
   },
+  //centrar columnas
+  columnDefs: [
+    {
+      className: "dt-center",
+      targets: "_all",
+    },
+  ],
 });
 
 /*------------METODOS CRUD------------*/
@@ -22,6 +29,16 @@ const listarMembresias = () => {
           value.id_sus,
           value.nom_sus,
           "S/ " + value.precio_sus,
+          value.createdBy,
+          //validar si el campo es nulo
+          value.createdDate == null
+            ? ""
+            : moment(value.createdDate).format("DD/MM/YYYY HH:mm:ss"),
+          value.lastModifiedBy,
+          //validar si el campo es nulo
+          value.lastModifiedDate == null
+            ? ""
+            : moment(value.lastModifiedDate).format("DD/MM/YYYY HH:mm:ss"),
           `
           <button type="button" data-id="${value.id_sus}" data-membresia="${value.nom_sus}" id="btn-editar" class="btn btn-warning"><i class="fa fa-edit"></i></button>
           <button type="button" data-id="${value.id_sus}" data-membresia="${value.nom_sus}" id="btn-eliminar" class="btn btn-danger"><i class="fa fa-trash"></i></button>

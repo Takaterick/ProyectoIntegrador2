@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="Suscripcion")
-public class Membresia  implements Serializable{
+public class Membresia extends Auditable<String> implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

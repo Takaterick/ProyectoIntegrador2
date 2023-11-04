@@ -14,36 +14,36 @@
 <body>
     <div class="sidebar-menu" layout:fragment="page-sidebar">
         <ul class="menu">
-          <li class="sidebar-title">Menu</li>
+            <li class="sidebar-title">Menu</li>
 
-          <li class="sidebar-item">
-            <a th:href="@{/administrador}" class="sidebar-link">
-              <i class="bi bi-grid-fill"></i>
-              <span>Dashboard</span>
-            </a>
-          </li>
+            <li class="sidebar-item">
+                <a th:href="@{/administrador}" class="sidebar-link">
+                    <i class="bi bi-grid-fill"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
 
-          <li class="sidebar-title">Gestión</li>
+            <li class="sidebar-title">Gestión</li>
 
-      <li class="sidebar-item has-sub">
-        <a href="#" class="sidebar-link">
-          <i class="bi bi-pentagon-fill"></i>
-          <span>Suscripciones</span>
-        </a>
-        <ul class="submenu">
-          <li class="submenu-item">
-            <a th:href="@{/administrador/suscripcion}">Clientes</a>
-          </li>
-          <!-- <li class="submenu-item">
+            <li class="sidebar-item has-sub">
+                <a href="#" class="sidebar-link">
+                    <i class="bi bi-pentagon-fill"></i>
+                    <span>Suscripciones</span>
+                </a>
+                <ul class="submenu">
+                    <li class="submenu-item">
+                        <a th:href="@{/administrador/suscripcion}">Clientes</a>
+                    </li>
+                    <!-- <li class="submenu-item">
             <a href="ui-widgets-pricing.html">Pricing</a>
           </li>
           <li class="submenu-item">
             <a href="ui-widgets-todolist.html">To-do List</a>
           </li> -->
-        </ul>
-      </li>
+                </ul>
+            </li>
 
-          <!-- <li class="sidebar-item has-sub">
+            <!-- <li class="sidebar-item has-sub">
             <a href="#" class="sidebar-link">
               <i class="bi bi-egg-fill"></i>
               <span>Icons</span>
@@ -98,46 +98,46 @@
             </ul>
           </li> -->
 
-          <li class="sidebar-title">Mantenimiento</li>
+            <li class="sidebar-title">Mantenimiento</li>
 
-          <li class="sidebar-item">
-            <a th:href="@{/administrador/membresias}"class="sidebar-link">
-              <i class="bi bi-file-earmark-medical-fill"></i>
-              <span>Membresias</span>
-            </a>
-          </li>
-          <li class="sidebar-item">
-            <a th:href="@{/administrador/clientes}" class="sidebar-link">
-              <i class="bi bi-file-earmark-medical-fill"></i>
-              <span>Clientes</span>
-            </a>
-          </li>
-          <li class="sidebar-item active">
-            <a th:href="@{/administrador/empleados}" class="sidebar-link">
-              <i class="bi bi-file-earmark-medical-fill"></i>
-              <span>Empleados</span>
-            </a>
-          </li>
-          <li class="sidebar-item">
-            <a th:href="@{/administrador/talleres}" class="sidebar-link">
-              <i class="bi bi-file-earmark-medical-fill"></i>
-              <span>Talleres</span>
-            </a>
-          </li>
-          <li class="sidebar-item">
-            <a th:href="@{/administrador/roles}" class="sidebar-link">
-              <i class="bi bi-file-earmark-medical-fill"></i>
-              <span>Roles</span>
-            </a>
-          </li>
-          <li class="sidebar-item">
-            <a th:href="@{/logout}" class="sidebar-link">
-              <i class="bi bi-box-arrow-left"></i>
-              <span>Cerrar sesion</span>
-            </a>
-          </li>
+            <li class="sidebar-item">
+                <a th:href="@{/administrador/membresias}" class="sidebar-link">
+                    <i class="bi bi-file-earmark-medical-fill"></i>
+                    <span>Membresias</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a th:href="@{/administrador/clientes}" class="sidebar-link">
+                    <i class="bi bi-file-earmark-medical-fill"></i>
+                    <span>Clientes</span>
+                </a>
+            </li>
+            <li class="sidebar-item active">
+                <a th:href="@{/administrador/empleados}" class="sidebar-link">
+                    <i class="bi bi-file-earmark-medical-fill"></i>
+                    <span>Empleados</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a th:href="@{/administrador/talleres}" class="sidebar-link">
+                    <i class="bi bi-file-earmark-medical-fill"></i>
+                    <span>Talleres</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a th:href="@{/administrador/roles}" class="sidebar-link">
+                    <i class="bi bi-file-earmark-medical-fill"></i>
+                    <span>Roles</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a th:href="@{/logout}" class="sidebar-link">
+                    <i class="bi bi-box-arrow-left"></i>
+                    <span>Cerrar sesion</span>
+                </a>
+            </li>
 
-          <!-- <li class="sidebar-title">Pages</li>
+            <!-- <li class="sidebar-title">Pages</li>
 
           <li class="sidebar-item">
             <a href="application-email.html" class="sidebar-link">
@@ -235,7 +235,7 @@
             </a>
           </li> -->
         </ul>
-      </div>
+    </div>
     <div class="page-heading" layout:fragment="page-heading">
         <div class="page-title">
             <div class="row">
@@ -314,8 +314,9 @@
                                                             <label for="nombre_empleado">Nombres:</label>
                                                             <div class="position-relative">
                                                                 <input type="hidden" name="idEmpl" id="id_empleado">
-                                                                <input type="text" name="nombreEmpl" placeholder="Ingrese los nombres" id="nombre_empleado"
-                                                                    class="form-control">
+                                                                <input type="text" name="nombreEmpl"
+                                                                    placeholder="Ingrese los nombres"
+                                                                    id="nombre_empleado" class="form-control">
                                                                 <div class="form-control-icon">
                                                                     <i class="bi bi-person"></i>
                                                                 </div>
@@ -326,8 +327,9 @@
                                                         <div class="form-group has-icon-left">
                                                             <label for="apellido_empleado">Apellido:</label>
                                                             <div class="position-relative">
-                                                                <input type="text" name="apellidoEmpl" placeholder="Ingrese los apellidos" id="apellido_empleado"
-                                                                    class="form-control">
+                                                                <input type="text" name="apellidoEmpl"
+                                                                    placeholder="Ingrese los apellidos"
+                                                                    id="apellido_empleado" class="form-control">
                                                                 <div class="form-control-icon">
                                                                     <i class="bi bi-person"></i>
                                                                 </div>
@@ -341,8 +343,9 @@
                                                             <label for="usuario_empleado">Usuario:</label>
                                                             <div class="position-relative">
                                                                 <input type="hidden" name="idUsuario">
-                                                                <input type="text" name="usuario" placeholder="Ingrese usuario" id="usuario_empleado"
-                                                                    class="form-control" >
+                                                                <input type="text" name="usuario"
+                                                                    placeholder="Ingrese usuario" id="usuario_empleado"
+                                                                    class="form-control">
                                                                 <div class="form-control-icon">
                                                                     <i class="bi bi-person-badge"></i>
                                                                 </div>
@@ -353,8 +356,9 @@
                                                         <div class="form-group has-icon-left">
                                                             <label for="contrasenia_empleado">Contraseña:</label>
                                                             <div class="position-relative">
-                                                                <input type="password" name="contrasenia" placeholder="Ingrese contraseña" id="contrasenia_empleado"
-                                                                    class="form-control">
+                                                                <input type="password" name="contrasenia"
+                                                                    placeholder="Ingrese contraseña"
+                                                                    id="contrasenia_empleado" class="form-control">
                                                                 <div class="form-control-icon">
                                                                     <i class="fa-solid fa-key"></i>
                                                                 </div>
@@ -365,8 +369,8 @@
                                                         <div class="form-group has-icon-left">
                                                             <label for="dni_empleado">Dni:</label>
                                                             <div class="position-relative">
-                                                                <input type="number" name="dniEmpl" placeholder="DNI" id="dni_empleado"
-                                                                    class="form-control">
+                                                                <input type="number" name="dniEmpl" placeholder="DNI"
+                                                                    id="dni_empleado" class="form-control">
                                                                 <div class="form-control-icon">
                                                                     <i class="fa-regular fa-address-card"></i>
                                                                 </div>
@@ -377,7 +381,8 @@
                                                         <div class="form-group has-icon-left">
                                                             <label for="telefono_empleado">Teléfono:</label>
                                                             <div class="position-relative">
-                                                                <input type="number" name="telefonoEmpl" placeholder="987-654-321" id="telefono_empleado"
+                                                                <input type="number" name="telefonoEmpl"
+                                                                    placeholder="987-654-321" id="telefono_empleado"
                                                                     class="form-control">
                                                                 <div class="form-control-icon">
                                                                     <i class="bi bi-phone"></i>
@@ -391,8 +396,9 @@
                                                         <div class="form-group has-icon-left">
                                                             <label for="direccion_empleado">Dirección:</label>
                                                             <div class="position-relative">
-                                                                <input type="text" name="direccionEmpl" placeholder="Ingrese el domicilio" id="direccion_empleado"
-                                                                    class="form-control">
+                                                                <input type="text" name="direccionEmpl"
+                                                                    placeholder="Ingrese el domicilio"
+                                                                    id="direccion_empleado" class="form-control">
                                                                 <div class="form-control-icon">
                                                                     <i class="bi bi-pin-map"></i>
                                                                 </div>
@@ -403,8 +409,9 @@
                                                         <div class="form-group has-icon-left">
                                                             <label for="correo_empleado">Correo:</label>
                                                             <div class="position-relative">
-                                                                <input type="text" name="correoEmpl" placeholder="Ingrese el correo @ejemplo.com" id="correo_empleado"
-                                                                    class="form-control">
+                                                                <input type="text" name="correoEmpl"
+                                                                    placeholder="Ingrese el correo @ejemplo.com"
+                                                                    id="correo_empleado" class="form-control">
                                                                 <div class="form-control-icon">
                                                                     <i class="bi bi-envelope"></i>
                                                                 </div>
@@ -415,7 +422,8 @@
                                                         <div class="form-group">
                                                             <label for="selectRoles">Rol:</label>
                                                             <div class="position-relative">
-                                                                <select class="form-select" name="idRol" id="selectRoles">
+                                                                <select class="form-select" name="idRol"
+                                                                    id="selectRoles">
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -445,10 +453,12 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Empleado</th>
-                                        <th>Dni</th>
                                         <th>Telefono</th>
                                         <th>Correo</th>
-                                        <th>Direccion</th>
+                                        <th>Usuario de creación</th>
+                                        <th>Fecha de creación</th>
+                                        <th>Usuario de actualización</th>
+                                        <th>Fecha de actualización</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>

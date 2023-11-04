@@ -21,7 +21,7 @@ import javax.validation.constraints.Size;
 
 @Entity//Indica que es una entidad
 @Table(name="empleado")
-public class Empleado implements Serializable {
+public class Empleado extends Auditable<String> implements Serializable {
 
     @Id//Indica que es la llave primaria
     @GeneratedValue(strategy = GenerationType.IDENTITY)//Indica que es autoincrementable

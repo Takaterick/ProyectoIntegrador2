@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.proyecto.gym.models.entity.Cliente;
 import com.proyecto.gym.models.entity.Suscripcion;
+import com.proyecto.gym.models.service.IAsistenciaService;
 import com.proyecto.gym.models.service.IClienteService;
 import com.proyecto.gym.models.service.ISuscripcion;
 import com.proyecto.gym.models.service.ITallerInscripService;
@@ -24,7 +25,10 @@ public class ClienteController {
     private ISuscripcion suscripcionService;
 
     @Autowired
-    private ITallerInscripService inscripcionService;
+    private IAsistenciaService asistenciaService;
+
+    @Autowired
+    private ITallerInscripService tallerInscripService;
 
     @GetMapping({"/","","/index","/inicio"})
     public String index(Authentication auth, Model model){
@@ -50,8 +54,9 @@ public class ClienteController {
         Cliente cliente = clienteService.buscarPorUsuario(auth.getName());
         Suscripcion suscripcion = suscripcionService.buscarPorCliente(cliente.getId_cli());
         model.addAttribute("cliente", cliente);
-        model.addAttribute("suscripcion", suscripcion);
-        model.addAttribute("talleres", inscripcionService.listarTodos());
+        model.addAttribute("suscripcion", suscripcion); 
+        model.addAttribute("talleres", tallerInscripService.listarTalleresNoInscritos(cliente.getId_cli()));
+        model.addAttribute("inscritos", asistenciaService.listarTalleresInscritos(cliente.getId_cli()));
         return "view/cliente/talleres";
     }
 

@@ -5,12 +5,12 @@ import java.util.List;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
-import com.proyecto.gym.models.entity.InscripcionTaller;
+import com.proyecto.gym.models.entity.Asistencia;
 
-public interface InscripcionTallerRepository extends CrudRepository<InscripcionTaller, Long> {
-    
-    //@Query("SELECT i FROM InscripcionTaller i WHERE i.empleado.idEmpl = ?1")
-    public List<InscripcionTaller> findByEmpleado_idEmpl(Long id);
+public interface AsistenciaRepository extends CrudRepository<Asistencia, Long> {
+
+    public List<Asistencia> findByInscripcionTaller_idInsTaller(Long id);
+
 
     @Query(value = "SELECT * FROM\n" + //
                     "taller t\n" + //
@@ -26,7 +26,7 @@ public interface InscripcionTallerRepository extends CrudRepository<InscripcionT
                     "      a.id_detemptaller = d.id_detemptaller\n" + //
                     " ) AND\n" + //
                     " d.fecha_detemptaller >= CURDATE();", nativeQuery = true)
-    public List<InscripcionTaller> listTallersNoInscript(Long id);
+    public List<Asistencia> listTallersNoInscript(Long id);
 
     @Query(value = "SELECT\n" + //
                     " *\n" + //
@@ -37,5 +37,6 @@ public interface InscripcionTallerRepository extends CrudRepository<InscripcionT
                     "WHERE\n" + //
                     " a.id_cli = ?1 AND\n" + //
                     " d.fecha_detemptaller >= CURDATE();", nativeQuery = true)
-    public List<InscripcionTaller> listTallersInscript(Long id);
+    public List<Asistencia> listTallersInscript(Long id);
+    
 }

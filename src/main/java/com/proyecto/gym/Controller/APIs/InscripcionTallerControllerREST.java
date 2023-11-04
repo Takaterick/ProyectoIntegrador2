@@ -62,6 +62,6 @@ public class InscripcionTallerControllerREST {
         }
         
         inscripTallerImpl.actualizarInscripcion(inscripcion, id);
-        return new Mensaje("¡La inscripción de "+ inscripcion.getTaller() +" se actualizó con exito!", "success");
+        return new Mensaje("¡La inscripción del taller se actualizó con éxito!", "success");
     }
 }

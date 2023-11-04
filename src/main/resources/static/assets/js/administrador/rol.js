@@ -19,6 +19,37 @@ const listarRoles = () => {
     columns: [
       { data: "id_rol" },
       { data: "nom_rol" },
+      /* agregar los campos de auditoria */
+      { data: "createdBy",
+        render: function (data, type, row) {
+            if (data == null) {
+                return "";
+            } else {
+            return data;
+            }
+        }
+      },
+      {
+          data: "createdDate",
+          render: function (data, type, row) {
+              if (data == null) {
+                  return "";
+              } else {
+              return moment(data).format('DD/MM/YYYY HH:mm:ss');
+              }
+          }
+      },
+      { data: "lastModifiedBy" },
+      {
+          data: "lastModifiedDate",
+          render: function (data, type, row) {
+              if (data == null) {
+                  return "";
+              } else {
+                  return moment(data).format('DD/MM/YYYY HH:mm:ss');
+              }
+          }
+      },
       {
         render: function (data, type, row) {
           return `
@@ -26,6 +57,44 @@ const listarRoles = () => {
                 <button type="button" data-id="${row.id_rol}" data-rol="${row.nom_rol}" id="btn-eliminar" class="btn btn-danger"><i class="fa fa-trash"></i></button>
                 `;
         },
+      },
+    ],
+    //cambiar tamaño de las columnas column defs
+    columnDefs: [
+      {
+        width: "5%",
+        targets: [0],
+        className: "dt-center",
+      },
+      {
+        width: "15%",
+        targets: [1],
+        className: "dt-center",
+      },
+      {
+        width: "15%",
+        targets: [2],
+        className: "dt-center",
+      },
+      {
+        width: "20%",
+        targets: [3],
+        className: "dt-center",
+      },
+      {
+        width: "15%",
+        targets: [4],
+        className: "dt-center",
+      },
+      {
+        width: "20%",
+        targets: [5],
+        className: "dt-center",
+      },
+      {
+        width: "10%",
+        targets: [6],
+        className: "dt-center",
       },
     ],
   });

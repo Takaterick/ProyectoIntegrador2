@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table( name="rol")
-public class Rol implements Serializable{
+public class Rol extends Auditable<String> implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -3,6 +3,13 @@ const tablaTalleres = $("#tablaTalleres").DataTable({
   language: {
     url: "//cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json",
   },
+  //centrar columnas
+  columnDefs: [
+    {
+      className: "dt-center",
+      targets: "_all",
+    },
+  ],
 });
 
 ///*** otra forma de capturar los datos de los inputs */
@@ -45,16 +52,29 @@ const listarTalleres = () => {
     success: function (response) {
       $.each(response, function (i, value) {
         //limpiar tabla
-        tablaTalleres.row.add([
-          i+1,
-          value.nomTaller,
-          `
+        tablaTalleres.row
+          .add([
+            i + 1,
+            value.nomTaller,
+            /* agregar los campos de auditoria */
+            value.createdBy,
+            //validar si el campo es nulo
+            value.createdDate == null
+              ? ""
+              : moment(value.createdDate).format("DD/MM/YYYY HH:mm:ss"),
+            value.lastModifiedBy,
+            //validar si el campo es nulo
+            value.lastModifiedDate == null
+              ? ""
+              : moment(value.lastModifiedDate).format("DD/MM/YYYY HH:mm:ss"),
+            `
           <button type="button" data-id="${value.id_taller}" data-nombre="${value.nomTaller}" id="btnEditar" class="btn btn-warning"><i class="fa fa-edit"></i></button>
           <button type="button" data-id="${value.id_taller}" data-nombre="${value.nomTaller}" id="btnEliminar" class="btn btn-danger"><i class="fa fa-trash"></i></button>
           `,
-        ]).draw(false);
-      })
-    }
+          ])
+          .draw(false);
+      });
+    },
   });
 };
 

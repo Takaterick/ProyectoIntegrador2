@@ -3,7 +3,7 @@ const formInscripcion = $("#formInscripcion")[0];
 const tablaAsistencia = $("#tablaAsistencia").DataTable({
   language: {
     url: "//cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json",
-  }
+  },
 });
 const selectTalleres = $("#selectTaller");
 
@@ -66,9 +66,6 @@ const guardarInscripcion = () => {
         } else {
           alertasInsc(response.mensaje, response.tipo);
         }
-        //$("#modalInscripcion").modal("hide");
-        //alertasInsc("Inscripción guardada", "success");
-        
       },
     });
   });
@@ -183,29 +180,34 @@ const actualizarInscripciones = () => {
 
 const listarAsistencias = () => {
   $(".btnAsistencia").on("click", function () {
-    $("#modalAsistencia").modal("show");
     let fecha = $(this).data("fecha");
     let taller = $(this).data("taller");
+    let id = $(this).data("idtaller");
     fecha = moment(fecha, "YYYY-MM-DD").format("DD MMM YYYY");
     //console.log(id);
     $("#titAsistencia").text(taller +" - "+fecha);
     tablaAsistencia.clear();
     $.ajax({
       type: "GET",
-      url: backendInscripcion + "clientes/lista",
+      url: backendInscripcion + "asistencias/buscar/taller/"+id,
       dataType: "json",
       success: function (response) {
         $.each(response, function (i, value) {
           tablaAsistencia.row.add([
-            value.id_cli,
-            value.nom_cli,
-            value.ape_cli
+            i+1,
+            value.cliente.nom_cli + " " + value.cliente.ape_cli,
+            value.asistencia,
+            `<input type="checkbox" ${value.asistencia == 'Asistió' ? 'checked' : ''} class="form-check-input asistencia" data-id="${value.idAsistencia}">`,
           ]).draw();
         })
+        
       },
     });
+    $("#modalAsistencia").modal("show");
   })
 }
+
+
 
 //METODO LIMPIAR
 const limpiarFormulario = () => {
@@ -225,6 +227,21 @@ const alertasInsc = (mensaje, icono) => {
       timer: 2000,
     });
   };
+
+  const alertasToast = (mensaje, icono) => {
+    const Toast = Swal.mixin({
+      toast: true,
+      //positicon superior derecha
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 2000,
+      timerProgressBar: true,
+    });
+    Toast.fire({
+      icon: icono,
+      title: mensaje,
+    });
+  }
 
 $(document).ready(function () {
     listarCbxTalleres();
@@ -246,5 +263,22 @@ $(document).ready(function () {
       let fecha = $(this).data("fecha");
       //condicional de si la fecha es igual a la de hoy que ponga como texto hoy
       $(this).text(moment(fecha, "YYYY-MM-DD").format("DD MMM YYYY"));
+    });
+
+    $(document).change(".asistencia", function (e) { 
+      e.preventDefault();
+      let id = e.target.dataset.id;
+      let asistencia = e.target.checked;
+      $.ajax({
+        type: "GET",
+        url: backendInscripcion + "asistencias/marcar/"+id+"/"+asistencia,
+        success: function (response) {
+          if(asistencia){
+            alertasToast("Asistencia registrada", "success");
+          } else {
+            alertasToast("Asistencia eliminada", "success");
+          }
+        }
+      });
     });
 });

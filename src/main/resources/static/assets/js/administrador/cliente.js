@@ -29,6 +29,36 @@ const listarClientes = () => {
       { data: "dni_cli" },
       { data: "tel_cli" },
       { data: "dir_cli" },
+      { data: "createdBy",
+        render: function (data, type, row) {
+            if (data == null) {
+                return "";
+            } else {
+            return data;
+            }
+        }
+      },
+      {
+          data: "createdDate",
+          render: function (data, type, row) {
+              if (data == null) {
+                  return "";
+              } else {
+              return moment(data).format('DD/MM/YYYY HH:mm:ss');
+              }
+          }
+      },
+      { data: "lastModifiedBy" },
+      {
+          data: "lastModifiedDate",
+          render: function (data, type, row) {
+              if (data == null) {
+                  return "";
+              } else {
+                  return moment(data).format('DD/MM/YYYY HH:mm:ss');
+              }
+          }
+      },
       {
         render: function (data, type, row) {
           return `

@@ -28,10 +28,38 @@ const listarEmpleados = () => {
           return row.nombreEmpl + " " + row.apellidoEmpl;
         },
       },
-      { data: "dniEmpl" },
       { data: "telefonoEmpl" },
       { data: "correoEmpl" },
-      { data: "direccionEmpl" },
+      { data: "createdBy",
+        render: function (data, type, row) {
+            if (data == null) {
+                return "";
+            } else {
+            return data;
+            }
+        }
+      },
+      {
+          data: "createdDate",
+          render: function (data, type, row) {
+              if (data == null) {
+                  return "";
+              } else {
+              return moment(data).format('DD/MM/YYYY HH:mm:ss');
+              }
+          }
+      },
+      { data: "lastModifiedBy" },
+      {
+          data: "lastModifiedDate",
+          render: function (data, type, row) {
+              if (data == null) {
+                  return "";
+              } else {
+                  return moment(data).format('DD/MM/YYYY HH:mm:ss');
+              }
+          }
+      },
       {
         render: function (data, type, row) {
           return `
@@ -41,11 +69,10 @@ const listarEmpleados = () => {
         },
       },
     ],
+    //centrar columnas
     columnDefs: [
-      {
-        targets: [5],
-        width: "20%",
-      },
+      { className: "dt-center", targets: "_all" },
+      { orderable: false, targets: [8] },
     ],
   });
 };

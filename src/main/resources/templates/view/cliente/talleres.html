@@ -108,8 +108,10 @@
             <div class="tab-content pt-4" id="myTabContent">
                 <div class="tab-pane fade show active" id="disponible" role="tabpanel" aria-labelledby="home-tab">
                     <div class="row" th:with="fechaActual=${#dates.createNow()}">
-                        <div class="col-md-4" th:each="inscripcion: ${talleres}"
-                            th:if="${inscripcion.fechaTaller.after(fechaActual) or #dates.format(inscripcion.fechaTaller, 'yyyy-MM-dd').equals(#dates.format(fechaActual, 'yyyy-MM-dd'))}">
+                        <div th:if="${talleres.size==0}">
+                            Aun no se han creado los talleres
+                        </div>
+                        <div class="col-md-4" th:each="inscripcion: ${talleres}">
                             <div class="card" id="tarjeta">
                                 <div class="card-header pt-3 pb-0 bg-success" th:data-fecha="${inscripcion.fechaTaller}"
                                     th:data-taller="${inscripcion.taller.nomTaller}"
@@ -164,7 +166,7 @@
                             </div>
                             <div class="modal fade text-left" tabindex="-1" th:id="modalTaller + ${inscripcion.idInsTaller}" role="dialog"
                                 aria-labelledby="myModalLabel160" aria-hidden="true">
-                                <form id="">
+                                <form class="formInscripcionCliente">
                                     <div class="modal-dialog modal-dialog-scrollable" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header bg-success">
@@ -185,6 +187,8 @@
                                             </div>
                                             <div class="modal-body px-4 pb-0">
                                                 <!-- traer toda la informacion del taller -->
+                                                <input type="hidden" th:value="*{id_cli}" name="idCliente">
+                                                <input type="hidden" th:value="${inscripcion.idInsTaller}" name="idInsTaller">
                                                 <h4 class="pb-2">[[${inscripcion.taller.nomTaller}]]</h4>
                                                 <p class="card-text mb-1">
                                                     <i class="bi bi-calendar-event"></i>&nbsp; Inicia: 
@@ -210,9 +214,9 @@
                                                     <i class="bx bx-x d-block d-sm-none"></i>
                                                     <span class="d-none d-sm-block">Cancelar</span>
                                                 </button>
-                                                <button type="button" id="btnGuardar" class="btn btn-primary ml-1">
+                                                <button type="submit" class="btn btn-primary ml-1 btnInscribirTaller">
                                                     <i class="bx bx-check d-block d-sm-none"></i>
-                                                    <span class="d-none d-sm-block">Guardar</span>
+                                                    <span class="d-none d-sm-block">Inscribirse</span>
                                                 </button>
                                             </div>
                                         </div>
@@ -223,7 +227,61 @@
                     </div>
                 </div>
                 <div class="tab-pane fade" id="inscrito" role="tabpanel" aria-labelledby="profile-tab">
-                    2
+                    <div class="row" th:with="fechaActual=${#dates.createNow()}">
+                        <div class="col-md-4" th:each="inscrito: ${inscritos}"
+                            th:if="${inscrito.inscripcionTaller.fechaTaller.after(fechaActual) or #dates.format(inscrito.inscripcionTaller.fechaTaller, 'yyyy-MM-dd').equals(#dates.format(fechaActual, 'yyyy-MM-dd'))}">
+                            <div class="card" id="tarjeta">
+                                <div class="card-header pt-3 pb-0 bg-success" th:data-fecha="${inscrito.inscripcionTaller.fechaTaller}"
+                                    th:data-taller="${inscrito.inscripcionTaller.taller.nomTaller}"
+                                    style="background-color: #d7d8da94">
+                                    <div class="card-title d-flex justify-content-between align-items-center ">
+                                        <h4 class="card-title text-white">
+                                            [[${inscrito.inscripcionTaller.taller.nomTaller}]]
+                                        </h4>
+                                        <h4>
+                                            <span class="badge badge-pill bg-warning dias-restantes" style="border: 5px; color: #424649;"
+                                                th:data-restantes="${inscrito.inscripcionTaller.fechaTaller}"
+                                                th:data-hora="${inscrito.inscripcionTaller.horaInicio}"></span>
+                                        </h4>
+                                    </div>
+                                </div>
+
+                                <div class="card-body border-bottom py-2 px-0" style="background-color: #d7d8da94;">
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        <div class="pe-3">
+                                            <img src="https://portal.utp.edu.pe/static/media/Entrenamiento.a3ccee71.svg"
+                                                alt="icon" width="76" height="76">
+                                        </div>
+                                        <div class="vr"></div>
+                                        <div class="px-4">
+                                            <p class="card-text mb-2">
+                                                <i class="bi bi-calendar-event"></i>
+                                                <span class="fecha-taller"
+                                                    th:data-fecha="${inscrito.inscripcionTaller.fechaTaller}"></span>
+                                            </p>
+                                            <p class="card-text mb-2"><i class="bi bi-clock"></i>
+                                                [[${#dates.format(inscrito.inscripcionTaller.horaInicio, 'HH:mm')}]] -
+                                                [[${#dates.format(inscrito.inscripcionTaller.horaFin, 'HH:mm')}]]</p>
+                                        </div>
+                                        <div class="px-2">
+                                            <div class="row d-flex align-items-center justify-content-center">
+                                                <div class="col-md-12 mb-2 d-flex align-items-center justify-content-center">
+                                                    <span class="badge badge-pill bg-success">Inscrito</span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12 d-flex align-items-center justify-content-center">
+                                                    <button type="button" class="btn btn-danger btnEliminar" th:data-id="${inscrito.idAsistencia}">
+                                                        <i class="fa fa-trash"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>

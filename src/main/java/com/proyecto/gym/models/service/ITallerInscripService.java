@@ -12,4 +12,6 @@ public interface ITallerInscripService {
     public InscripcionTaller actualizarInscripcion(InscripcionTaller inscripcion, Long Id);
 
     public List<InscripcionTaller> buscarPorEmpleado(Long Id);
+    public List<InscripcionTaller> listarTalleresNoInscritos(Long Id);
+    public List<InscripcionTaller> listarTalleresInscritos(Long Id);
 }
