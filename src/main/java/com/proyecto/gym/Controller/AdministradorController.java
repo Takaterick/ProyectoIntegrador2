@@ -96,7 +96,7 @@ public class AdministradorController {
     public String talleres(){
         return "/view/administrador/taller/index";
     }
-
+    
     @GetMapping("/visitas")
     public String visitas(){
         return "/view/administrador/visita/index";

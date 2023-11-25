@@ -97,6 +97,16 @@ const listarRoles = () => {
         className: "dt-center",
       },
     ],
+    dom: "Bflrtip",
+    buttons: [
+      {
+        extend: "excelHtml5",
+        text: '<i class="fas fa-file-excel"></i> Exportar a CSV',
+        titleAttr: "Exportar a Excel",
+        className: "btn btn-success",
+        filename: "Reporte_Roles",
+      }
+    ],
   });
 };
 

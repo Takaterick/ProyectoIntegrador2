@@ -16,228 +16,87 @@
 <body>
   <div class="sidebar-menu" layout:fragment="page-sidebar">
     <ul class="menu">
-      <li class="sidebar-title">Menu</li>
+        <li class="sidebar-title">Menu</li>
 
-      <li class="sidebar-item active">
-        <a th:href="@{/administrador}" class="sidebar-link">
-          <i class="bi bi-grid-fill"></i>
-          <span>Dashboard</span>
-        </a>
-      </li>
+        <li class="sidebar-item active">
+            <a th:href="@{/administrador/}" class="sidebar-link">
+                <i class="bi bi-grid-fill"></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
 
-      <li class="sidebar-title">Gestión</li>
+        <li class="sidebar-title">Gestión</li>
 
-      <li class="sidebar-item has-sub">
-        <a href="#" class="sidebar-link">
-          <i class="bi bi-pentagon-fill"></i>
-          <span>Suscripciones</span>
-        </a>
-        <ul class="submenu">
-          <li class="submenu-item">
-            <a th:href="@{/administrador/suscripcion}">Clientes</a>
-          </li>
-          <!-- <li class="submenu-item">
-            <a href="ui-widgets-pricing.html">Pricing</a>
-          </li>
-          <li class="submenu-item">
-            <a href="ui-widgets-todolist.html">To-do List</a>
-          </li> -->
-        </ul>
-      </li>
-
-      <!-- <li class="sidebar-item has-sub">
+        <li class="sidebar-item has-sub">
             <a href="#" class="sidebar-link">
-              <i class="bi bi-egg-fill"></i>
-              <span>Icons</span>
+                <i class="bi bi-credit-card-2-back-fill"></i>
+                <span>Suscripciones</span>
             </a>
             <ul class="submenu">
-              <li class="submenu-item">
-                <a href="ui-icons-bootstrap-icons.html">Bootstrap Icons </a>
-              </li>
-              <li class="submenu-item">
-                <a href="ui-icons-fontawesome.html">Fontawesome</a>
-              </li>
-              <li class="submenu-item">
-                <a href="ui-icons-dripicons.html">Dripicons</a>
-              </li>
+                <li class="submenu-item">
+                    <a th:href="@{/administrador/suscripcion}">Clientes</a>
+                </li>
             </ul>
-          </li>
-
-          <li class="sidebar-item has-sub">
-            <a href="#" class="sidebar-link">
-              <i class="bi bi-bar-chart-fill"></i>
-              <span>Charts</span>
+        </li>
+        <li class="sidebar-item">
+            <a th:href="@{/administrador/alquiler}" class="sidebar-link">
+                <i class="bi bi-bag-dash"></i>
+                <span>Alquiler Equipos</span>
             </a>
-            <ul class="submenu">
-              <li class="submenu-item">
-                <a href="ui-chart-chartjs.html">ChartJS</a>
-              </li>
-              <li class="submenu-item">
-                <a href="ui-chart-apexcharts.html">Apexcharts</a>
-              </li>
-            </ul>
-          </li>
-
-          <li class="sidebar-item">
-            <a href="ui-file-uploader.html" class="sidebar-link">
-              <i class="bi bi-cloud-arrow-up-fill"></i>
-              <span>File Uploader</span>
+        </li>
+        <li class="sidebar-item">
+            <a th:href="@{/administrador/visitas}" class="sidebar-link">
+                <i class="bi bi-calendar-range-fill"></i>
+                <span>Visitas</span>
             </a>
-          </li>
+        </li>
 
-          <li class="sidebar-item has-sub">
-            <a href="#" class="sidebar-link">
-              <i class="bi bi-map-fill"></i>
-              <span>Maps</span>
+        <li class="sidebar-title">Mantenimiento</li>
+
+        <li class="sidebar-item">
+            <a th:href="@{/administrador/membresias}" class="sidebar-link">
+                <i class="bi bi-file-earmark-medical-fill"></i>
+                <span>Membresias</span>
             </a>
-            <ul class="submenu">
-              <li class="submenu-item">
-                <a href="ui-map-google-map.html">Google Map</a>
-              </li>
-              <li class="submenu-item">
-                <a href="ui-map-jsvectormap.html">JS Vector Map</a>
-              </li>
-            </ul>
-          </li> -->
-
-      <li class="sidebar-title">Mantenimiento</li>
-
-      <li class="sidebar-item">
-        <a th:href="@{/administrador/membresias}" class="sidebar-link">
-          <i class="bi bi-file-earmark-medical-fill"></i>
-          <span>Membresias</span>
-        </a>
-      </li>
-      <li class="sidebar-item">
-        <a th:href="@{/administrador/clientes}" class="sidebar-link">
-          <i class="bi bi-file-earmark-medical-fill"></i>
-          <span>Clientes</span>
-        </a>
-      </li>
-      <li class="sidebar-item">
-        <a th:href="@{/administrador/empleados}" class="sidebar-link">
-          <i class="bi bi-file-earmark-medical-fill"></i>
-          <span>Empleados</span>
-        </a>
-      </li>
-      <li class="sidebar-item">
-        <a th:href="@{/administrador/talleres}" class="sidebar-link">
-          <i class="bi bi-file-earmark-medical-fill"></i>
-          <span>Talleres</span>
-        </a>
-      </li>
-      <li class="sidebar-item">
-        <a th:href="@{/administrador/roles}" class="sidebar-link">
-          <i class="bi bi-file-earmark-medical-fill"></i>
-          <span>Roles</span>
-        </a>
-      </li>
-      <li class="sidebar-item">
-        <a th:href="@{/logout}" class="sidebar-link">
-          <i class="bi bi-box-arrow-left"></i>
-          <span>Cerrar sesion</span>
-        </a>
-      </li>
-
-      <!-- <li class="sidebar-title">Pages</li>
-
-          <li class="sidebar-item">
-            <a href="application-email.html" class="sidebar-link">
-              <i class="bi bi-envelope-fill"></i>
-              <span>Email Application</span>
+        </li>
+        <li class="sidebar-item">
+            <a th:href="@{/administrador/clientes}" class="sidebar-link">
+                <i class="bi bi-person-fill"></i>
+                <span>Clientes</span>
             </a>
-          </li>
-
-          <li class="sidebar-item">
-            <a href="application-chat.html" class="sidebar-link">
-              <i class="bi bi-chat-dots-fill"></i>
-              <span>Chat Application</span>
+        </li>
+        <li class="sidebar-item">
+            <a th:href="@{/administrador/empleados}" class="sidebar-link">
+                <i class="bi bi-person-badge-fill"></i>
+                <span>Empleados</span>
             </a>
-          </li>
-
-          <li class="sidebar-item">
-            <a href="application-gallery.html" class="sidebar-link">
-              <i class="bi bi-image-fill"></i>
-              <span>Photo Gallery</span>
+        </li>
+        <li class="sidebar-item">
+            <a th:href="@{/administrador/talleres}" class="sidebar-link">
+                <i class="bi bi-dribbble"></i>
+                <span>Talleres</span>
             </a>
-          </li>
-
-          <li class="sidebar-item">
-            <a href="application-checkout.html" class="sidebar-link">
-              <i class="bi bi-basket-fill"></i>
-              <span>Checkout Page</span>
+        </li>
+        <li class="sidebar-item">
+            <a th:href="@{/administrador/equipamiento}" class="sidebar-link">
+                <i class="bi bi-dribbble"></i>
+                <span>Equipamiento</span>
             </a>
-          </li>
-
-          <li class="sidebar-item has-sub">
-            <a href="#" class="sidebar-link">
-              <i class="bi bi-person-badge-fill"></i>
-              <span>Authentication</span>
+        </li>
+        <li class="sidebar-item">
+            <a th:href="@{/administrador/roles}" class="sidebar-link">
+                <i class="bi bi-diagram-3-fill"></i>
+                <span>Roles</span>
             </a>
-            <ul class="submenu">
-              <li class="submenu-item">
-                <a href="auth-login.html">Login</a>
-              </li>
-              <li class="submenu-item">
-                <a href="auth-register.html">Register</a>
-              </li>
-              <li class="submenu-item">
-                <a href="auth-forgot-password.html">Forgot Password</a>
-              </li>
-            </ul>
-          </li>
-
-          <li class="sidebar-item has-sub">
-            <a href="#" class="sidebar-link">
-              <i class="bi bi-x-octagon-fill"></i>
-              <span>Errors</span>
+        </li>
+        <li class="sidebar-item">
+            <a th:href="@{/logout}" class="sidebar-link">
+                <i class="bi bi-box-arrow-left"></i>
+                <span>Cerrar sesion</span>
             </a>
-            <ul class="submenu">
-              <li class="submenu-item">
-                <a href="error-403.html">403</a>
-              </li>
-              <li class="submenu-item">
-                <a href="error-404.html">404</a>
-              </li>
-              <li class="submenu-item">
-                <a href="error-500.html">500</a>
-              </li>
-            </ul>
-          </li>
-
-          <li class="sidebar-title">Raise Support</li>
-
-          <li class="sidebar-item">
-            <a
-              href="https://zuramai.github.io/mazer/docs"
-              class="sidebar-link"
-            >
-              <i class="bi bi-life-preserver"></i>
-              <span>Documentation</span>
-            </a>
-          </li>
-
-          <li class="sidebar-item">
-            <a
-              href="https://github.com/zuramai/mazer/blob/main/CONTRIBUTING.md"
-              class="sidebar-link"
-            >
-              <i class="bi bi-puzzle"></i>
-              <span>Contribute</span>
-            </a>
-          </li>
-
-          <li class="sidebar-item">
-            <a
-              href="https://github.com/zuramai/mazer#donation"
-              class="sidebar-link"
-            >
-              <i class="bi bi-cash"></i>
-              <span>Donate</span>
-            </a>
-          </li> -->
+        </li>
     </ul>
-  </div>
+</div>
   <div class="page-heading mb-0" layout:fragment="page-heading">
     <div class="page-title">
       <div class="row">

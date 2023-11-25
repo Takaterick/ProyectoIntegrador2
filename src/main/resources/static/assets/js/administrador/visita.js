@@ -33,6 +33,8 @@ const agregarVisita = () => {
     })
     $("#btn-abrirModalVisita").on("click", function(){
         formVisita.reset();
+        formVisita.nombreMiembro.disabled = false;
+        formVisita.apellidoMiembro.disabled = false;
         formVisita.buscadorMiembro.disabled = true;
         formVisita.selectVisitaMiembro.value = "Visita Regular";
         formVisita.selectVisitaMiembro.disabled = true;
@@ -133,8 +135,8 @@ const listarVisitas = () => {
                     value.membresiaVisita,
                     value.fechaVisita,
                     value.tipoVisita,
-                    /*pago con formato de moneda*/
-                    "S/ " + parseFloat(value.pagoVisita).toFixed(1),
+                    //si la membresiaVisita es Sin membresia entonces agregar precio sino poner 0.00
+                    value.membresiaVisita == "Sin membresia" ? "S/ " + parseFloat(value.pagoVisita).toFixed(1) : "S/ 0.00",
                     /* si la membresiaVisita es Sin membresia entonces agregar el boton de imprimir voucher */
                     value.membresiaVisita == "Sin membresia" ? `<a href="${backend}visitas/boucher?idVis=${value.idVisita}" class="btn btn-success"><i class="fa fa-print"></i></a>` : `<a href="/administrador/suscripcion" class="btn btn-warning"><i class="fa-solid fa-arrow-right-to-bracket"></i></a>`,
                 ])
