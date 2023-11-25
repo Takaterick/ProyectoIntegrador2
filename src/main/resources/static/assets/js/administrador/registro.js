@@ -25,10 +25,11 @@ const registrarSuscripcion = () => {
     console.log(suscripcion);
 
     $.ajax({
-      url: backend + "/guardar",
       type: "POST",
-      data: JSON.stringify(suscripcion),
+      url: backend + "/guardar",
       contentType: "application/json",
+      data: JSON.stringify(suscripcion),
+      dataType: "json",
       success: function (data) {
         Swal.fire({
             icon: 'success',

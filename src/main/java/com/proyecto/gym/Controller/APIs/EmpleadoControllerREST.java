@@ -47,6 +47,17 @@ public class EmpleadoControllerREST {
             Mensaje mensaje = new Mensaje(result.getFieldError().getDefaultMessage(), "warning");
             return mensaje;
         }
+
+        empleado.getUsuario().setBloqueo(0);
+        empleado.getUsuario().setEstado(1);
+        
+        /* si el rol 1 entonces colocar como descripcion que ninguno porque es administrador */
+        if (empleado.getRol().getId_rol() == 1) {
+            empleado.getUsuario().setDesc_bloq("Ninguno porque es administrador");
+        }else{
+            empleado.getUsuario().setDesc_bloq("Registro de empleado");
+        }
+        
         usuarioService.guardar(empleado.getUsuario());
 
         empleadoService.guardarEmpleado(empleado);

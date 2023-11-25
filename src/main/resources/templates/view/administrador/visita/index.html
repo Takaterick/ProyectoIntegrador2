@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{view/layout/layout_administrador}">
+
+<head th:replace="view/layout/layout_administrador :: head">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <th:block layout:fragment="page-titulo">
+        <title>Suscripciones</title>
+    </th:block>
+    <th:block layout:fragment="page-style">
+        <link href="https://cdn.datatables.net/v/bs5/dt-1.13.6/datatables.min.css" rel="stylesheet">
+    </th:block>
+</head>
+
+<body>
+    <div class="sidebar-menu" layout:fragment="page-sidebar">
+        <ul class="menu">
+            <li class="sidebar-title">Menu</li>
+
+            <li class="sidebar-item">
+                <a th:href="@{/administrador/}" class="sidebar-link">
+                    <i class="bi bi-grid-fill"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+
+            <li class="sidebar-title">Gestión</li>
+
+            <li class="sidebar-item has-sub">
+                <a href="#" class="sidebar-link">
+                    <i class="bi bi-credit-card-2-back-fill"></i>
+                    <span>Suscripciones</span>
+                </a>
+                <ul class="submenu">
+                    <li class="submenu-item">
+                        <a th:href="@{/administrador/suscripcion}">Clientes</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="sidebar-item">
+                <a th:href="@{/administrador/alquiler}" class="sidebar-link">
+                    <i class="bi bi-bag-dash"></i>
+                    <span>Alquiler Equipos</span>
+                </a>
+            </li>
+            <li class="sidebar-item active">
+                <a th:href="@{/administrador/visitas}" class="sidebar-link">
+                    <i class="bi bi-calendar-range-fill"></i>
+                    <span>Visitas</span>
+                </a>
+            </li>
+
+            <li class="sidebar-title">Mantenimiento</li>
+
+            <li class="sidebar-item">
+                <a th:href="@{/administrador/membresias}" class="sidebar-link">
+                    <i class="bi bi-file-earmark-medical-fill"></i>
+                    <span>Membresias</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a th:href="@{/administrador/clientes}" class="sidebar-link">
+                    <i class="bi bi-person-fill"></i>
+                    <span>Clientes</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a th:href="@{/administrador/empleados}" class="sidebar-link">
+                    <i class="bi bi-person-badge-fill"></i>
+                    <span>Empleados</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a th:href="@{/administrador/talleres}" class="sidebar-link">
+                    <i class="bi bi-dribbble"></i>
+                    <span>Talleres</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a th:href="@{/administrador/roles}" class="sidebar-link">
+                    <i class="bi bi-diagram-3-fill"></i>
+                    <span>Roles</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a th:href="@{/logout}" class="sidebar-link">
+                    <i class="bi bi-box-arrow-left"></i>
+                    <span>Cerrar sesion</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="page-heading" layout:fragment="page-heading">
+        <div class="page-title">
+            <div class="row">
+                <div class="col-12 col-md-6 order-md-1 order-last">
+                    <h3>Visitas</h3>
+                    <p class="text-subtitle text-muted">
+                        Aqui se podra registrar las visitas de los clientes al gimnasio!
+                    </p>
+                </div>
+                <div class="col-12 col-md-6 order-md-2 order-first">
+                    <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="#">Inicio</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">
+                                Visitas
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <section>
+            <div class="card">
+              <div class="card-header pb-2">
+                <h5>Lista de visitas</h5>
+              </div>
+              <div class="card-body pt-0">
+                <!-- ///******BOTON MODAL******/// -->
+                <div class="pb-3">
+                  <button type="button" class="btn btn-primary" id="btn-abrirModalVisita">
+                    <i class="fa fa-edit"></i> Agregar Nuevo Visita
+                  </button>
+                </div>
+                <!-- ///******FIN BOTON MODAL******/// -->
+                <div class="modal fade text-left" id="modalVisita" tabindex="-1" role="dialog"
+                  aria-labelledby="myModalLabel160" aria-hidden="true">
+                  <form id="formVisita">
+                    <div class="modal-dialog modal-dialog-scrollable" role="document">
+                      <div class="modal-content">
+                        <div id="color2-modal" class="modal-header bg-success">
+                          <h5 class="modal-title white" id="titulo2-form">Agregar Nueva Visita</h5>
+                          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <i data-feather="x"></i>
+                          </button>
+                        </div>
+                        <div class="modal-body px-4">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group has-icon-left">
+                                        <label for="bucador_miembro">Buscar:</label>
+                                        <div class="position-relative">
+                                            <input type="hidden" name="idSuscripcion">
+                                            <select class="form-select" name="buscadorMiembro" id="bucador_miembro">
+                                                <option selected="">-- Elija un miembro --</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 d-flex align-items-center justify-content-center">
+                                    <div class="position-relative">
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" id="switchCliente">
+                                            <label class="form-check-label" for="switchCliente">¿Es cliente?</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group has-icon-left">
+                                        <label for="nombre_empleado">Nombres:</label>
+                                        <div class="position-relative">
+                                            <input type="text" name="nombreMiembro"
+                                                placeholder="Ingrese los nombres"
+                                                id="nombre_empleado" class="form-control">
+                                            <div class="form-control-icon">
+                                                <i class="bi bi-person"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group has-icon-left">
+                                        <label for="apellido_empleado">Apellido:</label>
+                                        <div class="position-relative">
+                                            <input type="text" name="apellidoMiembro"
+                                                placeholder="Ingrese los apellidos"
+                                                id="apellido_empleado" class="form-control">
+                                            <div class="form-control-icon">
+                                                <i class="bi bi-person"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group has-icon-left">
+                                        <label for="selectRoles">Membresia:</label>
+                                        <div class="position-relative">
+                                            <select class="form-select" name="selectMembresiaMiembro"
+                                                id="selectMembresiaMiembro">
+                                                <option selected="">-- Elija una membresia --</option>
+                                                <option value="Sin membresia">Sin membresia</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="selectRoles">Tipo de Visita:</label>
+                                        <div class="position-relative">
+                                            <select class="form-select" name="selectVisitaMiembro" id="selectRoles">
+                                                <option selected="">-- Elija una opcion --</option>
+                                                <option value="Visita Regular">Visita Regular</option>
+                                                <option value="Visita con Membresia">Visita con Membresia</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            <i class="bx bx-x d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">Cerrar</span>
+                          </button>
+                          <button type="button" id="btnGuardarVisita" class="btn btn-primary ml-1">
+                            <i class="bx bx-check d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">Agregar</span>
+                          </button>
+                          <button type="button" id="btn-actualizarTaller" class="btn btn-success ml-1">
+                            <i class="bx bx-check d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">Editar</span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <table class="table table-striped" id="tablaVisitas">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Miembro</th>
+                      <th>Membresia</th>
+                      <th>Fecha de Visita</th>
+                      <th>Tipo de Visita</th>
+                      <th>Pago</th>
+                      <th>Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+    </div>
+    <th:block layout:fragment="page-scripts">
+        <script th:src="@{/assets/js/administrador/visita.js}"></script>
+    </th:block>
+</body>
+
+</html>

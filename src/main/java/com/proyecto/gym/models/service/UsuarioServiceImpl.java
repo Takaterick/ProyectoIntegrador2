@@ -26,12 +26,7 @@ public class UsuarioServiceImpl implements IUsuarioService{
 
     @Override
     public Usuario guardar(Usuario usuario) {
-        usuario.setBloqueo(0);
-        usuario.setEstado(0);
-        usuario.setDesc_bloq("Pago pendiente");
-        
         usuario.setContrasenia(this.passwordEncoder.encode(usuario.getContrasenia()));
-        
         return usuarioRepository.save(usuario);
     }
 
@@ -55,5 +50,10 @@ public class UsuarioServiceImpl implements IUsuarioService{
         usuarioModificado.setDesc_bloq(usuario.getDesc_bloq());
         usuarioRepository.save(usuarioModificado);
         return usuarioModificado;
+    }
+
+    @Override
+    public Usuario buscarPorUsuario(String usuario) {
+        return usuarioRepository.findByUsuario(usuario);
     }
 }

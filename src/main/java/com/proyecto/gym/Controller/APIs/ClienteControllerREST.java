@@ -48,6 +48,13 @@ public class ClienteControllerREST {
             Mensaje mensaje = new Mensaje(result.getFieldError().getDefaultMessage(), "warning");
             return mensaje;
         }
+
+        /* cambiar el estado del usuario a bloqueado con motivo de pago pendiente */
+        cliente.getUsuario().setBloqueo(1);
+        cliente.getUsuario().setEstado(1);
+        cliente.getUsuario().setDesc_bloq("Pago pendiente");
+
+        /* guardar el usuario */
         usuarioService.guardar(cliente.getUsuario());
 
         clienteService.guardarCliente(cliente);

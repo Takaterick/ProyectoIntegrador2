@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.6.final using JasperReports Library version 6.20.6-5c96b6aa8a39ac1dc6b6bea4b81168e16dd39231  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ticketGym" pageWidth="395" pageHeight="500" columnWidth="355" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e579cefd-b994-447f-a9e5-e76bfaec14a3">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<parameter name="nombreCliente" class="java.lang.String"/>
+	<parameter name="fechaTicket" class="java.lang.String"/>
+	<parameter name="numTicket" class="java.lang.String"/>
+	<parameter name="nombreVisita" class="java.lang.String"/>
+	<parameter name="subTotal" class="java.lang.String"/>
+	<parameter name="igv" class="java.lang.String"/>
+	<parameter name="total" class="java.lang.String"/>
+	<parameter name="fechaVisita" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="123" splitType="Stretch">
+			<staticText>
+				<reportElement x="112" y="10" width="130" height="30" uuid="9b70d4c7-3d34-4e74-8904-ef4f58444a6b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LUCKY GYM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="104" y="50" width="146" height="20" uuid="f8163da6-ff27-4cb1-9b2a-46ad7b7a764e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[RUC: 1459885452356]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="52" y="70" width="250" height="20" uuid="a6065f37-0994-4ed1-b087-f5fb8bdcabb9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Dirección: Av. Las palmeras 15874]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="104" y="90" width="146" height="20" uuid="2b1258cd-5d46-4b83-8ccf-8dd94346ba8c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Teléfono: 958657898]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="73" splitType="Stretch">
+			<line>
+				<reportElement x="37" y="-3" width="280" height="1" uuid="b1f7fa53-25e6-47a5-85e4-2c2306b8dc58">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="112" y="9" width="53" height="20" uuid="875c0fc1-c654-4835-84e4-b479697222c6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Fecha:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="166" y="9" width="129" height="21" uuid="0a71ae14-04fb-433c-ae70-150f6fc56b35"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{fechaTicket}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="107" y="30" width="98" height="30" uuid="9dae9bbc-17b5-4fd2-9afb-5cc32dfc9c9d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TICKET NRO: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="211" y="35" width="100" height="20" uuid="d1165cc2-95a5-4567-a8a6-8624aedead4a"/>
+				<textElement>
+					<font size="15"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{numTicket}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="40" y="67" width="280" height="1" uuid="0dd794d6-5058-4b02-8d9b-756890f0bb78">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="56" splitType="Stretch">
+			<line>
+				<reportElement x="44" y="53" width="280" height="1" uuid="cf066ce4-676b-4474-bf5c-a2ea5e9ceca1">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="107" y="7" width="66" height="20" uuid="839b688f-e64a-4901-9823-59e5a5221966"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Cliente: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="172" y="7" width="133" height="42" uuid="2b969fa1-f9e2-4a00-b818-83e6d930fea0"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nombreCliente}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="117" splitType="Stretch">
+			<staticText>
+				<reportElement x="155" y="8" width="72" height="20" uuid="9b2c863a-d677-4942-9d65-5c54b5dbc70e"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Tipo visita: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="229" y="8" width="88" height="20" uuid="bee576a5-f6d1-46da-b82d-290d72479fe0"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nombreVisita}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="62" y="8" width="93" height="20" uuid="b2f12616-d2d1-4b2a-a4e1-9e76dc1e544f"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{fechaVisita}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="40" y="34" width="280" height="1" uuid="fb46facb-653e-41ff-8941-639337f0ea2b">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="180" y="38" width="67" height="20" uuid="dd225a6d-a791-4ed4-b885-eb79771fdc0c"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[SubTotal: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="211" y="58" width="36" height="20" uuid="a15de0df-8cdd-43ec-8f30-900c293d3166"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[IGV: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="247" y="38" width="72" height="20" uuid="3df32cfb-3aee-4ad2-b57a-5cf324bf99c2"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{subTotal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="247" y="58" width="72" height="20" uuid="31691a02-ebe4-4153-a270-4a18f4c024ac"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{igv}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="40" y="86" width="280" height="1" uuid="f72819e4-83d6-4a07-b746-ee10b427f781">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="155" y="91" width="92" height="20" uuid="8e2dba0f-4815-44b0-8d4b-7550e3adb353"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Total a pagar: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="247" y="91" width="72" height="20" uuid="b2594773-e41e-4fa4-b5d6-92fe81b13473"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="75" splitType="Stretch">
+			<staticText>
+				<reportElement x="22" y="16" width="310" height="55" uuid="517467bb-3d81-430d-bb18-e51b5e12b6af"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[*** Precios de la membresia incluyen impuestos.
+Para poder realizar un reclamo o devolución debe de presentar este ticket ***]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

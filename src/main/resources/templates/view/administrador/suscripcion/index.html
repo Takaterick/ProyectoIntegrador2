@@ -77,104 +77,6 @@
           <span>Cerrar sesion</span>
         </a>
       </li>
-
-      <!-- <li class="sidebar-title">Pages</li>
-
-          <li class="sidebar-item">
-            <a href="application-email.html" class="sidebar-link">
-              <i class="bi bi-envelope-fill"></i>
-              <span>Email Application</span>
-            </a>
-          </li>
-
-          <li class="sidebar-item">
-            <a href="application-chat.html" class="sidebar-link">
-              <i class="bi bi-chat-dots-fill"></i>
-              <span>Chat Application</span>
-            </a>
-          </li>
-
-          <li class="sidebar-item">
-            <a href="application-gallery.html" class="sidebar-link">
-              <i class="bi bi-image-fill"></i>
-              <span>Photo Gallery</span>
-            </a>
-          </li>
-
-          <li class="sidebar-item">
-            <a href="application-checkout.html" class="sidebar-link">
-              <i class="bi bi-basket-fill"></i>
-              <span>Checkout Page</span>
-            </a>
-          </li>
-
-          <li class="sidebar-item has-sub">
-            <a href="#" class="sidebar-link">
-              <i class="bi bi-person-badge-fill"></i>
-              <span>Authentication</span>
-            </a>
-            <ul class="submenu">
-              <li class="submenu-item">
-                <a href="auth-login.html">Login</a>
-              </li>
-              <li class="submenu-item">
-                <a href="auth-register.html">Register</a>
-              </li>
-              <li class="submenu-item">
-                <a href="auth-forgot-password.html">Forgot Password</a>
-              </li>
-            </ul>
-          </li>
-
-          <li class="sidebar-item has-sub">
-            <a href="#" class="sidebar-link">
-              <i class="bi bi-x-octagon-fill"></i>
-              <span>Errors</span>
-            </a>
-            <ul class="submenu">
-              <li class="submenu-item">
-                <a href="error-403.html">403</a>
-              </li>
-              <li class="submenu-item">
-                <a href="error-404.html">404</a>
-              </li>
-              <li class="submenu-item">
-                <a href="error-500.html">500</a>
-              </li>
-            </ul>
-          </li>
-
-          <li class="sidebar-title">Raise Support</li>
-
-          <li class="sidebar-item">
-            <a
-              href="https://zuramai.github.io/mazer/docs"
-              class="sidebar-link"
-            >
-              <i class="bi bi-life-preserver"></i>
-              <span>Documentation</span>
-            </a>
-          </li>
-
-          <li class="sidebar-item">
-            <a
-              href="https://github.com/zuramai/mazer/blob/main/CONTRIBUTING.md"
-              class="sidebar-link"
-            >
-              <i class="bi bi-puzzle"></i>
-              <span>Contribute</span>
-            </a>
-          </li>
-
-          <li class="sidebar-item">
-            <a
-              href="https://github.com/zuramai/mazer#donation"
-              class="sidebar-link"
-            >
-              <i class="bi bi-cash"></i>
-              <span>Donate</span>
-            </a>
-          </li> -->
     </ul>
   </div>
   <div class="page-heading" layout:fragment="page-heading">
@@ -242,6 +144,8 @@
                               <label for="cliente-icon">Cliente</label>
                               <div class="position-relative">
                                 <input type="hidden" name="idSuscripcion">
+                                <input type="hidden" name="fechaInicio">
+                                <input type="hidden" name="fechaFin">
                                 <input type="text" class="form-control" name="cliente" placeholder="Ingrese el nombre"
                                   id="cliente-icon" disabled>
                                 <div class="form-control-icon">
@@ -258,6 +162,7 @@
                                   <option selected="">-- Elija una opcion --</option>
                                   <option value="Pendiente">Pendiente</option>
                                   <option value="Pagado">Pagado</option>
+                                  <option value="Cancelado">Cancelado</option>
                                 </select>
                               </div>
                             </div>

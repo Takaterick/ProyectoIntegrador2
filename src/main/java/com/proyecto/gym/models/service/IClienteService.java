@@ -20,4 +20,6 @@ public interface IClienteService {
     public Boolean eliminarDos(Long id);
 
     public Cliente buscarPorUsuario(String usuario);
+
+    public List<Cliente> listarClientesRecientes();
 }

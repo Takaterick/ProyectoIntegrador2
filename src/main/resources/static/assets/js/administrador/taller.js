@@ -10,7 +10,20 @@ const tablaTalleres = $("#tablaTalleres").DataTable({
       targets: "_all",
     },
   ],
-});
+  dom: "Bfrtip",
+  buttons: [
+    {
+      extend: "excelHtml5",
+      text: '<i class="fas fa-file-excel"></i> Exportar a CSV',
+      titleAttr: "Exportar a Excel",
+      className: "btn btn-success",
+      filename: "Reporte_Talleres",
+      exportOptions: {
+        columns: [1, 2, 3, 4, 5],
+      },
+    }
+  ],
+})
 
 ///*** otra forma de capturar los datos de los inputs */
 const formulario = $("#formTaller")[0];
