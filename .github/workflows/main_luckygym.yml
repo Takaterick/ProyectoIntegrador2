@@ -58,5 +58,5 @@ jobs:
         with:
           app-name: 'luckygym'
           slot-name: 'Production'
-          package: '*.jar'
+          package: 'gym-0.0.1-SNAPSHOT.jar'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_D23F1480F8D44F9F89AD5F8276B491B5 }}
