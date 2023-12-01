@@ -20,7 +20,10 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: '11'
-
+      
+      - name: Clean with Gradle
+        run: ./gradlew clean
+        
       - name: Build with Gradle
         run: ./gradlew build
 
