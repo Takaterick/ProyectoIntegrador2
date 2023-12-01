@@ -79,4 +79,11 @@ public class ClienteController {
     public String pagos(){
         return "/view/cliente/pagos";
     }
+
+    @GetMapping("/alquileres")
+    public String alquileres(Authentication auth, Model model){
+        Cliente cliente = clienteService.buscarPorUsuario(auth.getName());
+        model.addAttribute("cliente", cliente);
+        return "view/cliente/alquiler";
+    }
 }

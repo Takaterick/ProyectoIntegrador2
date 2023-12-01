@@ -18,28 +18,14 @@
     <ul class="menu">
       <li class="sidebar-title">Menu</li>
 
-      <li class="sidebar-item">
-        <a href="index.html" class="sidebar-link">
+      <li class="sidebar-item active">
+        <a th:href="@{/clientes/}" class="sidebar-link">
           <i class="bi bi-grid-fill"></i>
           <span>Perfil</span>
         </a>
       </li>
 
-      <li class="sidebar-title">Gestión</li>
-
-      <li class="sidebar-item has-sub">
-        <a href="#" class="sidebar-link">
-          <i class="bi bi-pentagon-fill"></i>
-          <span>Suscripciones</span>
-        </a>
-        <ul class="submenu">
-          <li class="submenu-item">
-            <a th:href="@{/administrador/suscripcion}">Clientes</a>
-          </li>
-        </ul>
-      </li>
-      <li class="sidebar-title">Mantenimiento</li>
-
+      <li class="sidebar-title">Servicios</li>
       <li class="sidebar-item">
         <a th:href="@{/clientes/talleres}" class="sidebar-link">
           <i class="bi bi-file-earmark-medical-fill"></i>
@@ -47,27 +33,9 @@
         </a>
       </li>
       <li class="sidebar-item">
-        <a th:href="@{/administrador/clientes}" class="sidebar-link">
+        <a th:href="@{/clientes/alquileres}" class="sidebar-link">
           <i class="bi bi-file-earmark-medical-fill"></i>
-          <span>Clientes</span>
-        </a>
-      </li>
-      <li class="sidebar-item">
-        <a th:href="@{/administrador/empleados}" class="sidebar-link">
-          <i class="bi bi-file-earmark-medical-fill"></i>
-          <span>Empleados</span>
-        </a>
-      </li>
-      <li class="sidebar-item">
-        <a th:href="@{/administrador/talleres}" class="sidebar-link">
-          <i class="bi bi-file-earmark-medical-fill"></i>
-          <span>Talleres</span>
-        </a>
-      </li>
-      <li class="sidebar-item">
-        <a th:href="@{/administrador/roles}" class="sidebar-link">
-          <i class="bi bi-file-earmark-medical-fill"></i>
-          <span>Roles</span>
+          <span>Reserva de Equipos</span>
         </a>
       </li>
     </ul>

@@ -14,7 +14,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ResourceUtils;
 
-import com.proyecto.gym.models.entity.Suscripcion;
 import com.proyecto.gym.models.entity.Visita;
 import com.proyecto.gym.models.repository.VisitaRepository;
 
