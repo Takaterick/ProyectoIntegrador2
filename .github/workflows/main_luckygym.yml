@@ -20,6 +20,9 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: '11'
+
+      - name: Grant execute permissions to gradlew
+        run: chmod +x ./gradlew
       
       - name: Clean with Gradle
         run: ./gradlew clean
