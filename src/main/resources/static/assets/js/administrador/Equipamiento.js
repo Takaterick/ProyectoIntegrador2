@@ -1,4 +1,4 @@
-const backend = "http://localhost:8080/api/v1/equipamientos";
+const backend = "https://luckygym.azurewebsites.net/api/v1/equipamientos";
 const formEquipamiento = $("#formEquipamiento")[0];
 const tablaEquipamiento = $("#tablaEquipamiento").DataTable({
   language: {

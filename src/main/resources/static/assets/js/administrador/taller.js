@@ -1,4 +1,4 @@
-const backend = "http://localhost:8080/api/v1/talleres";
+const backend = "https://luckygym.azurewebsites.net/api/v1/talleres";
 const tablaTalleres = $("#tablaTalleres").DataTable({
   language: {
     url: "//cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json",

@@ -29,7 +29,7 @@ const inscribirTaller = () => {
       if(result.isConfirmed){
         $.ajax({
           type: "POST",
-          url: "http://localhost:8080/api/v1/asistencias/guardar",
+          url: "https://luckygym.azurewebsites.net/api/v1/asistencias/guardar",
           contentType: "application/json",
           data: JSON.stringify(datosInscTaller),
           dataType: "json",
@@ -61,7 +61,7 @@ const eliminarInscripcionTaller = () => {
       if(result.isConfirmed){
         $.ajax({
           type: "DELETE",
-          url: "http://localhost:8080/api/v1/asistencias/eliminar/"+id,
+          url: "https://luckygym.azurewebsites.net/api/v1/asistencias/eliminar/"+id,
           success: function (response) {
             alertasInscCliente("Inscripción eliminada", "success");
             setTimeout(function () {

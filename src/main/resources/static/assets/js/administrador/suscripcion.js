@@ -1,4 +1,4 @@
-const backendSuscripcion = "http://localhost:8080/api/v1/suscripciones";
+const backendSuscripcion = "https://luckygym.azurewebsites.net/api/v1/suscripciones";
 const formSuscripcion = $("#formSuscripcion")[0];
 const selectMembresias = $("#selectMembresias");
 const selectEstados = $("#selectEstado");

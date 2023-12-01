@@ -1,4 +1,4 @@
-const backend = "http://localhost:8080/api/v1/clientes";
+const backend = "https://luckygym.azurewebsites.net/api/v1/clientes";
 const tablaClientes = $("#tablaClientes");
 const formCliente = $("#formCliente")[0];
 

@@ -1,5 +1,5 @@
 //VARIABLES PARA EL END POINT Y LA TABLA
-const backend = "http://localhost:8080/api/v1/membresias";
+const backend = "https://luckygym.azurewebsites.net/api/v1/membresias";
 const tablaMembresias = $("#tablaMembresias").DataTable({
   language: {
     url: "//cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json",

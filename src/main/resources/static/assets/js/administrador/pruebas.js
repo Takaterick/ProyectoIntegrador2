@@ -1,4 +1,4 @@
-let backend = "http://localhost:8080/api/v1/membresias";
+let backend = "https://luckygym.azurewebsites.net/api/v1/membresias";
 const tablaMembresias = $("#tablaMembresias");
 const arregloMembresias = [];
 
