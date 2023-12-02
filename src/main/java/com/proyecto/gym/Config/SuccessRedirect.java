@@ -36,7 +36,7 @@ public class SuccessRedirect implements AuthenticationSuccessHandler{
                     response.sendRedirect(contextpath+"/clientes/");
                     break;
                 case "ROLE_Administrador":
-                    response.sendRedirect(contextpath+"/administrador/dashboard");
+                    response.sendRedirect(contextpath+"/administrador/");
                     break;
                 case "ROLE_Entrenador":
                     response.sendRedirect(contextpath+"/entrenador/");
