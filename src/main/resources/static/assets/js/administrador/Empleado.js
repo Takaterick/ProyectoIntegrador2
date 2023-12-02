@@ -251,6 +251,7 @@ const rellenarEmpleado = () => {
       url: backend + "empleados/buscar/" + id,
       dataType: "json",
       success: function (response) {
+        console.log(response);
         formEmpleado.idEmpl.value = response.idEmpl;
         formEmpleado.nombreEmpl.value = response.nombreEmpl;
         formEmpleado.apellidoEmpl.value = response.apellidoEmpl;
